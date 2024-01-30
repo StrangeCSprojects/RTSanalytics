@@ -95,7 +95,7 @@ def build_order(replay):
 
 def main():
     # Specify the directory path
-    folder_path = "C:/cpp-sc2/BuildMaster/Replays" # REMEBER TO UPDATE!!!
+    folder_path = "D:/School/CS4550/RTSanalytics/replay_extraction_tools/replays" # REMEBER TO UPDATE!!!
 
     # Starcraft 2 username
     player_name = "Cstrange"
