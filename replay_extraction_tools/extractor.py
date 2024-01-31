@@ -1,6 +1,9 @@
+
 import os
 import sc2reader
 from enum import Enum
+from database_tools.database import insert_into_db
+
 
 # Build order types
 class BuildOrder(Enum):
@@ -44,9 +47,20 @@ def replay_analysis(player_name, folder_path):
                         winner_name = player.name
 
             # Determine build order            
-            print(f"Player Name: {player_name}\nGame Mode: {game_mode}\nPlayer One: {player_one_name} - {player_one_race}\nPlayer Two: {player_two_name} - {player_two_race}\nWinner: {winner_name}")
+            print(f"Player Name: {player_name}\nGame Mode: {game_mode}\nPlayer One: {player_one_name} - {player_one_race}\nPlayer Two: {player_two_name} - {player_two_race}\nWinner: {winner_name}\n")
             build_order(replay)
-            print("\n")
+            
+            # Store game data into sc2_overlay database
+            new_record = (
+                player_one_name,
+                player_one_race,
+                player_two_name,
+                player_two_race,
+                game_mode,
+                winner_name
+            )
+            insert_into_db(new_record)
+
 
 def build_order(replay):
     """Determine build order"""
@@ -94,12 +108,15 @@ def build_order(replay):
 
 
 def main():
-    # Specify the directory path
-    folder_path = "D:/School/CS4550/RTSanalytics/replay_extraction_tools/replays" # REMEBER TO UPDATE!!!
-
-    # Starcraft 2 username
-    player_name = "Cstrange"
+    """Main entry point"""
+    player_name = "Cstrange" # Starcraft 2 username
+    script_dir = os.path.dirname(__file__)
+    replay_folder_path = os.path.join(script_dir, "replay_extraction_tools/Replays")
+    replay_analysis(player_name,replay_folder_path)
     
-    replay_analysis(player_name,folder_path)
+    print(script_dir)
+
+
+# Interpret this module
 if __name__ == "__main__":
     main()
