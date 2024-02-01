@@ -111,7 +111,8 @@ def main():
     """Main entry point"""
     player_name = "Cstrange" # Starcraft 2 username
     script_dir = os.path.dirname(__file__)
-    replay_folder_path = os.path.join(script_dir, "replay_extraction_tools/Replays")
+
+    replay_folder_path = os.path.join(script_dir, "replays")
     replay_analysis(player_name,replay_folder_path)
     
     print(script_dir)
