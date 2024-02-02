@@ -36,7 +36,7 @@ def insert_into_db(new_game_data: tuple([str, str, str, str, str, str])) -> None
     - None
     """
     # Connect to SQLite database (creates a new database file if not exists)
-    conn = sqlite3.connect('db/sc2_games.db')
+    conn = sqlite3.connect('database_tools/sc2_games.db')
 
     # Create a cursor to execute SQL commands
     cursor = conn.cursor()
