@@ -3,7 +3,7 @@
 import os
 import sc2reader
 from enum import Enum
-from src.database import insert_into_db
+from database_tools.sc2_database import insert_into_db
 
 
 # Build order types
