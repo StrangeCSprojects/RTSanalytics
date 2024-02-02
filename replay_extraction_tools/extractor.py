@@ -1,7 +1,7 @@
 import os
 import sc2reader
 from enum import Enum
-from database_tools.database_test import test
+from database_tools.sc2_database import test
 
 print(sc2reader.__version__)
 test()
