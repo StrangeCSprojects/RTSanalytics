@@ -1,7 +1,76 @@
+
+## THESE WILL BE USED IN FUTURE BUILDS
 # from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 # from sqlalchemy.orm import declarative_base, relationship
 # import sc2reader
 
+# OUR MVP WILL USE THESE
+import sqlite3
+from typing import Tuple
+
+def check_table_existence(table_name: str, conn) -> bool:
+    """
+    Check if a table exists in the database.
+
+    Parameters:
+    - table_name (str): The name of the table to check.
+    - conn: The SQLite database connection.
+
+    Returns:
+    - bool: True if the table exists, False otherwise.
+    """
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}'")
+    return cursor.fetchone() is not None
+
+def insert_into_db(new_game_data: tuple([str, str, str, str, str, str])) -> None:
+    """
+    Inserts game data into the 'games' table
+
+    Parameters:
+    - new_game_data (str): A tuple containing the field values to be inserted
+
+    Returns:
+    - None
+    """
+    # Connect to SQLite database (creates a new database file if not exists)
+    conn = sqlite3.connect('database_tools/sc2_games.db')
+
+    # Create a cursor to execute SQL commands
+    cursor = conn.cursor()
+
+    # Create a table to store game data if the table does not exist
+    if not check_table_existence('games', conn):
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS games (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                player1_name TEXT,
+                player1_race TEXT,
+                player2_name TEXT,
+                player2_race TEXT,
+                game_mode TEXT,
+                winner TEXT
+            );
+        """)
+
+    # Insert the data into the table
+    cursor.execute('''
+        INSERT INTO games (player1_name, player1_race, player2_name, player2_race, game_mode, winner)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ''', new_game_data)
+
+    # Commit the changes to the database
+    conn.commit()
+    print("Inserted data success!\n")
+    
+    # Close the connection
+    conn.close()
+    print("Connection close success!\n")
+
+
+
+
+# THIS CODE WILL GET INCLUDED IN FUTURE BUILDS
 # Base = declarative_base()
 
 # class Map(Base):
@@ -67,7 +136,3 @@
 
 # # Replace 'example.SC2Replay' with the path to your replay file
 # insert_game_data("example.SC2Replay")
-
-
-def test():
-    print("test2")
