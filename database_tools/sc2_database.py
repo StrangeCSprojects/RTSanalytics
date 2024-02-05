@@ -8,7 +8,6 @@
 import sqlite3
 from typing import Tuple
 
-
 def check_table_existence(table_name: str, conn) -> bool:
     """
     Check if a table exists in the database.
@@ -23,7 +22,6 @@ def check_table_existence(table_name: str, conn) -> bool:
     cursor = conn.cursor()
     cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}'")
     return cursor.fetchone() is not None
-
 
 def insert_into_db(new_game_data: tuple([str, str, str, str, str, str])) -> None:
     """
