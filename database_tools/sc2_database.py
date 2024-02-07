@@ -14,8 +14,9 @@ def check_table_existence(table_name: str, conn) -> bool:
     Check if a table exists in the database.
 
     Parameters:
-    - table_name (str): The name of the table to check.
-    - conn: The SQLite database connection.
+    - table_name - (str): The name of the table to check.
+    - conn - SQLite connection: Manages the connection to the database
+        and allows for querying for specific Star Craft II data.
 
     Returns:
     - bool: True if the table exists, False otherwise.
@@ -30,7 +31,7 @@ def insert_into_db(new_game_data: tuple([str, str, str, str, str, str])) -> None
     Inserts game data into the 'games' table
 
     Parameters:
-    - new_game_data (str): A tuple containing the field values to be inserted
+    - new_game_data - Tuple(str): A tuple containing the field values to be inserted
 
     Returns:
     - None
@@ -56,23 +57,76 @@ def insert_into_db(new_game_data: tuple([str, str, str, str, str, str])) -> None
         """)
 
     # Insert the data into the table
-    cursor.execute('''
+    cursor.execute("""
         INSERT INTO games (player1_name, player1_race, player2_name, player2_race, game_mode, winner)
         VALUES (?, ?, ?, ?, ?, ?)
-    ''', new_game_data)
+    """, new_game_data)
 
     # Commit the changes to the database
     conn.commit()
-    print("Inserted data success!\n")
     
     # Close the connection
     conn.close()
-    print("Connection close success!\n")
+
+
+def retrieve_table_data(table_name: str, game_id: str = None) -> list[Tuple[str]]:
+    """
+    Retrieves the data from a specified table
+    
+    Parameters:
+    - table_name - string: A string representation of a table name
+        in the database (not case-sensitive)
+    - game_id - string: A string representing the ID of a specific
+        row in the table (set to None by default)
+    
+    Returns:
+    - If game_id is not specified, a tuple containing the data for each
+            row in the specified table is returned in the following format:
+                [
+                    (
+                        GAME ID,
+                        PLAYER 1 NAME, PLAYER 1 RACE,
+                        PLAYER 2 NAME, PLAYER 2 RACE,
+                        GAME MODE, WINNER NAME
+                    )
+                ]
+            otherwise, the function returns a tuple containing the data
+                for the specified row.
+    """
+    # Connect to SQLite database (creates a new database file if not exists)
+    conn = sqlite3.connect('database_tools/sc2_games.db')
+
+    # Create a cursor to execute SQL commands
+    cursor = conn.cursor()
+    
+    # A result variable which contains one of three types: None, tuple, or list of tuples
+    result = None
+    
+    # Check if table exists and return data if true, otherwise return None
+    if not check_table_existence(table_name, conn):
+        print("No such table exists. Sorry!")
+        return result # This particular return statement will change in future builds
+    elif game_id:
+        cursor.execute(f"SELECT * FROM {table_name} WHERE rowid = ?", str(game_id))
+        result = cursor.fetchone()
+    else:
+        cursor.execute(f"SELECT * FROM {table_name}")
+        result = cursor.fetchall()
+    
+    # Close the connection and return the result
+    conn.close()
+    return result
 
 
 
 
-# THIS CODE WILL GET INCLUDED IN FUTURE BUILDS
+
+
+
+
+# KEEP IGNORING THIS PART
+
+
 # Base = declarative_base()
 
 # class Map(Base):
