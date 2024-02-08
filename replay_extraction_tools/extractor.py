@@ -3,7 +3,7 @@
 import os
 import sc2reader
 from enum import Enum
-from database_tools.sc2_database import insert_into_db
+from database_tools.sc2_database import insert_into_db, retrieve_table_data
 
 
 # Build order types
@@ -116,8 +116,15 @@ def main():
     replay_folder_path = os.path.join(script_dir, "replays")
     replay_analysis(player_name,replay_folder_path)
     
-    print("Program has finished its execution!")
-    print("Check the folder 'db/' to find the output database file(s)\n")
+    # Testing data retrieval function on 'games' table
+    print("\nPRINTING DATA IN 'GAMES' TABLE...")
+    retrieved_row = retrieve_table_data('games', 1) # Get just a single row of data
+    for data in retrieved_row:
+        print(data)
+    retrieved_table_data = retrieve_table_data('games')
+    for row in retrieved_table_data:
+        print(row)
+    print("\nCheck the folder 'db/' to find the output database file(s)\n")
 
 
 # Interpret this module
