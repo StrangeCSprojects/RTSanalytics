@@ -9,7 +9,25 @@ import sqlite3
 from typing import Tuple
 
 
-def check_table_existence(table_name: str, conn) -> bool:
+def create_tables():
+    """Initializes all the tables if they do not already exist"""
+    # Get connected to the database
+    conn = sqlite3.connect('database_tools/sc2_games.db')
+    
+    # Checks/creates the 'games' table ----- THIS WILL CHANGE
+    #
+    # This will iterate through all the required table names
+    # and create them one-by-one
+    if not check_table_existence('games', conn):
+        
+    
+    # Finish this part once you get home
+    # All you do is check if the tables exist in the SC2 database
+    # file and create them if they don't
+    # This function will be called once the database object gets constructed
+
+
+def check_table_existence(table_name: str, conn: sqlite3.Connection) -> bool:
     """
     Check if a table exists in the database.
 
@@ -26,11 +44,31 @@ def check_table_existence(table_name: str, conn) -> bool:
     return cursor.fetchone() is not None
 
 
-def insert_into_db(new_game_data: tuple([str, str, str, str, str, str])) -> None:
+def get_column_count(table_name: str, conn: sqlite3.Connection) -> int:
+    """Gets the number of columns in a database table"""
+    # Create a cursor object with the database connection
+    cursor = conn.cursor()
+
+    # Execute SQL query to get table definition
+    cursor.execute(f"PRAGMA table_info({table_name})")
+
+    # Fetch all rows from the result
+    rows = cursor.fetchall()
+
+    # Count the number of rows, which represents the number of columns
+    column_count = len(rows)
+
+    # Return the number of columns
+    return column_count
+
+
+def insert_into_db(table_name: str, new_game_data: Tuple[str, ...]) -> None:
     """
-    Inserts game data into the 'games' table
+    Inserts game data into a specified table and does not insert the data
+        if the specified table does not exist
 
     Parameters:
+    - table_name - string: The name of the table to insert the game data 
     - new_game_data - Tuple(str): A tuple containing the field values to be inserted
 
     Returns:
@@ -42,26 +80,21 @@ def insert_into_db(new_game_data: tuple([str, str, str, str, str, str])) -> None
     # Create a cursor to execute SQL commands
     cursor = conn.cursor()
 
-    # Create a table to store game data if the table does not exist
-    if not check_table_existence('games', conn):
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS games (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                player1_name TEXT,
-                player1_race TEXT,
-                player2_name TEXT,
-                player2_race TEXT,
-                game_mode TEXT,
-                winner TEXT
-            );
-        """)
-
-    # Insert the data into the table
-    cursor.execute("""
-        INSERT INTO games (player1_name, player1_race, player2_name, player2_race, game_mode, winner)
-        VALUES (?, ?, ?, ?, ?, ?)
-    """, new_game_data)
-
+    # Don't insert any data if the specified table does not exist
+    if not check_table_existence(table_name, conn):
+        print(f"Table {table_name} does not exist.")
+        return None
+    
+    # Now check if the number of columns matchsthe length of the new game data
+    num_fields = len(new_game_data)
+    if num_fields != get_column_count(table_name, conn) - 1: # Ignores the "ID" field in any table
+        print("Invalid number of fields. Make sure table columns and new data match in length.")
+        return None
+    
+    # Dynamically construct the SQL statement to insert the data
+    placeholders = ', '.join(['?' for _ in range(num_fields)])
+    sql = f"INSERT INTO {table_name} VALUES ({placeholders})"
+    
     # Commit the changes to the database
     conn.commit()
     

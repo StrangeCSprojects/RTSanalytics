@@ -60,7 +60,7 @@ def replay_analysis(player_name, folder_path):
                 game_mode,
                 winner_name
             )
-            insert_into_db(new_record)
+            insert_into_db('games', new_record)
 
 
 def build_order(replay):
