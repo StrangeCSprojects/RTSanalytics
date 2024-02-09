@@ -5,26 +5,49 @@
 # import sc2reader
 
 # OUR MVP WILL USE THESE
+from ast import Str
+from os import curdir
 import sqlite3
 from typing import Tuple
 
 
-def create_tables():
-    """Initializes all the tables if they do not already exist"""
+def create_tables() -> None:
+    """
+    Initializes all the tables if they do not already exist
+    
+    Parameters:
+    - None
+    
+    Returns:
+    - None
+    """
     # Get connected to the database
     conn = sqlite3.connect('database_tools/sc2_games.db')
+    cursor = conn.cursor()
     
     # Checks/creates the 'games' table ----- THIS WILL CHANGE
     #
-    # This will iterate through all the required table names
+    # In future builds, this will iterate through all the required table names
     # and create them one-by-one
     if not check_table_existence('games', conn):
-        
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS games (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                player1_name TEXT,
+                player1_race TEXT,
+                player2_name TEXT,
+                player2_race TEXT,
+                game_mode TEXT,
+                winner TEXT
+            );
+        """)
+        # Commit the change               
+        conn.commit()
+    # Close the connection after the tables have been initialized
+    conn.close()
     
-    # Finish this part once you get home
-    # All you do is check if the tables exist in the SC2 database
-    # file and create them if they don't
-    # This function will be called once the database object gets constructed
+    # This function will initialize more tables in future builds
+
 
 
 def check_table_existence(table_name: str, conn: sqlite3.Connection) -> bool:
@@ -41,7 +64,8 @@ def check_table_existence(table_name: str, conn: sqlite3.Connection) -> bool:
     """
     cursor = conn.cursor()
     cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}'")
-    return cursor.fetchone() is not None
+    result = cursor.fetchone() is not None
+    return result
 
 
 def get_column_count(table_name: str, conn: sqlite3.Connection) -> int:
@@ -93,7 +117,10 @@ def insert_into_db(table_name: str, new_game_data: Tuple[str, ...]) -> None:
     
     # Dynamically construct the SQL statement to insert the data
     placeholders = ', '.join(['?' for _ in range(num_fields)])
-    sql = f"INSERT INTO {table_name} VALUES ({placeholders})"
+    sql = f"INSERT INTO {table_name} VALUES (NULL, {placeholders})"
+    
+    # Execute the constructed sql statement with cursor
+    cursor.execute(sql, new_game_data)
     
     # Commit the changes to the database
     conn.commit()
@@ -139,15 +166,18 @@ def retrieve_table_data(table_name: str, game_id: str = None) -> list[Tuple[str]
     if not check_table_existence(table_name, conn):
         print("No such table exists. Sorry!")
         return result # This particular return statement will change in future builds
-    elif game_id:
-        cursor.execute(f"SELECT * FROM {table_name} WHERE rowid = ?", str(game_id))
+    elif game_id is not None:
+        cursor.execute(f"SELECT * FROM {table_name} WHERE id = ?", str(game_id))
         result = cursor.fetchone()
+        print(f"The result of the row is: {type(result)}, {result}")
     else:
         cursor.execute(f"SELECT * FROM {table_name}")
         result = cursor.fetchall()
+        print(f"The table result is: {type(result)}, {result}")
     
     # Close the connection and return the result
     conn.close()
+    input("The end of data retrieval")
     return result
 
 
