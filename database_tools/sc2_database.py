@@ -81,12 +81,13 @@ def get_column_count(table_name: str, conn: sqlite3.Connection) -> int:
 
     # Count the number of rows, which represents the number of columns
     column_count = len(rows)
-
+    
     # Return the number of columns
     return column_count
 
 
 def insert_into_db(table_name: str, new_game_data: Tuple[str, ...]) -> None:
+
     """
     Inserts game data into a specified table and does not insert the data
         if the specified table does not exist
