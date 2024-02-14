@@ -170,15 +170,14 @@ def retrieve_table_data(table_name: str, game_id: str = None) -> list[Tuple[str]
     elif game_id is not None:
         cursor.execute(f"SELECT * FROM {table_name} WHERE id = ?", str(game_id))
         result = cursor.fetchone()
-        print(f"The result of the row is: {type(result)}, {result}")
+        # print(f"The result of the row is: {type(result)}, {result}")
     else:
         cursor.execute(f"SELECT * FROM {table_name}")
         result = cursor.fetchall()
-        print(f"The table result is: {type(result)}, {result}")
+        # print(f"The table result is: {type(result)}, {result}")
     
     # Close the connection and return the result
     conn.close()
-    input("The end of data retrieval")
     return result
 
 
