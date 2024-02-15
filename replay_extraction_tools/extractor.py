@@ -4,7 +4,7 @@ import os
 import sqlite3
 import sc2reader
 from enum import Enum
-from database_tools.sc2_database import check_table_existence, insert_into_db, retrieve_table_data, create_tables
+from database_tools.sc2_database import SC2_DB
 
 
 # Build order types
@@ -61,7 +61,7 @@ def replay_analysis(player_name, folder_path):
                 game_mode,
                 winner_name
             )
-            insert_into_db('games', new_record)
+            SC2_DB.insert_into_db('games', new_record)
 
 
 def build_order(replay):
@@ -107,39 +107,3 @@ def build_order(replay):
     # print(command_center_count)
     # print(production_building_count)
     print(f"Build Order: {build_order.name}")
-
-
-def main():
-    """Main entry point"""
-    # Initialize the database connection and tables and 
-    create_tables()
-    conn = sqlite3.connect("database_tools/sc2_games.db")
-    cursor = conn.cursor()
-    
-    player_name = "Cstrange" # Starcraft 2 username
-    script_dir = os.path.dirname(__file__)
-
-    replay_folder_path = os.path.join(script_dir, "replays")
-    replay_analysis(player_name,replay_folder_path)
-    
-    # Testing data retrieval function on 'games' table
-    # Feel free to modify this code to observe behavior of
-    # the functions
-    # print("\nPRINTING DATA IN 'GAMES' TABLE...")
-    # row = retrieve_table_data('games', 1) # Get just a single row of data
-    # table_data = retrieve_table_data('games') # Retrieve all the data from 'games' table
-    # for row in table_data:
-    #     print(row)
-    # print('\n')
-    # for data in row:
-    #     print(data)
-        
-    # Close the connection
-    conn.close()
-    
-    print("\nCheck the folder 'db/' to find the output database file(s)\n")
-
-
-# Interpret this module
-if __name__ == "__main__":
-    main()
