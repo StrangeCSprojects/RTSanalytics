@@ -1,257 +1,32 @@
 
-## THESE WILL BE USED IN FUTURE BUILDS
-# from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-# from sqlalchemy.orm import declarative_base, relationship
-# import sc2reader
-
-# OUR MVP WILL USE THESE
-import sqlite3
-from typing import Tuple
+# Import any needed modules
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from database_tools.entities.sc2_db_entities import *
 
 
 class SC2_DB:
-    """A class for managing SC2 database"""
-    # Initialize class variables
-    _db_file_path = "database_tools/sc2_games.db"
+    """A class for interacting with the SC2 database"""
+    def __init__(self, db_name):
+        self.engine = create_engine(f'sqlite:///database_tools/{db_name}.db')
+        Base.metadata.create_all(self.engine)
+        Session = sessionmaker(bind=self.engine)
+        self.Session = Session
 
-    @staticmethod
-    def create_tables() -> None:
-        """
-        Initializes all the tables if they do not already exist
-    
-        Parameters:
-        - None
-    
-        Returns:
-        - None
-        """
-        
-        # Get connected to the database
-        conn = sqlite3.connect(SC2_DB._db_file_path)
-        cursor = conn.cursor()
+    def add_game(self, mode, map, winner_id):
+        with self.Session() as session:
+            game = Game(mode=mode, map=map, winner=winner_id)
+            session.add(game)
+            session.commit()
 
-        # In future builds, this will iterate through all the
-        # required table names and create them one-by-one
-        if not SC2_DB._table_exists('games', conn):
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS games (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    player1_name TEXT,
-                    player1_race TEXT,
-                    player2_name TEXT,
-                    player2_race TEXT,
-                    game_mode TEXT,
-                    winner TEXT
-                );
-            """)
-            
-            # Commit the change               
-            conn.commit()
-        
-        # Close the connection after the tables have been initialized
-        conn.close()
+    def add_player(self, name, race):
+        with self.Session() as session:
+            player = Player(name=name, race=race)
+            session.add(player)
+            session.commit()
 
-
-    @staticmethod
-    def _table_exists(table_name: str, conn: sqlite3.Connection) -> bool:
-        """
-        Check if a table exists in the database.
-
-        Parameters:
-        - table_name - (str): The name of the table to check.
-        - conn - SQLite connection: Manages the connection to the database
-            and allows for querying for specific Star Craft II data.
-
-        Returns:
-        - bool: True if the table exists, False otherwise.
-        """
-
-        # Return true if cursor objects finds the table and false otherwise
-        cursor = conn.cursor()
-        cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}'")
-        result = cursor.fetchone() is not None
-        return result
-
-
-    @staticmethod
-    def _get_column_count(table_name: str, conn: sqlite3.Connection) -> int:
-        """Gets the number of columns in a database table"""
-        # Create a cursor object with the database connection
-        cursor = conn.cursor()
-
-        # Execute SQL query to get table definition
-        cursor.execute(f"PRAGMA table_info({table_name})")
-
-        # Fetch all rows from the result
-        rows = cursor.fetchall()
-
-        # Count the number of rows, which represents the number of columns
-        column_count = len(rows)
-    
-        # Return the number of columns
-        return column_count
-
-
-    @staticmethod
-    def insert_into_db(table_name: str, new_game_data: Tuple[str, ...]) -> None:
-        """
-        Inserts game data into a specified table and does not insert the data
-            if the specified table does not exist
-
-        Parameters:
-        - table_name - string: The name of the table to insert the game data 
-        - new_game_data - Tuple(str): A tuple containing the field values to be inserted
-
-        Returns:
-        - None
-        """
-        # Connect to SQLite database (creates a new database file if not exists)
-        conn = sqlite3.connect(SC2_DB._db_file_path)
-
-        # Create a cursor to execute SQL commands
-        cursor = conn.cursor()
-
-        # Check if the number of columns matchsthe length of the new game data
-        num_fields = len(new_game_data)
-        if num_fields != SC2_DB._get_column_count(table_name, conn) - 1: # Ignores the "ID" field in any table
-            print("Invalid number of fields. Make sure table columns and new data match in length.")
-            return None
-    
-        # Dynamically construct the SQL statement to insert the data
-        placeholders = ', '.join(['?' for _ in range(num_fields)])
-        sql = f"INSERT INTO {table_name} VALUES (NULL, {placeholders})"
-    
-        # Execute the constructed sql statement with cursor
-        cursor.execute(sql, new_game_data)
-    
-        # Commit the changes to the database
-        conn.commit()
-    
-        # Close the connection
-        print("Insert data success!")
-        conn.close()
-
-    @staticmethod
-    def retrieve_table_data(table_name: str, game_id: str = None) -> list[Tuple[str]]:
-        """
-        Retrieves the data from a specified table
-    
-        Parameters:
-        - table_name - string: A string representation of a table name
-            in the database (not case-sensitive)
-        - game_id - string: A string representing the ID of a specific
-            row in the table (set to None by default)
-    
-        Returns:
-        - If game_id is not specified, a tuple containing the data for each
-                row in the specified table is returned in the following format:
-                    [
-                        (
-                            GAME ID,
-                            PLAYER 1 NAME, PLAYER 1 RACE,
-                            PLAYER 2 NAME, PLAYER 2 RACE,
-                            GAME MODE, WINNER NAME
-                        )
-                    ]
-                otherwise, the function returns a tuple containing the data
-                    for the specified row.
-        """
-        # Connect to SQLite database (creates a new database file if not exists)
-        conn = sqlite3.connect(SC2_DB._db_file_path)
-
-        # Create a cursor to execute SQL commands
-        cursor = conn.cursor()
-
-        # A result variable which contains one of three types: None, tuple, or list of tuples
-        result = None
-
-        # Check if table exists and return data if true, otherwise return None
-        if not SC2_DB._table_exists(table_name, conn):
-            print("No such table exists. Sorry!")
-            return result # This particular return statement will change in future builds
-        elif game_id is not None:
-            cursor.execute(f"SELECT * FROM {table_name} WHERE id = ?", str(game_id))
-            result = cursor.fetchone()
-        else:
-            cursor.execute(f"SELECT * FROM {table_name}")
-            result = cursor.fetchall()
-
-        # Close the connection and return the result
-        conn.close()
-        return result
-
-
-
-
-
-
-
-
-# KEEP IGNORING THIS PART
-
-
-# Base = declarative_base()
-
-# class Map(Base):
-#     __tablename__ = 'maps'
-
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String)
-
-# class Player(Base):
-#     __tablename__ = 'players'
-
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String)
-#     race = Column(String)
-
-#     map_id = Column(Integer, ForeignKey('maps.id'))
-#     map = relationship('Map', back_populates='players')
-
-# class Game(Base):
-#     __tablename__ = 'games'
-
-#     id = Column(Integer, primary_key=True)
-#     mode = Column(String)
-#     winner = Column(String)
-
-#     map_id = Column(Integer, ForeignKey('maps.id'))
-#     map = relationship('Map', back_populates='games')
-
-# Map.players = relationship('Player', back_populates='map')
-# Map.games = relationship('Game', back_populates='map')
-
-# # Create an SQLite database engine
-# engine = create_engine('sqlite:///starcraft.db')
-
-# # Create tables
-# Base.metadata.create_all(engine)
-
-# def insert_game_data(replay_file):
-#     # Load the replay file
-#     replay = sc2reader.load_replay(replay_file)
-
-#     # Create a session
-#     Session = sessionmaker(bind=engine)
-#     session = Session()
-
-#     # Insert data into the 'maps' table
-#     map_data = Map(name=replay.map_name)
-#     session.add(map_data)
-#     session.commit()
-
-#     # Insert data into the 'players' table
-#     for player in replay.players:
-#         player_data = Player(name=player.name, race=player.play_race, map=map_data)
-#         session.add(player_data)
-
-#     # Determine the winner and insert data into the 'games' table
-#     winner = max(replay.teams, key=lambda team: team.result).players[0].name
-#     game_data = Game(mode=replay.real_type, winner=winner, map=map_data)
-#     session.add(game_data)
-
-#     # Commit changes
-#     session.commit()
-
-# # Replace 'example.SC2Replay' with the path to your replay file
-# insert_game_data("example.SC2Replay")
+    def add_command(self, name):
+        with self.Session() as session:
+            command = Command(name=name)
+            session.add(command)
+            session.commit()

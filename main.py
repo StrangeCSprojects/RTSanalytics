@@ -10,18 +10,8 @@ from replay_extraction_tools.extractor import *
 
 def main():
     """Main entry point"""
-    
-    # Ensure the database is initialized
-    SC2_DB.create_tables()
-    
-    # Analyze the replays from the replays folder
-    replay_folder_path = "replay_extraction_tools/replays"
-    replay_analysis("cstrange", replay_folder_path)
-    
-    # Test retrieving data from the database
-    row = SC2_DB.retrieve_table_data('games', 2) # Get the second replay's data
-    for data in row:
-        print(data)
+    db = SC2_DB("sc2_games")
+    print("It works.")
 
 
 # Interpret this module
