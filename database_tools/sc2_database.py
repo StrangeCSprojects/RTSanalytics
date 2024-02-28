@@ -30,3 +30,11 @@ class SC2_DB:
             command = Command(name=name)
             session.add(command)
             session.commit()
+
+    def get_player_info(self, id):
+        with self.Session() as session:
+            player = session.query(Player).filter_by(player_id=id).first()
+            if player:
+                return {'player_id': player.player_id, 'name': player.name, 'race': player.race}
+            else:
+                return None

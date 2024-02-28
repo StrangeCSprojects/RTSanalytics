@@ -52,7 +52,7 @@ def replay_analysis(player_name, folder_path):
             print(f"Player Name: {player_name}\nGame Mode: {game_mode}\nPlayer One: {player_one_name} - {player_one_race}\nPlayer Two: {player_two_name} - {player_two_race}\nWinner: {winner_name}\n")
             build_order(replay)
             
-            # Store game data into sc2_overlay database
+            # Return the newly calculated game data
             new_record = (
                 player_one_name,
                 player_one_race,
@@ -61,7 +61,7 @@ def replay_analysis(player_name, folder_path):
                 game_mode,
                 winner_name
             )
-            SC2_DB.insert_into_db('games', new_record)
+            return new_record
 
 
 def build_order(replay):
