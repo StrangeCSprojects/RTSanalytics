@@ -5,7 +5,7 @@
 """
 
 # Import any needed modules
-from database_tools.sc2_database import *
+from database_tools.sc2_database import SC2_DB
 from replay_extraction_tools.extractor import *
 
 def main():
@@ -14,8 +14,7 @@ def main():
     # Initialize the database
     db = SC2_DB("sc2_games")
     
-    # Get the replay information
-    db.get_player_info(3)
+    print("Database created successfully.")
 
 
 # Interpret this module

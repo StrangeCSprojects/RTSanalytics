@@ -1,6 +1,6 @@
 
 # Import any needed modules
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_tools.entities.sc2_db_entities import *
 
