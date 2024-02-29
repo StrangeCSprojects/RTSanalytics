@@ -60,7 +60,7 @@ class SC2Extractor(Extractor):
 
         return replay_container
     
-    def filter_into_tables(self, replay_container:dict[int,sc2reader.resources.Replay]) -> list[Table]:
+    def filter_into_tables(self, replay_container:dict) -> None:
         """
         Filter relevant data from a group of replays and store that information into 
         a group of tables then return a list of those tables.
@@ -109,15 +109,14 @@ class SC2Extractor(Extractor):
             self.commands_two.set_data()
             self.issues_two.set_data()
 
-    def get_tables(self):
+    def get_tables(self) -> list[Table]:
         return [self.game, self.play_one, self.player_one, self.commands_one, self.issues_one, self.play_two, self.player_two, self.commands_two, self.issues_two]
 
-    # Run this function to 
-    def run(self):
-        replay_container = self.extract()
-        self.filter_into_tables(replay_container)
-        table_list = self.get_tables()
-        self.batch_insert(table_list)
+    def run(self) -> None:
+        return super().run()
+    
+    def batch_insert(self, table_list: list[Table]) -> None:
+        return super().batch_insert(table_list)
 
     # ID generation
     def create_game_id(self) -> int:
@@ -136,12 +135,6 @@ class SC2Extractor(Extractor):
         return self.command_id
             
 
-
-folder_path = "replay_extraction_tools/replays"
-
-test = SC2Extractor(folder_path)
-print(test.run())
-        
 
 
 
