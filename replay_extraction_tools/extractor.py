@@ -1,26 +1,30 @@
 
-# Import any needed modules
-import os
-import sqlite3
-import sc2reader
-from enum import Enum
-from database_tools.sc2_database import SC2_DB
+from abc import ABC, abstractmethod
+from database_tools.general_database_access import Table
+
+class Extractor(ABC):
+    """
+    Abstract class that extracts data from a group of replays, filters the data into
+    table classes and inserts that data into a database.
+    """
+    def __init__(self, folder_path: str) -> None:
+        # super().__init__()
+        self.folder_path = folder_path
 
 
-# Build order types
-class BuildOrder(Enum):
-    UNKNOWN = 0
-    AGRESSION = 1
-    STANDARD = 2
-    ECONOMY = 3
+    @abstractmethod
+    def extract(self) -> None:
+        pass
 
-def replay_analysis(player_name, folder_path):
-    """Gather data to determine winrate based on race"""
-    replay_counter = 0
+
+    @abstractmethod
+    def filter_into_tables(self) -> None:
+        pass
+
 
     # Loop through all files in the folder
-    for filename in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, filename)
+    for filename in os.listdir(self.folder_path ):
+        file_path = os.path.join(self.folder_path, filename)
         if os.path.isfile(file_path):
 
             replay_counter +=1
@@ -48,9 +52,11 @@ def replay_analysis(player_name, folder_path):
                     if player.result == 'Win':
                         winner_name = player.name
 
+            # TODO
+            #
             # Determine build order            
-            print(f"Player Name: {player_name}\nGame Mode: {game_mode}\nPlayer One: {player_one_name} - {player_one_race}\nPlayer Two: {player_two_name} - {player_two_race}\nWinner: {winner_name}\n")
-            build_order(replay)
+            # print(f"Player Name: {player_name}\nGame Mode: {game_mode}\nPlayer One: {player_one_name} - {player_one_race}\nPlayer Two: {player_two_name} - {player_two_race}\nWinner: {winner_name}\n")
+            # build_order(replay)
             
             # Return the newly calculated game data
             new_record = (
@@ -61,6 +67,8 @@ def replay_analysis(player_name, folder_path):
                 game_mode,
                 winner_name
             )
+            
+            # Return the extracted data
             return new_record
 
 
@@ -107,3 +115,8 @@ def build_order(replay):
     # print(command_center_count)
     # print(production_building_count)
     print(f"Build Order: {build_order.name}")
+
+    def batch_insert(self, table_list:list[Table]) -> None:
+        for table in table_list:
+            table.push()
+

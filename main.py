@@ -6,7 +6,7 @@
 
 # Import any needed modules
 from database_tools.sc2_database import SC2_DB
-from replay_extraction_tools.extractor import *
+from replay_extraction_tools.sc2_extractor import *
 
 def main():
     """Main entry point"""
