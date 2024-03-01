@@ -3,11 +3,33 @@
 #
 ## NOT SURE WHAT MODULES WE WANT FOR THIS PARTICULAR FILE
 ## SO I JUST COPIED THE ONES FROM 'EXTRACTOR.PY'
-import os
-import sc2reader
-from enum import Enum
-from database_tools.sc2_database import retrieve_table_data
+
 import random
+from data_analysis_tools.general.analyzer import Analyzer
+from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
+
+
+
+class SC2Analyzer(Analyzer):
+    """
+    Analyzes data from sc2 database to determine information
+    such as build orders and winrates
+    """
+
+    def __init__(self, data_retriever:SC2DataRetriever) -> None:
+        super().__init__(data_retriever)
+
+    def winrate_build(self) -> int:
+        pass
+
+    def winrate_race(self) -> int:
+
+        plays = self.data_retriever.get_all_plays()
+
+        for play in plays:
+            player_one = 
+
+
 
 class Stats:
     def __init__(self, game_data) -> None:
