@@ -80,8 +80,11 @@ class SC2Extractor(Extractor):
             game_id = self.create_game_id()
             player_one_id = self.create_player_id()
             player_two_id = self.create_player_id()
+            
+            # Map
+            game_map = replay.map_name
 
-            # Access basic information
+            # Game mode
             game_mode = replay.attributes.get(16).get("Game Mode")
 
             # Players
@@ -96,13 +99,14 @@ class SC2Extractor(Extractor):
             player_one_race = player_one.play_race
             player_two_race = player_two.play_race
 
-            # Game winner name
+            # Game winner name and ID
             if replay.winner:
                 for player in replay.players:
                     if player.result == "Win":
                         winner_name = player.name
 
             # NEEDS TO BE FILLED WITH DATA ONCE DATABASE IS CREATED!!!
+            game_data_record = ()
             self.game_data.set_data()
 
             # Player one data

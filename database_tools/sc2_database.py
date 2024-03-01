@@ -24,11 +24,17 @@ class SC2_DB:
         cls.Session = sessionmaker(bind=cls.engine)
 
     @classmethod
-    def add_game(cls, mode, map, winner_id):
+    def add_games(cls, game_list):
         with cls.Session() as session:
-            game = Game(mode=mode, map=map, winner=winner_id)
-            session.add(game)
-            session.commit()
+            for game in game_list:
+                game_id = game[0]
+                game_map = game[1]
+                game_mode = game[2]
+                game_winner_id = game[3]
+                
+                game = game(game_id, game_map, game_mode, game_winner_id)
+                session.add(game)
+                session.commit()
 
     @classmethod
     def add_player(cls, name, race):
