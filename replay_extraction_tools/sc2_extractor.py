@@ -117,7 +117,7 @@ class SC2Extractor(Extractor):
         self.player_id += 1
         return self.player_id
 
-    def create_commmand_id(self) -> int:
+    def create_command_id(self) -> int:
         """Increment and return command id"""
         self.command_id += 1
         return self.command_id

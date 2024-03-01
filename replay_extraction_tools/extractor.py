@@ -22,56 +22,6 @@ class Extractor(ABC):
         pass
 
 
-    # Loop through all files in the folder
-    for filename in os.listdir(self.folder_path ):
-        file_path = os.path.join(self.folder_path, filename)
-        if os.path.isfile(file_path):
-
-            replay_counter +=1
-            print(f"Loading replay {replay_counter}.....   ")
-            replay = sc2reader.load_replay(file_path, load_map=True)
-
-            # Access basic information
-            game_mode = replay.attributes.get(16).get("Game Mode")
-
-            # Players
-            player_one = replay.players[0]
-            player_two = replay.players[1]
-
-            # Player names
-            player_one_name = player_one.name
-            player_two_name = player_two.name
-
-            # Player races
-            player_one_race = player_one.play_race 
-            player_two_race = player_two.play_race
-
-            # Game winner name
-            if replay.winner:
-                for player in replay.players:
-                    if player.result == 'Win':
-                        winner_name = player.name
-
-            # TODO
-            #
-            # Determine build order            
-            # print(f"Player Name: {player_name}\nGame Mode: {game_mode}\nPlayer One: {player_one_name} - {player_one_race}\nPlayer Two: {player_two_name} - {player_two_race}\nWinner: {winner_name}\n")
-            # build_order(replay)
-            
-            # Return the newly calculated game data
-            new_record = (
-                player_one_name,
-                player_one_race,
-                player_two_name,
-                player_two_race,
-                game_mode,
-                winner_name
-            )
-            
-            # Return the extracted data
-            return new_record
-
-
 def build_order(replay):
     """Determine build order"""
     command_center_count = 1
