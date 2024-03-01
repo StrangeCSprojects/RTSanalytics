@@ -12,7 +12,7 @@ def main():
     """Main entry point"""
 
     # Initialize the database
-    db = SC2_DB("sc2_games")
+    SC2_DB.init("example_sc2_database")
 
     print("Database created successfully.")
 
