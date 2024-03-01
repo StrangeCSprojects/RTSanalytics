@@ -4,8 +4,9 @@
 3. install required libraries: pip install -r requirements.txt
 
 
-# How to run extractor.py
-py -m replay_extraction_tools.extractor
+# How to run sc2_extractor.py
+- py -m replay_extraction_tools.sc2_extractor
+- should only have to call the 'run' function for the extractor program
 
 # How to run analyzer.py
 py -m data_analysis_tools.analyzer

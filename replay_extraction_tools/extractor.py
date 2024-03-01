@@ -11,14 +11,13 @@ class Extractor(ABC):
         # super().__init__()
         self.folder_path = folder_path
 
-
     @abstractmethod
-    def extract(self) -> None:
+    def extract(self) -> dict:
         pass
 
 
     @abstractmethod
-    def filter_into_tables(self) -> None:
+    def filter_into_tables(self, replay_container:dict) -> None:
         pass
 
 
@@ -65,6 +64,17 @@ def build_order(replay):
     # print(command_center_count)
     # print(production_building_count)
     print(f"Build Order: {build_order.name}")
+
+
+    @abstractmethod
+    def get_tables(self) -> list[Table]:
+        pass
+
+
+    def run(self) -> None:
+        self.filter_into_tables(self.extract())
+        self.batch_insert(self.get_tables())
+
 
     def batch_insert(self, table_list:list[Table]) -> None:
         for table in table_list:

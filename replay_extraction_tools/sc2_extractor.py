@@ -54,15 +54,18 @@ class SC2Extractor(Extractor):
                 replay_counter +=1
                 print(f"Loading replay {replay_counter}.....   ")
                 replay = sc2reader.load_replay(file_path, load_map=True)
+                print(type(replay))
+                print(dir(replay))
                 replay_container[replay_counter] = replay
 
         return replay_container
     
-    def filter_into_tables(self, replay_container) -> list[Table]:
+    def filter_into_tables(self, replay_container:dict) -> None:
         """
         Filter relevant data from a group of replays and store that information into 
         a group of tables then return a list of those tables.
         """
+
         for replay_key in replay_container:
             replay = replay_container[replay_key]
 
@@ -91,22 +94,31 @@ class SC2Extractor(Extractor):
                     if player.result == 'Win':
                         winner_name = player.name
 
-            self.game.set_data(game_id, game_mode) # missing map
+            # NEEDS TO BE FILLED WITH DATA ONCE DATABASE IS CREATED!!!
+            self.game.set_data()
 
             # Player one data
-            self.play_one.set_data(game_id, player_one_id, winner_name)
-            self.player_one.set_data(player_one_id, player_one_race, player_one_name)
-            self.commands_one.set_data() # missing data
-            self.issues_one.set_data() # missing data
+            self.play_one.set_data()
+            self.player_one.set_data()
+            self.commands_one.set_data()
+            self.issues_one.set_data()
 
             # Player two data
-            self.play_two.set_data(game_id, player_two_id, winner_name)
-            self.player_two.set_data(player_two_id, player_two_race, player_two_name)
-            self.commands_two.set_data() # missing data
-            self.issues_two.set_data() # missing data
+            self.play_two.set_data()
+            self.player_two.set_data()
+            self.commands_two.set_data()
+            self.issues_two.set_data()
 
-            return [self.game, self.play_one, self.player_one, self.commands_one, self.issues_one, self.play_two, self.player_two, self.commands_two, self.issues_two]
+    def get_tables(self) -> list[Table]:
+        return [self.game, self.play_one, self.player_one, self.commands_one, self.issues_one, self.play_two, self.player_two, self.commands_two, self.issues_two]
 
+    def run(self) -> None:
+        return super().run()
+    
+    def batch_insert(self, table_list: list[Table]) -> None:
+        return super().batch_insert(table_list)
+
+    # ID generation
     def create_game_id(self) -> int:
         """Increment and return game id"""
         self.game_id += 1
@@ -123,10 +135,6 @@ class SC2Extractor(Extractor):
         return self.command_id
             
 
-
-
-        
-        
 
 
 

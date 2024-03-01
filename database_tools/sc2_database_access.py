@@ -4,28 +4,42 @@ class Commands(Table):
     """
     Contains data for the Commands table
     """
-    pass
-        
+    def push(self) -> None:
+        pass
+    def set_data(self) -> None:
+        pass
 class Play(Table):
     """
     Contains data for the Play table
     """
-    pass
+    def push(self) -> None:
+        pass
+    def set_data(self) -> None:
+        pass
 
 class Player(Table):
     """
     Contains data for the Player table
     """
-    pass
+    def push(self) -> None:
+        pass
+    def set_data(self) -> None:
+        pass
 
 class Issues(Table):
     """
     Contains data for the Issues table
     """
-    pass
+    def push(self) -> None:
+        pass
+    def set_data(self) -> None:
+        pass
 
 class Game(Table):
     """
     Contains data for the Game table
     """
-    pass
+    def push(self) -> None:
+        pass
+    def set_data(self) -> None:
+        pass
