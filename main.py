@@ -1,4 +1,3 @@
-
 """
     This is a python script used for easier
     debugging of the SC2_RTS_Analytics package
@@ -8,12 +7,13 @@
 from database_tools.sc2_database import SC2_DB
 from replay_extraction_tools.sc2_extractor import *
 
+
 def main():
     """Main entry point"""
-    
+
     # Initialize the database
     db = SC2_DB("sc2_games")
-    
+
     print("Database created successfully.")
 
 

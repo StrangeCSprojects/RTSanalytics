@@ -1,12 +1,13 @@
-
 from abc import ABC, abstractmethod
 from database_tools.general_database_access import DataStorage
+
 
 class Extractor(ABC):
     """
     Abstract class that extracts data from a group of replays, filters the data into
     table classes and inserts that data into a database.
     """
+
     def __init__(self, folder_path: str) -> None:
         # super().__init__()
         self.folder_path = folder_path
@@ -15,9 +16,8 @@ class Extractor(ABC):
     def extract(self) -> dict:
         pass
 
-
     @abstractmethod
-    def filter_into_tables(self, replay_container:dict) -> None:
+    def filter_into_tables(self, replay_container: dict) -> None:
         pass
 
 
@@ -41,11 +41,13 @@ def build_order(replay):
         if player.name == "Cstrange":
             print(f"Events for Player {player.name}:")
             for event in events:
-
                 game_speed_factor = 1.4
                 real_time_seconds = int(event.second / game_speed_factor)
                 # print(f" - {event.unit.name} at {int(real_time_seconds // 60)}.{real_time_seconds % 60}s")
-                if event.unit.name == "OrbitalCommand" or event.unit.name == "OrbitalCommandFlying" :
+                if (
+                    event.unit.name == "OrbitalCommand"
+                    or event.unit.name == "OrbitalCommandFlying"
+                ):
                     command_center_count += 1
                 elif event.unit.name == "Barracks":
                     production_building_count += 1
@@ -53,7 +55,7 @@ def build_order(replay):
                     production_building_count += 1
                 elif event.unit.name == "Starport":
                     production_building_count += 1
-                
+
                 if event.second < 300:
                     if command_center_count >= 3:
                         build_order = BuildOrder.ECONOMY
@@ -65,18 +67,14 @@ def build_order(replay):
     # print(production_building_count)
     print(f"Build Order: {build_order.name}")
 
-
     @abstractmethod
     def get_tables(self) -> list[DataStorage]:
         pass
-
 
     def run(self) -> None:
         self.filter_into_tables(self.extract())
         self.batch_insert(self.get_tables())
 
-
-    def batch_insert(self, table_list:list[DataStorage]) -> None:
+    def batch_insert(self, table_list: list[DataStorage]) -> None:
         for table in table_list:
             table.push()
-

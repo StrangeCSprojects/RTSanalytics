@@ -1,35 +1,43 @@
-
 # Import any needed modules
 import os
-# import sqlite3
 import sc2reader
-# from enum import Enum
-# from database_tools.sc2_database import SC2_DB
-from database_tools.sc2_database_access import Commands, PlayDataStorage, PlayerDataStorage, IssuesDataStorage, GameDataStorage
-from database_tools.general_database_access import DataStorage
 from replay_extraction_tools.extractor import Extractor
+from database_tools.general_database_access import DataStorage
+from database_tools.sc2_database_access import (
+    CommandDataStorage,
+    PlayDataStorage,
+    PlayerDataStorage,
+    IssuesDataStorage,
+    GameDataStorage,
+)
 
 
 class SC2Extractor(Extractor):
     """
-    Extracts, filters, and pushes data from replays 
+    Extracts, filters, and pushes data from replays
     to a database
     """
+
     def __init__(self, folder_path: str) -> None:
-        """        
+        """
         SC2Extractor constructor
         """
         super().__init__(folder_path)
 
         # Tables in sc2 database
+
+        # THIS FOLLOWING CODE CAN BE MADE ACCESSIBLE
+        # FROM WITHIN THE SC2_DB CLASS
+        #
+        # START
         self.game = GameDataStorage()
-        
-        self.commands_one = Commands()
+
+        self.commands_one = CommandDataStorage()
         self.play_one = PlayDataStorage()
         self.player_one = PlayerDataStorage()
         self.issues_one = IssuesDataStorage()
 
-        self.commands_two = Commands()
+        self.commands_two = CommandDataStorage()
         self.play_two = PlayDataStorage()
         self.player_two = PlayerDataStorage()
         self.issues_two = IssuesDataStorage()
@@ -37,9 +45,10 @@ class SC2Extractor(Extractor):
         self.player_id = 0
         self.command_id = 0
         self.game_id = 0
+        # END
 
     def extract(self) -> dict:
-        """        
+        """
         extract data from a group of replays and return a dictionary of replay data
         """
         replay_container = {}
@@ -49,9 +58,8 @@ class SC2Extractor(Extractor):
         for filename in os.listdir(self.folder_path):
             file_path = os.path.join(self.folder_path, filename)
             if os.path.isfile(file_path):
-
                 # Filling replay dictionary
-                replay_counter +=1
+                replay_counter += 1
                 print(f"Loading replay {replay_counter}.....   ")
                 replay = sc2reader.load_replay(file_path, load_map=True)
                 print(type(replay))
@@ -59,10 +67,10 @@ class SC2Extractor(Extractor):
                 replay_container[replay_counter] = replay
 
         return replay_container
-    
-    def filter_into_tables(self, replay_container:dict) -> None:
+
+    def filter_into_tables(self, replay_container: dict) -> None:
         """
-        Filter relevant data from a group of replays and store that information into 
+        Filter relevant data from a group of replays and store that information into
         a group of tables then return a list of those tables.
         """
 
@@ -85,13 +93,13 @@ class SC2Extractor(Extractor):
             player_two_name = player_two.name
 
             # Player races
-            player_one_race = player_one.play_race 
+            player_one_race = player_one.play_race
             player_two_race = player_two.play_race
 
             # Game winner name
             if replay.winner:
                 for player in replay.players:
-                    if player.result == 'Win':
+                    if player.result == "Win":
                         winner_name = player.name
 
             # NEEDS TO BE FILLED WITH DATA ONCE DATABASE IS CREATED!!!
@@ -110,11 +118,21 @@ class SC2Extractor(Extractor):
             self.issues_two.set_data()
 
     def get_tables(self) -> list[DataStorage]:
-        return [self.game, self.play_one, self.player_one, self.commands_one, self.issues_one, self.play_two, self.player_two, self.commands_two, self.issues_two]
+        return [
+            self.game,
+            self.play_one,
+            self.player_one,
+            self.commands_one,
+            self.issues_one,
+            self.play_two,
+            self.player_two,
+            self.commands_two,
+            self.issues_two,
+        ]
 
     def run(self) -> None:
         return super().run()
-    
+
     def batch_insert(self, table_list: list[DataStorage]) -> None:
         return super().batch_insert(table_list)
 
@@ -133,10 +151,6 @@ class SC2Extractor(Extractor):
         """Increment and return command id"""
         self.command_id += 1
         return self.command_id
-            
-
-
-
 
 
 # # Build order types
@@ -171,7 +185,7 @@ class SC2Extractor(Extractor):
 #             player_two_name = player_two.name
 
 #             # Player races
-#             player_one_race = player_one.play_race 
+#             player_one_race = player_one.play_race
 #             player_two_race = player_two.play_race
 
 #             # Game winner name
@@ -180,10 +194,10 @@ class SC2Extractor(Extractor):
 #                     if player.result == 'Win':
 #                         winner_name = player.name
 
-#             # Determine build order            
+#             # Determine build order
 #             print(f"Player Name: {player_name}\nGame Mode: {game_mode}\nPlayer One: {player_one_name} - {player_one_race}\nPlayer Two: {player_two_name} - {player_two_race}\nWinner: {winner_name}\n")
 #             build_order(replay)
-            
+
 #             # Store game data into sc2_overlay database
 #             new_record = (
 #                 player_one_name,
@@ -228,7 +242,7 @@ class SC2Extractor(Extractor):
 #                     production_building_count += 1
 #                 elif event.unit.name == "Starport":
 #                     production_building_count += 1
-                
+
 #                 if event.second < 300:
 #                     if command_center_count >= 3:
 #                         build_order = BuildOrder.ECONOMY

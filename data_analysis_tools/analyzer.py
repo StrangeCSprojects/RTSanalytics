@@ -1,4 +1,3 @@
-
 # Import any needed modules
 #
 ## NOT SURE WHAT MODULES WE WANT FOR THIS PARTICULAR FILE
@@ -8,6 +7,7 @@ import sc2reader
 from enum import Enum
 from database_tools.sc2_database import retrieve_table_data
 import random
+
 
 class Stats:
     def __init__(self, game_data) -> None:
@@ -56,6 +56,7 @@ class Stats:
 
 def main():
     """Main entry point"""
+
     # Generate random races and winners for testing
     def generate_dummy_game_data(num_games):
         races = ["Terran", "Protoss", "Zerg"]
@@ -80,6 +81,8 @@ def main():
     print(f"Terran vs Protoss:{stats.wr_race()[0]}%")
     print(f"Terran vs Zerg:{stats.wr_race()[1]}%")
     print(f"Zerg vs Protoss: {stats.wr_race()[2]}%")
+
+
 # Interpret this module
 if __name__ == "__main__":
     main()
