@@ -5,8 +5,8 @@ import os
 import sc2reader
 # from enum import Enum
 # from database_tools.sc2_database import SC2_DB
-from database_tools.sc2_database_access import Commands, Play, Player, Issues, Game
-from database_tools.general_database_access import Table
+from database_tools.sc2_database_access import Commands, PlayDataStorage, PlayerDataStorage, IssuesDataStorage, GameDataStorage
+from database_tools.general_database_access import DataStorage
 from replay_extraction_tools.extractor import Extractor
 
 
@@ -22,17 +22,17 @@ class SC2Extractor(Extractor):
         super().__init__(folder_path)
 
         # Tables in sc2 database
-        self.game = Game()
+        self.game = GameDataStorage()
         
         self.commands_one = Commands()
-        self.play_one = Play()
-        self.player_one = Player()
-        self.issues_one = Issues()
+        self.play_one = PlayDataStorage()
+        self.player_one = PlayerDataStorage()
+        self.issues_one = IssuesDataStorage()
 
         self.commands_two = Commands()
-        self.play_two = Play()
-        self.player_two = Player()
-        self.issues_two = Issues()
+        self.play_two = PlayDataStorage()
+        self.player_two = PlayerDataStorage()
+        self.issues_two = IssuesDataStorage()
 
         self.player_id = 0
         self.command_id = 0
@@ -109,13 +109,13 @@ class SC2Extractor(Extractor):
             self.commands_two.set_data()
             self.issues_two.set_data()
 
-    def get_tables(self) -> list[Table]:
+    def get_tables(self) -> list[DataStorage]:
         return [self.game, self.play_one, self.player_one, self.commands_one, self.issues_one, self.play_two, self.player_two, self.commands_two, self.issues_two]
 
     def run(self) -> None:
         return super().run()
     
-    def batch_insert(self, table_list: list[Table]) -> None:
+    def batch_insert(self, table_list: list[DataStorage]) -> None:
         return super().batch_insert(table_list)
 
     # ID generation

@@ -1,6 +1,6 @@
 
 from abc import ABC, abstractmethod
-from database_tools.general_database_access import Table
+from database_tools.general_database_access import DataStorage
 
 class Extractor(ABC):
     """
@@ -67,7 +67,7 @@ def build_order(replay):
 
 
     @abstractmethod
-    def get_tables(self) -> list[Table]:
+    def get_tables(self) -> list[DataStorage]:
         pass
 
 
@@ -76,7 +76,7 @@ def build_order(replay):
         self.batch_insert(self.get_tables())
 
 
-    def batch_insert(self, table_list:list[Table]) -> None:
+    def batch_insert(self, table_list:list[DataStorage]) -> None:
         for table in table_list:
             table.push()
 

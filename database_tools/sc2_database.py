@@ -2,7 +2,7 @@
 # Import any needed modules
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_tools.entities.sc2_db_entities import *
+from database_tools.entities.sc2_db_entities import Base, Game, Play, Player, Issues, Command
 
 
 class SC2_DB:

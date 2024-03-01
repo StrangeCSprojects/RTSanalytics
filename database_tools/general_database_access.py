@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Table(ABC):
+class DataStorage(ABC):
     @abstractmethod
     def push(self) -> None:
         pass

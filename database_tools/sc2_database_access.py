@@ -1,6 +1,8 @@
-from database_tools.general_database_access import Table
 
-class Commands(Table):
+from database_tools.general_database_access import DataStorage
+
+
+class CommandDataStorage(DataStorage):
     """
     Contains data for the Commands table
     """
@@ -8,7 +10,8 @@ class Commands(Table):
         pass
     def set_data(self) -> None:
         pass
-class Play(Table):
+
+class PlayDataStorage(DataStorage):
     """
     Contains data for the Play table
     """
@@ -17,7 +20,7 @@ class Play(Table):
     def set_data(self) -> None:
         pass
 
-class Player(Table):
+class PlayerDataStorage(DataStorage):
     """
     Contains data for the Player table
     """
@@ -26,7 +29,7 @@ class Player(Table):
     def set_data(self) -> None:
         pass
 
-class Issues(Table):
+class IssuesDataStorage(DataStorage):
     """
     Contains data for the Issues table
     """
@@ -35,7 +38,7 @@ class Issues(Table):
     def set_data(self) -> None:
         pass
 
-class Game(Table):
+class GameDataStorage(DataStorage):
     """
     Contains data for the Game table
     """
