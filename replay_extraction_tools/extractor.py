@@ -25,13 +25,13 @@ class Extractor(ABC):
         pass
 
     @abstractmethod
-    def get_tables(self) -> list[DataStorage]:
+    def _get_tables(self) -> list[DataStorage]:
         pass
 
     def run(self) -> None:
         self.filter_into_tables(self.extract())
-        self.batch_insert(self.get_tables())
+        self._batch_insert(self._get_tables())
 
-    def batch_insert(self, table_list: list[DataStorage]) -> None:
+    def _batch_insert(self, table_list: list[DataStorage]) -> None:
         for table in table_list:
             table.push()

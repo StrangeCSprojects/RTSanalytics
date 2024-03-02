@@ -29,7 +29,7 @@ class SC2Extractor(Extractor):
         # THIS FOLLOWING CODE CAN BE MADE ACCESSIBLE
         # FROM WITHIN THE SC2_DB CLASS
         #
-        # START
+
         self.game_data = GameDataStorage()
 
         self.commands_one = CommandDataStorage()
@@ -45,7 +45,6 @@ class SC2Extractor(Extractor):
         self.player_id = 0
         self.command_id = 0
         self.game_id = 0
-        # END
 
     def extract(self) -> dict:
         """
@@ -77,10 +76,10 @@ class SC2Extractor(Extractor):
         for replay_key in replay_container:
             replay = replay_container[replay_key]
 
-            game_id = self.create_game_id()
-            player_one_id = self.create_player_id()
-            player_two_id = self.create_player_id()
-            
+            game_id = self._create_game_id()
+            player_one_id = self._create_player_id()
+            player_two_id = self._create_player_id()
+
             # Map
             game_map = replay.map_name
 
@@ -100,14 +99,20 @@ class SC2Extractor(Extractor):
             player_two_race = player_two.play_race
 
             # Game winner name and ID
-            if replay.winner:
+            if not replay.winner:
+                winner_id = 0
+            else:
                 for player in replay.players:
                     if player.result == "Win":
                         winner_name = player.name
+                        if winner_name == player_one_name:
+                            winner_id = player_one_id
+                        else:
+                            winner_id = player_two_id
 
             # NEEDS TO BE FILLED WITH DATA ONCE DATABASE IS CREATED!!!
-            game_data_record = ()
-            self.game_data.set_data()
+            game_data_record = (game_id, game_map, game_mode, winner_id)
+            self.game_data.set_data(game_data_record)
 
             # Player one data
             self.play_one.set_data()
@@ -121,53 +126,53 @@ class SC2Extractor(Extractor):
             self.commands_two.set_data()
             self.issues_two.set_data()
 
-    def build_order(self, replay):
-        """Determine build order"""
-        command_center_count = 1
-        production_building_count = 0
-        build_order = BuildOrder.UNKNOWN
+    # def build_order(self, replay):
+    #     """Determine build order"""
+    #     command_center_count = 1
+    #     production_building_count = 0
+    #     build_order = BuildOrder.UNKNOWN
 
-        # Initialize a dictionary to hold events for each player
-        player_events = {player: [] for player in replay.players}
+    #     # Initialize a dictionary to hold events for each player
+    #     player_events = {player: [] for player in replay.players}
 
-        # Iterate through events and process only unit events
-        for event in replay.events:
-            if isinstance(event, sc2reader.events.UnitInitEvent):
-                player = event.unit.owner
-                if player:
-                    player_events[player].append(event)
+    #     # Iterate through events and process only unit events
+    #     for event in replay.events:
+    #         if isinstance(event, sc2reader.events.UnitInitEvent):
+    #             player = event.unit.owner
+    #             if player:
+    #                 player_events[player].append(event)
 
-        for player, events in player_events.items():
-            if player.name == "Cstrange":
-                print(f"Events for Player {player.name}:")
-                for event in events:
-                    game_speed_factor = 1.4
-                    real_time_seconds = int(event.second / game_speed_factor)
-                    # print(f" - {event.unit.name} at {int(real_time_seconds // 60)}.{real_time_seconds % 60}s")
-                    if (
-                        event.unit.name == "OrbitalCommand"
-                        or event.unit.name == "OrbitalCommandFlying"
-                    ):
-                        command_center_count += 1
-                    elif event.unit.name == "Barracks":
-                        production_building_count += 1
-                    elif event.unit.name == "Factory":
-                        production_building_count += 1
-                    elif event.unit.name == "Starport":
-                        production_building_count += 1
+    #     for player, events in player_events.items():
+    #         if player.name == "Cstrange":
+    #             print(f"Events for Player {player.name}:")
+    #             for event in events:
+    #                 game_speed_factor = 1.4
+    #                 real_time_seconds = int(event.second / game_speed_factor)
+    #                 # print(f" - {event.unit.name} at {int(real_time_seconds // 60)}.{real_time_seconds % 60}s")
+    #                 if (
+    #                     event.unit.name == "OrbitalCommand"
+    #                     or event.unit.name == "OrbitalCommandFlying"
+    #                 ):
+    #                     command_center_count += 1
+    #                 elif event.unit.name == "Barracks":
+    #                     production_building_count += 1
+    #                 elif event.unit.name == "Factory":
+    #                     production_building_count += 1
+    #                 elif event.unit.name == "Starport":
+    #                     production_building_count += 1
 
-                    if event.second < 300:
-                        if command_center_count >= 3:
-                            build_order = BuildOrder.ECONOMY
-                        elif production_building_count >= 7:
-                            build_order = BuildOrder.AGRESSION
-                        elif command_center_count == 2 and production_building_count < 7:
-                            build_order = BuildOrder.STANDARD
-        # print(command_center_count)
-        # print(production_building_count)
-        print(f"Build Order: {build_order.name}")
+    #                 if event.second < 300:
+    #                     if command_center_count >= 3:
+    #                         build_order = BuildOrder.ECONOMY
+    #                     elif production_building_count >= 7:
+    #                         build_order = BuildOrder.AGRESSION
+    #                     elif command_center_count == 2 and production_building_count < 7:
+    #                         build_order = BuildOrder.STANDARD
+    #     # print(command_center_count)
+    #     # print(production_building_count)
+    #     print(f"Build Order: {build_order.name}")
 
-    def get_tables(self) -> list[DataStorage]:
+    def _get_tables(self) -> list[DataStorage]:
         return [
             self.game_data,
             self.play_one,
@@ -183,21 +188,21 @@ class SC2Extractor(Extractor):
     def run(self) -> None:
         return super().run()
 
-    def batch_insert(self, table_list: list[DataStorage]) -> None:
-        return super().batch_insert(table_list)
+    def _batch_insert(self, table_list: list[DataStorage]) -> None:
+        return super()._batch_insert(table_list)
 
     # ID generation
-    def create_game_id(self) -> int:
+    def _create_game_id(self) -> int:
         """Increment and return game id"""
         self.game_id += 1
         return self.game_id
 
-    def create_player_id(self) -> int:
+    def _create_player_id(self) -> int:
         """Increment and return player id"""
         self.player_id += 1
         return self.player_id
 
-    def create_command_id(self) -> int:
+    def _create_command_id(self) -> int:
         """Increment and return command id"""
         self.command_id += 1
         return self.command_id
