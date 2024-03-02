@@ -1,5 +1,6 @@
 # Import any needed modules
 import os
+from sys import platlibdir
 import sc2reader
 from replay_extraction_tools.extractor import Extractor
 from database_tools.general_database_access import DataStorage
@@ -24,27 +25,21 @@ class SC2Extractor(Extractor):
         """
         super().__init__(folder_path)
 
-        # Tables in sc2 database
+        self._game_data = GameDataStorage()
 
-        # THIS FOLLOWING CODE CAN BE MADE ACCESSIBLE
-        # FROM WITHIN THE SC2_DB CLASS
-        #
+        self._commands_one = CommandDataStorage()
+        self._play_one = PlayDataStorage()
+        self._player_one = PlayerDataStorage()
+        self._issues_one = IssuesDataStorage()
 
-        self.game_data = GameDataStorage()
+        self._commands_two = CommandDataStorage()
+        self._play_two = PlayDataStorage()
+        self._player_two = PlayerDataStorage()
+        self._issues_two = IssuesDataStorage()
 
-        self.commands_one = CommandDataStorage()
-        self.play_one = PlayDataStorage()
-        self.player_one = PlayerDataStorage()
-        self.issues_one = IssuesDataStorage()
-
-        self.commands_two = CommandDataStorage()
-        self.play_two = PlayDataStorage()
-        self.player_two = PlayerDataStorage()
-        self.issues_two = IssuesDataStorage()
-
-        self.player_id = 0
-        self.command_id = 0
-        self.game_id = 0
+        self._player_id = 0
+        self._command_id = 0
+        self._game_id = 0
 
     def extract(self) -> dict:
         """
@@ -59,10 +54,10 @@ class SC2Extractor(Extractor):
             if os.path.isfile(file_path):
                 # Filling replay dictionary
                 replay_counter += 1
-                print(f"Loading replay {replay_counter}.....   ")
+                # print(f"Loading replay {replay_counter}.....   ")
                 replay = sc2reader.load_replay(file_path, load_map=True)
-                print(type(replay))
-                print(dir(replay))
+                # print(type(replay))
+                # print(dir(replay))
                 replay_container[replay_counter] = replay
 
         return replay_container
@@ -76,17 +71,12 @@ class SC2Extractor(Extractor):
         for replay_key in replay_container:
             replay = replay_container[replay_key]
 
+            # Initialize game and player IDs
             game_id = self._create_game_id()
             player_one_id = self._create_player_id()
             player_two_id = self._create_player_id()
-
-            # Map
-            game_map = replay.map_name
-
-            # Game mode
-            game_mode = replay.attributes.get(16).get("Game Mode")
-
-            # Players
+            
+            # Players data
             player_one = replay.players[0]
             player_two = replay.players[1]
 
@@ -97,10 +87,25 @@ class SC2Extractor(Extractor):
             # Player races
             player_one_race = player_one.play_race
             player_two_race = player_two.play_race
+            
+            # Get command data for both players
+            # Finish this part later
+            player_one_commands = []
+            player_two_commands = []
+            for event in replay.events:
+                if isinstance(event, sc2reader.events.game.CommandEvent):
+                    command_time = event.second
+                    command_name = event.ability_name
+                    if event.player.name == player_one_name:
+                        player_one_commands.append((command_time, command_name))
+                    else:
+                        player_two_commands.append((command_time, command_name))
 
-            # Game winner name and ID
+            # Game data
+            game_map = replay.map_name
+            game_mode = replay.attributes.get(16).get("Game Mode")
             if not replay.winner:
-                winner_id = 0
+                winner_id = -1 # This game will not get stored
             else:
                 for player in replay.players:
                     if player.result == "Win":
@@ -110,79 +115,45 @@ class SC2Extractor(Extractor):
                         else:
                             winner_id = player_two_id
 
-            # NEEDS TO BE FILLED WITH DATA ONCE DATABASE IS CREATED!!!
+            # PROCESS THE COMMANDS IN A SEPARATE FUNCTION
+
+            # Create and store new game data to the appropriate storage container
             game_data_record = (game_id, game_map, game_mode, winner_id)
-            self.game_data.set_data(game_data_record)
+            self._game_data.set_data(game_data_record)
 
             # Player one data
-            self.play_one.set_data()
-            self.player_one.set_data()
-            self.commands_one.set_data()
-            self.issues_one.set_data()
+            play_one_record = (game_id, player_one_id)
+            player_one_record = (player_one_id, player_one_race, player_one_name)
+            # commands_one_record = ()
+            # issues_one_record = ()
+            
+            self._play_one.set_data(play_one_record)
+            self._player_one.set_data(player_one_record)
+            # self.commands_one.set_data()
+            # self.issues_one.set_data()
 
-            # Player two data
-            self.play_two.set_data()
-            self.player_two.set_data()
-            self.commands_two.set_data()
-            self.issues_two.set_data()
+            # Player Two data
+            play_two_record = (game_id, player_two_id)
+            player_two_record = (player_two_id, player_two_race, player_two_name)
+            # commands_one_record = ()
+            # issues_one_record = ()
 
-    # def build_order(self, replay):
-    #     """Determine build order"""
-    #     command_center_count = 1
-    #     production_building_count = 0
-    #     build_order = BuildOrder.UNKNOWN
-
-    #     # Initialize a dictionary to hold events for each player
-    #     player_events = {player: [] for player in replay.players}
-
-    #     # Iterate through events and process only unit events
-    #     for event in replay.events:
-    #         if isinstance(event, sc2reader.events.UnitInitEvent):
-    #             player = event.unit.owner
-    #             if player:
-    #                 player_events[player].append(event)
-
-    #     for player, events in player_events.items():
-    #         if player.name == "Cstrange":
-    #             print(f"Events for Player {player.name}:")
-    #             for event in events:
-    #                 game_speed_factor = 1.4
-    #                 real_time_seconds = int(event.second / game_speed_factor)
-    #                 # print(f" - {event.unit.name} at {int(real_time_seconds // 60)}.{real_time_seconds % 60}s")
-    #                 if (
-    #                     event.unit.name == "OrbitalCommand"
-    #                     or event.unit.name == "OrbitalCommandFlying"
-    #                 ):
-    #                     command_center_count += 1
-    #                 elif event.unit.name == "Barracks":
-    #                     production_building_count += 1
-    #                 elif event.unit.name == "Factory":
-    #                     production_building_count += 1
-    #                 elif event.unit.name == "Starport":
-    #                     production_building_count += 1
-
-    #                 if event.second < 300:
-    #                     if command_center_count >= 3:
-    #                         build_order = BuildOrder.ECONOMY
-    #                     elif production_building_count >= 7:
-    #                         build_order = BuildOrder.AGRESSION
-    #                     elif command_center_count == 2 and production_building_count < 7:
-    #                         build_order = BuildOrder.STANDARD
-    #     # print(command_center_count)
-    #     # print(production_building_count)
-    #     print(f"Build Order: {build_order.name}")
+            self._play_two.set_data(play_two_record)
+            self._player_two.set_data(player_two_record )
+            # self.commands_one.set_data()
+            # self.issues_one.set_data()
 
     def _get_tables(self) -> list[DataStorage]:
         return [
-            self.game_data,
-            self.play_one,
-            self.player_one,
-            self.commands_one,
-            self.issues_one,
-            self.play_two,
-            self.player_two,
-            self.commands_two,
-            self.issues_two,
+            self._game_data,
+            self._play_one,
+            self._player_one,
+            self._commands_one,
+            self._issues_one,
+            self._play_two,
+            self._player_two,
+            self._commands_two,
+            self._issues_two,
         ]
 
     def run(self) -> None:
@@ -194,18 +165,21 @@ class SC2Extractor(Extractor):
     # ID generation
     def _create_game_id(self) -> int:
         """Increment and return game id"""
-        self.game_id += 1
-        return self.game_id
+        self._game_id += 1
+        return self._game_id
 
     def _create_player_id(self) -> int:
         """Increment and return player id"""
-        self.player_id += 1
-        return self.player_id
+        self._player_id += 1
+        return self._player_id
 
     def _create_command_id(self) -> int:
         """Increment and return command id"""
-        self.command_id += 1
-        return self.command_id
+        self._command_id += 1
+        return self._command_id
+    
+    def build_order(self):
+        pass
 
 
 # # Build order types
@@ -308,3 +282,49 @@ class SC2Extractor(Extractor):
 #     # print(command_center_count)
 #     # print(production_building_count)
 #     print(f"Build Order: {build_order.name}")
+
+    # def build_order(self, replay):
+    #     """Determine build order"""
+    #     command_center_count = 1
+    #     production_building_count = 0
+    #     build_order = BuildOrder.UNKNOWN
+
+    #     # Initialize a dictionary to hold events for each player
+    #     player_events = {player: [] for player in replay.players}
+
+    #     # Iterate through events and process only unit events
+    #     for event in replay.events:
+    #         if isinstance(event, sc2reader.events.UnitInitEvent):
+    #             player = event.unit.owner
+    #             if player:
+    #                 player_events[player].append(event)
+
+    #     for player, events in player_events.items():
+    #         if player.name == "Cstrange":
+    #             print(f"Events for Player {player.name}:")
+    #             for event in events:
+    #                 game_speed_factor = 1.4
+    #                 real_time_seconds = int(event.second / game_speed_factor)
+    #                 # print(f" - {event.unit.name} at {int(real_time_seconds // 60)}.{real_time_seconds % 60}s")
+    #                 if (
+    #                     event.unit.name == "OrbitalCommand"
+    #                     or event.unit.name == "OrbitalCommandFlying"
+    #                 ):
+    #                     command_center_count += 1
+    #                 elif event.unit.name == "Barracks":
+    #                     production_building_count += 1
+    #                 elif event.unit.name == "Factory":
+    #                     production_building_count += 1
+    #                 elif event.unit.name == "Starport":
+    #                     production_building_count += 1
+
+    #                 if event.second < 300:
+    #                     if command_center_count >= 3:
+    #                         build_order = BuildOrder.ECONOMY
+    #                     elif production_building_count >= 7:
+    #                         build_order = BuildOrder.AGRESSION
+    #                     elif command_center_count == 2 and production_building_count < 7:
+    #                         build_order = BuildOrder.STANDARD
+    #     # print(command_center_count)
+    #     # print(production_building_count)
+    #     print(f"Build Order: {build_order.name}")

@@ -11,7 +11,7 @@ class CommandDataStorage(DataStorage):
         # PERFORM ANY ADDITIONAL SECURITY CHECKS BEFORE PUSHING
         SC2_DB.add_commands(self.data)
 
-    def set_data(self) -> None:
+    def set_data(self, new_record) -> None:
         pass
 
 
@@ -23,7 +23,7 @@ class PlayDataStorage(DataStorage):
     def push(self) -> None:
         pass
 
-    def set_data(self) -> None:
+    def set_data(self, new_record) -> None:
         pass
 
 
@@ -35,7 +35,7 @@ class PlayerDataStorage(DataStorage):
     def push(self) -> None:
         pass
 
-    def set_data(self) -> None:
+    def set_data(self, new_record) -> None:
         pass
 
 
@@ -47,7 +47,7 @@ class IssuesDataStorage(DataStorage):
     def push(self) -> None:
         pass
 
-    def set_data(self) -> None:
+    def set_data(self, new_record) -> None:
         pass
 
 
