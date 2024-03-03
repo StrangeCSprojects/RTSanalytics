@@ -1,3 +1,4 @@
+import json
 from database_tools.general_database_access import DataStorage
 from database_tools.sc2_database import SC2_DB
 
@@ -7,12 +8,19 @@ class CommandDataStorage(DataStorage):
     Contains data for the Commands table in a SC2 game
     """
 
+    def __init__(self):
+        """Data container is a dictionary"""
+        self._data = {}
+
     def push(self) -> None:
         # PERFORM ANY ADDITIONAL SECURITY CHECKS BEFORE PUSHING
         SC2_DB.add_commands(self._data)
 
     def set_data(self, new_record) -> None:
-        pass
+        command_id = new_record[0]
+        commands_list = new_record[1]
+        serialized_commands = json.dumps(commands_list) # Converts list to JSON string
+        self._data[command_id] = serialized_commands
 
 
 class PlayDataStorage(DataStorage):
@@ -31,18 +39,12 @@ class PlayerDataStorage(DataStorage):
     """
     Contains data for the Player table
     """
-    
-    def __init__(self):
-        """Data container is a dictionary"""
-        self.data = {}
 
     def push(self) -> None:
-        pass
+        SC2_DB.add_players(self._data)
 
     def set_data(self, new_record) -> None:
-        command_id = new_record[0]
-        commands_list = new_record[1]
-        self.data[command_id] = commands_list
+        self._data.append(new_record)
 
 
 class IssuesDataStorage(DataStorage):
@@ -63,9 +65,7 @@ class GameDataStorage(DataStorage):
     """
 
     def push(self) -> None:
-        """Push the game data to the SC2 database"""
         SC2_DB.add_games(self._data)
 
-    def set_data(self, new_game_data) -> None:
-        """Store relevant game data in a tuple and add to data list"""
-        self._data.append(new_game_data)
+    def set_data(self, new_record) -> None:
+        self._data.append(new_record)

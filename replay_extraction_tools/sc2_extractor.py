@@ -1,7 +1,9 @@
 # Import any needed modules
 from imaplib import Commands
 import os
+from re import S
 from sys import platlibdir
+from typing import Self
 import sc2reader
 from database_tools.sc2_database import SC2_DB
 from replay_extraction_tools.extractor import Extractor
@@ -151,6 +153,9 @@ class SC2Extractor(Extractor):
             
             self._issues_one.set_data(issued_player_one)
             self._issues_two.set_data(issued_player_two)
+            
+            # self._commands_one.push()
+            self._player_one.push()
 
     def _get_tables(self) -> list[DataStorage]:
         return [
