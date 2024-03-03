@@ -1,5 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+from sqlalchemy.schema import PrimaryKeyConstraint
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -27,15 +28,17 @@ class PlayerCommand(Base):
 
 class Issues(Base):
     __tablename__ = "issues"
-    issue_id = Column(Integer, primary_key=True)
-    game_id = Column(Integer, ForeignKey("games.game_id"))
-    player_id = Column(Integer, ForeignKey("players.player_id"))
+    game_id = Column(Integer, ForeignKey("games.game_id"), primary_key=True)
+    player_id = Column(Integer, ForeignKey("players.player_id"), primary_key=True)
     command_id = Column(Integer, ForeignKey("commands.command_id"))
 
     # Define relationships
     game = relationship("Game", backref="issues")
     player = relationship("Player", backref="issues")
     command = relationship("PlayerCommand")
+
+    # Define composite primary key constraint
+    __table_args__ = (PrimaryKeyConstraint("game_id", "player_id"),)
 
 class Play(Base):
     __tablename__ = "play"

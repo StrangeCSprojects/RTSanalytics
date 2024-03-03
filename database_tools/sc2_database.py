@@ -1,5 +1,6 @@
 # Import any needed modules
 from distutils.cmd import Command
+from imaplib import Commands
 from typing import Self
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -41,10 +42,9 @@ class SC2_DB:
                 game_map = game[1]
                 game_mode = game[2]
                 game_winner_id = game[3]
-                
-                game = game(game_id, game_map, game_mode, game_winner_id)
+                game = Game(game_id=game_id, map=game_map, mode=game_mode, winner_id=game_winner_id)
                 session.add(game)
-                session.commit()
+            session.commit()
 
     @classmethod
     def add_players(cls, player_list):
@@ -64,7 +64,29 @@ class SC2_DB:
                 # Create an instance of PlayerCommand with keyword arguments
                 command = PlayerCommand(command_id=id, commands_list=c_list)
                 session.add(command)
-            session.commit()  # Commit outside the loop for efficiency
+            session.commit()
+
+    @classmethod
+    def add_plays(cls, play_list):
+        with cls.Session() as session:
+            for play_info in play_list:
+                game_id = play_info[0]
+                player_id = play_info[1]
+                play = Play(game_id=game_id, player_id=player_id)
+                session.add(play)
+            session.commit()
+
+    @classmethod
+    def add_issues(cls, issue_list):
+        with cls.Session() as session:
+            for issue_info in issue_list:
+                game_id = issue_info[0]
+                player_id = issue_info[1]
+                command_id = issue_info[2]
+                issue = Issues(game_id=game_id, player_id=player_id, command_id=command_id)
+                session.add(issue)
+            session.commit()
+
 
     @classmethod
     def get_player_info(cls, id):
@@ -102,8 +124,10 @@ class SC2_DB:
         session = cls.Session()
         
         # 1. Add players
-        player1 = Player(name='Player 1', race='Terran')
-        player2 = Player(name='Player 2', race='Protoss')
+        p1_id = cls._create_player_id()
+        p2_id = cls._create_player_id()
+        player1 = Player(player_id=p1_id, name='Player 1', race='Terran')
+        player2 = Player(player_id=p2_id, name='Player 2', race='Protoss')
         session.add_all([player1, player2])
         session.commit()
         

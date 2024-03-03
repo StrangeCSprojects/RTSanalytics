@@ -11,14 +11,11 @@ from replay_extraction_tools.sc2_extractor import SC2Extractor
 def main():
     """Main entry point"""
 
-    # ext = SC2Extractor("replay_extraction_tools/replays")
-    # replay_data = ext.extract()
-    # ext.filter_into_tables(replay_data)
-    
-    # print("\nPlayers have been added to the database!\n")
+    # Create an extractor and then run it on the replays folder
+    extractor = SC2Extractor("replay_extraction_tools/replays")
+    extractor.run()
 
-    SC2_DB.test_func()
-    print("\nAll the data has been pushed.\n")
+    print("SC2 REPLAY DATA HAS BEEN PROCESSED AND STORED!!!\n")
 
 
 # Interpret this module

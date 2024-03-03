@@ -29,7 +29,7 @@ class PlayDataStorage(DataStorage):
     """
 
     def push(self) -> None:
-        pass
+        SC2_DB.add_plays(self._data)
 
     def set_data(self, new_record) -> None:
         self._data.append(new_record)
@@ -53,7 +53,7 @@ class IssuesDataStorage(DataStorage):
     """
 
     def push(self) -> None:
-        pass
+        SC2_DB.add_issues(self._data)
 
     def set_data(self, new_record) -> None:
         self._data.append(new_record)
