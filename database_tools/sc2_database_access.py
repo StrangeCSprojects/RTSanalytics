@@ -54,7 +54,7 @@ class IssuesDataStorage(DataStorage):
         pass
 
     def set_data(self, new_record) -> None:
-        pass
+        self._data.append(new_record)
 
 
 class GameDataStorage(DataStorage):

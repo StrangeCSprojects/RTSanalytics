@@ -90,7 +90,7 @@ class SC2Extractor(Extractor):
             player_one_race = player_one.play_race
             player_two_race = player_two.play_race
             
-            # Get command data for both players
+            # Get command data for both players (This may become its own function post-mvp)
             player_one_commands = []
             player_two_commands = []
             for event in replay.events:
@@ -144,6 +144,13 @@ class SC2Extractor(Extractor):
 
             self._play_two.set_data(play_two_record)
             self._player_two.set_data(player_two_record )
+
+            # Issued data
+            issued_player_one = (player_one_commands_id, player_one_id, game_id)
+            issued_player_two = (player_two_commands_id, player_two_id, game_id)
+            
+            self._issues_one.set_data(issued_player_one)
+            self._issues_two.set_data(issued_player_two)
 
     def _get_tables(self) -> list[DataStorage]:
         return [
