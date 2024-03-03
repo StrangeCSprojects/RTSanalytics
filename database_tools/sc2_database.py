@@ -28,7 +28,7 @@ class SC2_DB:
         cls.engine = create_engine(f"sqlite:///database_tools/{db_name}.db")
         Base.metadata.create_all(cls.engine)
         cls.Session = sessionmaker(bind=cls.engine)
-        
+
         # ID initialization
         cls._game_id_count = 0
         cls._player_id_count = 0
@@ -42,7 +42,12 @@ class SC2_DB:
                 game_map = game[1]
                 game_mode = game[2]
                 game_winner_id = game[3]
-                game = Game(game_id=game_id, map=game_map, mode=game_mode, winner_id=game_winner_id)
+                game = Game(
+                    game_id=game_id,
+                    map=game_map,
+                    mode=game_mode,
+                    winner_id=game_winner_id,
+                )
                 session.add(game)
             session.commit()
 
@@ -83,10 +88,11 @@ class SC2_DB:
                 game_id = issue_info[0]
                 player_id = issue_info[1]
                 command_id = issue_info[2]
-                issue = Issues(game_id=game_id, player_id=player_id, command_id=command_id)
+                issue = Issues(
+                    game_id=game_id, player_id=player_id, command_id=command_id
+                )
                 session.add(issue)
             session.commit()
-
 
     @classmethod
     def get_player_info(cls, id):
@@ -122,29 +128,37 @@ class SC2_DB:
     @classmethod
     def test_func(cls):
         session = cls.Session()
-        
+
         # 1. Add players
         p1_id = cls._create_player_id()
         p2_id = cls._create_player_id()
-        player1 = Player(player_id=p1_id, name='Player 1', race='Terran')
-        player2 = Player(player_id=p2_id, name='Player 2', race='Protoss')
+        player1 = Player(player_id=p1_id, name="Player 1", race="Terran")
+        player2 = Player(player_id=p2_id, name="Player 2", race="Protoss")
         session.add_all([player1, player2])
         session.commit()
-        
+
         command1 = PlayerCommand(commands_list='[("Attack", 10), ("Defend", 20)]')
         command2 = PlayerCommand(commands_list='[("Scout", 5), ("Harass", 15)]')
         session.add_all([command1, command2])
         session.commit()
-        
+
         # 3. Add games
-        game1 = Game(mode='Ranked', map='Lost Temple', winner=player1)
-        game2 = Game(mode='Casual', map='Battlefield of Eternity', winner=player2)
+        game1 = Game(mode="Ranked", map="Lost Temple", winner=player1)
+        game2 = Game(mode="Casual", map="Battlefield of Eternity", winner=player2)
         session.add_all([game1, game2])
         session.commit()
 
         # 4. Add issues
-        issue1 = Issues(game_id=game1.game_id, player_id=player1.player_id, command_id=command1.command_id)
-        issue2 = Issues(game_id=game2.game_id, player_id=player2.player_id, command_id=command2.command_id)
+        issue1 = Issues(
+            game_id=game1.game_id,
+            player_id=player1.player_id,
+            command_id=command1.command_id,
+        )
+        issue2 = Issues(
+            game_id=game2.game_id,
+            player_id=player2.player_id,
+            command_id=command2.command_id,
+        )
         session.add_all([issue1, issue2])
         session.commit()
 

@@ -19,7 +19,7 @@ class CommandDataStorage(DataStorage):
     def set_data(self, new_record) -> None:
         command_id = new_record[0]
         commands_list = new_record[1]
-        serialized_commands = json.dumps(commands_list) # Converts list to JSON string
+        serialized_commands = json.dumps(commands_list)  # Converts list to JSON string
         self._data[command_id] = serialized_commands
 
 
