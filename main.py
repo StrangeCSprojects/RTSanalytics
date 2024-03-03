@@ -17,7 +17,7 @@ def main():
     replay_data = ext.extract()
     ext.filter_into_tables(replay_data)
     
-    print(f"\nThere are   {len(replay_data)} replays to analyze.\n")
+    print("\nCOMMANDS ARE NOW ADDED TO TEMPORARY STORAGE!\n")
 
 
 # Interpret this module

@@ -7,7 +7,7 @@ from database_tools.entities.sc2_db_entities import (
     Play,
     Player,
     Issues,
-    Command,
+    Commands,
 )
 
 
@@ -19,9 +19,16 @@ class SC2_DB:
 
     @classmethod
     def init(cls, db_name):
+        """Initializes database connection"""
+        # Establish connection to the database file
         cls.engine = create_engine(f"sqlite:///database_tools/{db_name}.db")
         Base.metadata.create_all(cls.engine)
         cls.Session = sessionmaker(bind=cls.engine)
+        
+        # ID initialization
+        cls._game_id_count = 0
+        cls._player_id_count = 0
+        cls._command_id_count = 0
 
     @classmethod
     def add_games(cls, game_list):
@@ -46,7 +53,7 @@ class SC2_DB:
     @classmethod
     def add_command(cls, name):
         with cls.Session() as session:
-            command = Command(name=name)
+            command = Commands(name=name)
             session.add(command)
             session.commit()
 
@@ -62,3 +69,21 @@ class SC2_DB:
                 }
             else:
                 return None
+
+    @classmethod
+    def _create_game_id(cls) -> int:
+        """Increment and return game id"""
+        cls._game_id_count += 1
+        return cls._game_id_count
+
+    @classmethod
+    def _create_player_id(cls) -> int:
+        """Increment and return player id"""
+        cls._player_id_count += 1
+        return cls._player_id_count
+
+    @classmethod
+    def _create_command_id(cls) -> int:
+        """Increment and return command id"""
+        cls._command_id_count += 1
+        return cls._command_id_count

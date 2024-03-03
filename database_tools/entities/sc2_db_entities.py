@@ -4,7 +4,6 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-
 class Game(Base):
     __tablename__ = "games"
     game_id = Column(Integer, primary_key=True)
@@ -15,7 +14,6 @@ class Game(Base):
     # Define relationship with players
     players = relationship("Player", backref="games")
 
-
 class Player(Base):
     __tablename__ = "players"
     player_id = Column(Integer, primary_key=True)
@@ -25,12 +23,11 @@ class Player(Base):
     # Define relationship with games
     games = relationship("Game", backref="players")
 
-
-class Command(Base):
+class Commands(Base):
     __tablename__ = "commands"
     command_id = Column(Integer, primary_key=True)
-    name = Column(String)
-
+    # Add a new attribute to store the list of tuples
+    commands_list = Column(String)
 
 class Issues(Base):
     __tablename__ = "issues"
@@ -45,7 +42,6 @@ class Issues(Base):
 
     # Define composite primary key constraint
     __table_args__ = (PrimaryKeyConstraint("game_id", "player_id"),)
-
 
 class Play(Base):
     __tablename__ = "play"

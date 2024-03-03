@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class DataStorage(ABC):
-    """An abstract class for a temporary SC2 data storage unit/container"""
+    """An abstract class for a temporary data storage unit/container"""
 
     def __init__(self):
-        self.data = []
+        self._data = []
 
     @abstractmethod
     def push(self) -> None:

@@ -1,7 +1,9 @@
 # Import any needed modules
+from imaplib import Commands
 import os
 from sys import platlibdir
 import sc2reader
+from database_tools.sc2_database import SC2_DB
 from replay_extraction_tools.extractor import Extractor
 from database_tools.general_database_access import DataStorage
 from database_tools.sc2_database_access import (
@@ -71,10 +73,10 @@ class SC2Extractor(Extractor):
         for replay_key in replay_container:
             replay = replay_container[replay_key]
 
-            # Initialize game and player IDs
-            game_id = self._create_game_id()
-            player_one_id = self._create_player_id()
-            player_two_id = self._create_player_id()
+            # Create unique game and player IDs
+            game_id = SC2_DB._create_game_id()
+            player_one_id = SC2_DB._create_player_id()
+            player_two_id = SC2_DB._create_player_id()
             
             # Players data
             player_one = replay.players[0]
@@ -89,7 +91,6 @@ class SC2Extractor(Extractor):
             player_two_race = player_two.play_race
             
             # Get command data for both players
-            # Finish this part later
             player_one_commands = []
             player_two_commands = []
             for event in replay.events:
@@ -115,33 +116,34 @@ class SC2Extractor(Extractor):
                         else:
                             winner_id = player_two_id
 
-            # PROCESS THE COMMANDS IN A SEPARATE FUNCTION
+            # Create data records and store them into appropriate storage
+            # units, starting with the command data
+            player_one_commands_id = SC2_DB._create_command_id()
+            player_two_commands_id = SC2_DB._create_command_id()
+            
+            commands_one_record = (player_one_commands_id, player_one_commands)
+            commands_two_record = (player_two_commands_id, player_two_commands)
+            
+            self._commands_one.set_data(commands_one_record)
+            self._commands_two.set_data(commands_two_record)
 
-            # Create and store new game data to the appropriate storage container
+            # Game data
             game_data_record = (game_id, game_map, game_mode, winner_id)
             self._game_data.set_data(game_data_record)
 
             # Player one data
             play_one_record = (game_id, player_one_id)
             player_one_record = (player_one_id, player_one_race, player_one_name)
-            # commands_one_record = ()
-            # issues_one_record = ()
-            
+
             self._play_one.set_data(play_one_record)
             self._player_one.set_data(player_one_record)
-            # self.commands_one.set_data()
-            # self.issues_one.set_data()
 
             # Player Two data
             play_two_record = (game_id, player_two_id)
             player_two_record = (player_two_id, player_two_race, player_two_name)
-            # commands_one_record = ()
-            # issues_one_record = ()
 
             self._play_two.set_data(play_two_record)
             self._player_two.set_data(player_two_record )
-            # self.commands_one.set_data()
-            # self.issues_one.set_data()
 
     def _get_tables(self) -> list[DataStorage]:
         return [
@@ -162,22 +164,6 @@ class SC2Extractor(Extractor):
     def _batch_insert(self, table_list: list[DataStorage]) -> None:
         return super()._batch_insert(table_list)
 
-    # ID generation
-    def _create_game_id(self) -> int:
-        """Increment and return game id"""
-        self._game_id += 1
-        return self._game_id
-
-    def _create_player_id(self) -> int:
-        """Increment and return player id"""
-        self._player_id += 1
-        return self._player_id
-
-    def _create_command_id(self) -> int:
-        """Increment and return command id"""
-        self._command_id += 1
-        return self._command_id
-    
     def build_order(self):
         pass
 
