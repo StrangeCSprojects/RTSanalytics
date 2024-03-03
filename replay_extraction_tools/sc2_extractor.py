@@ -79,7 +79,7 @@ class SC2Extractor(Extractor):
             game_id = SC2_DB._create_game_id()
             player_one_id = SC2_DB._create_player_id()
             player_two_id = SC2_DB._create_player_id()
-            
+
             # Players data
             player_one = replay.players[0]
             player_two = replay.players[1]
@@ -91,7 +91,7 @@ class SC2Extractor(Extractor):
             # Player races
             player_one_race = player_one.play_race
             player_two_race = player_two.play_race
-            
+
             # Get command data for both players (This may become its own function post-mvp)
             player_one_commands = []
             player_two_commands = []
@@ -108,7 +108,7 @@ class SC2Extractor(Extractor):
             game_map = replay.map_name
             game_mode = replay.attributes.get(16).get("Game Mode")
             if not replay.winner:
-                winner_id = -1 # This game will not get stored
+                winner_id = -1  # This game will not get stored
             else:
                 for player in replay.players:
                     if player.result == "Win":
@@ -122,10 +122,10 @@ class SC2Extractor(Extractor):
             # units, starting with the command data
             player_one_commands_id = SC2_DB._create_command_id()
             player_two_commands_id = SC2_DB._create_command_id()
-            
+
             commands_one_record = (player_one_commands_id, player_one_commands)
             commands_two_record = (player_two_commands_id, player_two_commands)
-            
+
             self._commands_one.set_data(commands_one_record)
             self._commands_two.set_data(commands_two_record)
 
@@ -145,12 +145,12 @@ class SC2Extractor(Extractor):
             player_two_record = (player_two_id, player_two_race, player_two_name)
 
             self._play_two.set_data(play_two_record)
-            self._player_two.set_data(player_two_record )
+            self._player_two.set_data(player_two_record)
 
             # Issued data
             issued_player_one = (player_one_commands_id, player_one_id, game_id)
             issued_player_two = (player_two_commands_id, player_two_id, game_id)
-            
+
             self._issues_one.set_data(issued_player_one)
             self._issues_two.set_data(issued_player_two)
 
@@ -278,48 +278,48 @@ class SC2Extractor(Extractor):
 #     # print(production_building_count)
 #     print(f"Build Order: {build_order.name}")
 
-    # def build_order(self, replay):
-    #     """Determine build order"""
-    #     command_center_count = 1
-    #     production_building_count = 0
-    #     build_order = BuildOrder.UNKNOWN
+# def build_order(self, replay):
+#     """Determine build order"""
+#     command_center_count = 1
+#     production_building_count = 0
+#     build_order = BuildOrder.UNKNOWN
 
-    #     # Initialize a dictionary to hold events for each player
-    #     player_events = {player: [] for player in replay.players}
+#     # Initialize a dictionary to hold events for each player
+#     player_events = {player: [] for player in replay.players}
 
-    #     # Iterate through events and process only unit events
-    #     for event in replay.events:
-    #         if isinstance(event, sc2reader.events.UnitInitEvent):
-    #             player = event.unit.owner
-    #             if player:
-    #                 player_events[player].append(event)
+#     # Iterate through events and process only unit events
+#     for event in replay.events:
+#         if isinstance(event, sc2reader.events.UnitInitEvent):
+#             player = event.unit.owner
+#             if player:
+#                 player_events[player].append(event)
 
-    #     for player, events in player_events.items():
-    #         if player.name == "Cstrange":
-    #             print(f"Events for Player {player.name}:")
-    #             for event in events:
-    #                 game_speed_factor = 1.4
-    #                 real_time_seconds = int(event.second / game_speed_factor)
-    #                 # print(f" - {event.unit.name} at {int(real_time_seconds // 60)}.{real_time_seconds % 60}s")
-    #                 if (
-    #                     event.unit.name == "OrbitalCommand"
-    #                     or event.unit.name == "OrbitalCommandFlying"
-    #                 ):
-    #                     command_center_count += 1
-    #                 elif event.unit.name == "Barracks":
-    #                     production_building_count += 1
-    #                 elif event.unit.name == "Factory":
-    #                     production_building_count += 1
-    #                 elif event.unit.name == "Starport":
-    #                     production_building_count += 1
+#     for player, events in player_events.items():
+#         if player.name == "Cstrange":
+#             print(f"Events for Player {player.name}:")
+#             for event in events:
+#                 game_speed_factor = 1.4
+#                 real_time_seconds = int(event.second / game_speed_factor)
+#                 # print(f" - {event.unit.name} at {int(real_time_seconds // 60)}.{real_time_seconds % 60}s")
+#                 if (
+#                     event.unit.name == "OrbitalCommand"
+#                     or event.unit.name == "OrbitalCommandFlying"
+#                 ):
+#                     command_center_count += 1
+#                 elif event.unit.name == "Barracks":
+#                     production_building_count += 1
+#                 elif event.unit.name == "Factory":
+#                     production_building_count += 1
+#                 elif event.unit.name == "Starport":
+#                     production_building_count += 1
 
-    #                 if event.second < 300:
-    #                     if command_center_count >= 3:
-    #                         build_order = BuildOrder.ECONOMY
-    #                     elif production_building_count >= 7:
-    #                         build_order = BuildOrder.AGRESSION
-    #                     elif command_center_count == 2 and production_building_count < 7:
-    #                         build_order = BuildOrder.STANDARD
-    #     # print(command_center_count)
-    #     # print(production_building_count)
-    #     print(f"Build Order: {build_order.name}")
+#                 if event.second < 300:
+#                     if command_center_count >= 3:
+#                         build_order = BuildOrder.ECONOMY
+#                     elif production_building_count >= 7:
+#                         build_order = BuildOrder.AGRESSION
+#                     elif command_center_count == 2 and production_building_count < 7:
+#                         build_order = BuildOrder.STANDARD
+#     # print(command_center_count)
+#     # print(production_building_count)
+#     print(f"Build Order: {build_order.name}")
