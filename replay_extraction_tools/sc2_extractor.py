@@ -154,14 +154,14 @@ class SC2Extractor(Extractor):
 
     def _get_tables(self) -> list[DataStorage]:
         return [
+            self._commands_one,
+            self._commands_two,
+            self._player_one,
+            self._player_two,
             self._game_data,
             self._play_one,
-            self._player_one,
-            self._commands_one,
-            self._issues_one,
             self._play_two,
-            self._player_two,
-            self._commands_two,
+            self._issues_one,
             self._issues_two,
         ]
 
