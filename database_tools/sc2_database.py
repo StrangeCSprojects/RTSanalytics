@@ -109,7 +109,10 @@ class SC2_DB:
                 player_id = issue_info[1]
                 command_id = issue_info[2]
                 existing_issued_commands = (
-                    session.query(Issues).filter_by(game_id=game_id).filter_by(player_id=player_id).first()
+                    session.query(Issues)
+                    .filter_by(game_id=game_id)
+                    .filter_by(player_id=player_id)
+                    .first()
                 )
                 if existing_issued_commands:
                     # print("These commands have already been issued")
@@ -138,7 +141,9 @@ class SC2_DB:
         with cls.Session() as session:
             players = session.query(Player).all()
             for player in players:
-                print(f"Player ID: {player.player_id}, Name: {player.name}, Race: {player.race}")
+                print(
+                    f"Player ID: {player.player_id}, Name: {player.name}, Race: {player.race}"
+                )
 
     @classmethod
     def _create_game_id(cls) -> int:
