@@ -1,107 +1,123 @@
-
-# Import any needed modules
-#
-## NOT SURE WHAT MODULES WE WANT FOR THIS PARTICULAR FILE
-## SO I JUST COPIED THE ONES FROM 'EXTRACTOR.PY'
-
-import random
-from data_analysis_tools.general.analyzer import Analyzer
-from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
-
+from data_analysis_tools.general.analyzer import (
+    Analyzer,
+)  # Base class for analysis tools.
+from data_analysis_tools.sc2.sc2_data_retriever import (
+    SC2DataRetriever,
+)  # Specific data retriever for SC2 data.
+from data_analysis_tools.general.winrates.winrate_build import (
+    WinrateBuild,
+)  # For calculating win rates based on builds.
+from data_analysis_tools.general.winrates.winrate_race import (
+    WinrateRace,
+)  # For calculating win rates based on races.
+from data_analysis_tools.sc2.sc2_build_order.sc2_determine_build import (
+    SC2DetermineBuild,
+)  # For determining SC2 build orders.
 
 
 class SC2Analyzer(Analyzer):
     """
-    Analyzes data from sc2 database to determine information
-    such as build orders and winrates
+    Specialized Analyzer class for analyzing data from an SC2 (StarCraft 2) database.
+    It focuses on determining information such as build orders and win rates for different matchups.
     """
 
-    def __init__(self, data_retriever:SC2DataRetriever) -> None:
-        super().__init__(data_retriever)
+    def __init__(self, data_retriever: SC2DataRetriever) -> None:
+        """
+        Initializes the SC2Analyzer with a specific SC2DataRetriever.
 
-    def winrate_build(self) -> int:
-        pass
+        :param data_retriever: An instance of SC2DataRetriever to fetch game data.
+        """
+        super().__init__(
+            data_retriever
+        )  # Calls the constructor of the parent class, Analyzer.
 
-    def winrate_race(self) -> int:
+    def winrate_build(self) -> dict:
+        """
+        Calculates win rates for different build matchups.
 
-        plays = self.data_retriever.get_all_plays()
+        Uses the data retriever to fetch all game records, then analyzes each game
+        to determine the builds of each player and the winner. Compiles this information
+        into matchups and calculates win rates using WinrateBuild.
 
-        for play in plays:
-            player_one = 
+        :return: A dictionary of win rates for build matchups.
+        """
+        winrate_calculator = (
+            WinrateBuild()
+        )  # Instance to calculate win rates based on builds.
+        build_order_calculator = (
+            SC2DetermineBuild()
+        )  # Instance to determine build orders, not yet implemented.
+        match_ups_list = []  # List to store matchup data for win rate calculation.
 
+        games = self.data_retriever.get_all_games()  # Fetch all game records.
 
+        for game in games:
+            game_id = game[0]
+            # Retrieve player IDs for each game.
+            player_one_id, player_two_id = self.data_retriever.get_players_in_game(
+                game_id
+            )
+            # Retrieve races for each player.
+            player_one_race = self.data_retriever.get_player(player_one_id)[1]
+            player_two_race = self.data_retriever.get_player(player_two_id)[1]
 
-class Stats:
-    def __init__(self, game_data) -> None:
-        self.game_data = game_data
+            # Placeholder for build order calculation.
+            player_one_build = build_order_calculator()  # To be implemented.
+            player_two_build = build_order_calculator()  # To be implemented.
 
-        self.tvp_wins = 0
-        self.tvz_wins = 0
-        self.zvp_wins = 0
+            # Determine the winner based on game data.
+            if self.data_retriever.get_play(game_id, player_one_id)[2] == True:
+                winner_build = player_one_build
+            elif self.data_retriever.get_play(game_id, player_two_id)[2] == True:
+                winner_build = player_two_build
+            else:
+                # Error handling for cases where the winner is not determined.
+                print("ERROR: data_analysis_tools\sc2\sc2_analyzer.py winrate_build")
+                continue
 
-        self.tvp_total = 0
-        self.tvz_total = 0
-        self.zvp_total = 0
+            # Compile matchup data.
+            match_up = (player_one_build, player_two_build, winner_build)
+            match_ups_list.append(match_up)
 
-    def check_races_in_game(self, races: list, winner):
-        set_of_races = {races[0], races[1]}
-        tvp = {"Terran", "Protoss"}
-        tvz = {"Terran", "Zerg"}
-        zvp = {"Zerg", "Protoss"}
-        winner_race = winner[0]
+        # Calculate and return win rates for the compiled matchups.
+        return winrate_calculator.calculate_matchup_winrates(match_ups_list)
 
-        if tvp.issubset(set_of_races):
-            self.tvp_total += 1
-            if winner_race == "Terran":
-                self.tvp_wins += 1
-        elif tvz.issubset(set_of_races):
-            self.tvz_total += 1
-            if winner_race == "Terran":
-                self.tvz_wins += 1
-        elif zvp.issubset(set_of_races):
-            if winner_race == "Zerg":
-                self.zvp_wins += 1
-            self.zvp_total += 1
-        else:
-            print("ERROR in check_races_in_game")
+    def winrate_race(self) -> dict:
+        """
+        Calculates win rates based on the races of the players in SC2 matches.
 
-    def wr_race(self):
-        for game in self.game_data:
-            races = game[0]
-            winner = game[1]
-            self.check_races_in_game(races, winner)
-        tvp_wr = round((self.tvp_wins / self.tvp_total) * 100, 2)
-        tvz_wr = round((self.tvz_wins / self.tvz_total) * 100, 2)
-        zvp_wr = round((self.zvp_wins / self.zvp_total) * 100, 2)
-        return (tvp_wr, tvz_wr, zvp_wr)
+        Retrieves all games from the SC2 database, determines the races of the players in each game,
+        identifies the winner's race, and calculates win rates for each race matchup.
 
+        :return: A dictionary containing win rates for each race matchup.
+        """
+        winrate_calculator = WinrateRace()
+        match_ups_list = []
 
-def main():
-    """Main entry point"""
-    # Generate random races and winners for testing
-    def generate_dummy_game_data(num_games):
-        races = ["Terran", "Protoss", "Zerg"]
-        game_data = []
-        for _ in range(num_games):
-            race1 = random.choice(races)
-            race2 = random.choice([race for race in races if race != race1])
-            winner = random.choice([race1, race2])
-            game_data.append(([race1, race2], [winner]))
-        return game_data
+        games = self.data_retriever.get_all_games()
 
-    # Generate 1000 dummy games for testing
-    game_data = generate_dummy_game_data(1000)
-    # print(game_data)
+        for game in games:
+            game_id = game[0]
+            # Retrieve player IDs and their races for the game
+            player_one_id, player_two_id = self.data_retriever.get_players_in_game(
+                game_id
+            )
+            player_one_race = self.data_retriever.get_player(player_one_id)[1]
+            player_two_race = self.data_retriever.get_player(player_two_id)[1]
 
-    # Instantiate Stats object with the generated dummy data
-    stats = Stats(game_data)
+            # Determine the winner's race based on game data
+            if self.data_retriever.get_play(game_id, player_one_id)[2]:
+                winner_race = player_one_race
+            elif self.data_retriever.get_play(game_id, player_two_id)[2]:
+                winner_race = player_two_race
+            else:
+                # Error handling for cases where the winner is not determined.
+                print("ERROR: data_analysis_tools\sc2\sc2_analyzer.py winrate_race")
+                continue
 
-    # Calculate and print win rates
-    print(stats.tvp_total)
-    print("Win rates:")
-    print(f"Terran vs Protoss:{stats.wr_race()[0]}%")
-    print(f"Terran vs Zerg:{stats.wr_race()[1]}%")
-    print(f"Zerg vs Protoss: {stats.wr_race()[2]}%")
-# Interpret this module
-if __name__ == "__main__":
-    main()
+            # Compile matchup data.
+            match_up = (player_one_race, player_two_race, winner_race)
+            match_ups_list.append(match_up)
+
+        # Calculate and return win rates for the compiled matchups.
+        return winrate_calculator.calculate_matchup_winrates(match_ups_list)
