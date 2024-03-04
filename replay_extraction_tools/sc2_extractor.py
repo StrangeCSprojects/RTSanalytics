@@ -74,11 +74,15 @@ class SC2Extractor(Extractor):
 
         for replay_key in replay_container:
             replay = replay_container[replay_key]
+            if not replay.winner:
+                continue # We are only storing games where there is a winner
 
-            # Create unique game and player IDs
+            # Create IDs
             game_id = SC2_DB._create_game_id()
             player_one_id = SC2_DB._create_player_id()
             player_two_id = SC2_DB._create_player_id()
+            player_one_commands_id = SC2_DB._create_command_id()
+            player_two_commands_id = SC2_DB._create_command_id()
 
             # Players data
             player_one = replay.players[0]
@@ -107,32 +111,18 @@ class SC2Extractor(Extractor):
             # Game data
             game_map = replay.map_name
             game_mode = replay.attributes.get(16).get("Game Mode")
-            if not replay.winner:
-                winner_id = -1  # This game will not get stored
-            else:
-                for player in replay.players:
-                    if player.result == "Win":
-                        winner_name = player.name
-                        if winner_name == player_one_name:
-                            winner_id = player_one_id
-                        else:
-                            winner_id = player_two_id
+            for player in replay.players:
+                if player.result == "Win":
+                    winner_name = player.name
+                    # Make the winner a boolean and store it in "play" table
+                    if winner_name == player_one_name:
+                        winner_id = player_one_id
+                    else:
+                        winner_id = player_two_id
 
             # Create data records and store them into appropriate storage
             # units, starting with the command data
-            player_one_commands_id = SC2_DB._create_command_id()
-            player_two_commands_id = SC2_DB._create_command_id()
-
-            commands_one_record = (player_one_commands_id, player_one_commands)
-            commands_two_record = (player_two_commands_id, player_two_commands)
-
-            self._commands_one.set_data(commands_one_record)
-            self._commands_two.set_data(commands_two_record)
-
-            # Game data
-            game_data_record = (game_id, game_map, game_mode, winner_id)
-            self._game_data.set_data(game_data_record)
-
+            
             # Player one data
             play_one_record = (game_id, player_one_id)
             player_one_record = (player_one_id, player_one_race, player_one_name)
@@ -146,6 +136,17 @@ class SC2Extractor(Extractor):
 
             self._play_two.set_data(play_two_record)
             self._player_two.set_data(player_two_record)
+
+            # Command data
+            commands_one_record = (player_one_commands_id, player_one_commands)
+            commands_two_record = (player_two_commands_id, player_two_commands)
+
+            self._commands_one.set_data(commands_one_record)
+            self._commands_two.set_data(commands_two_record)
+
+            # Game data
+            game_data_record = (game_id, game_map, game_mode, winner_id)
+            self._game_data.set_data(game_data_record)
 
             # Issued data
             issued_player_one = (player_one_commands_id, player_one_id, game_id)

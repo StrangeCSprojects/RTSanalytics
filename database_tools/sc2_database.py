@@ -1,9 +1,6 @@
 # Import any needed modules
-from distutils.cmd import Command
-from imaplib import Commands
-from typing import Self
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import ClassManager, sessionmaker
 from sqlalchemy.util import clsname_as_plain_name
 from database_tools.entities.sc2_db_entities import (
     Base,
@@ -38,12 +35,16 @@ class SC2_DB:
     def add_games(cls, game_list):
         with cls.Session() as session:
             for game in game_list:
-                game_id = game[0]
+                id = game[0]
                 game_map = game[1]
                 game_mode = game[2]
                 game_winner_id = game[3]
+                existing_game = session.query(Game).filter_by(game_id=id).first()
+                if existing_game:
+                    # print("This game already resides in database.")
+                    continue
                 game = Game(
-                    game_id=game_id,
+                    game_id=id,
                     map=game_map,
                     mode=game_mode,
                     winner_id=game_winner_id,
@@ -58,6 +59,10 @@ class SC2_DB:
                 id = player_info[0]
                 race = player_info[1]
                 name = player_info[2]
+                existing_player = session.query(Player).filter_by(player_id=id).first()
+                if existing_player:
+                    # print("This player already resides in database.")
+                    continue
                 player = Player(player_id=id, name=name, race=race)
                 session.add(player)
             session.commit()
@@ -66,6 +71,12 @@ class SC2_DB:
     def add_commands(cls, command_dict: dict):
         with cls.Session() as session:
             for id, c_list in command_dict.items():
+                existing_command_list = (
+                    session.query(PlayerCommand).filter_by(command_id=id).first()
+                )
+                if existing_command_list:
+                    # print("These commands have already been processed")
+                    continue
                 # Create an instance of PlayerCommand with keyword arguments
                 command = PlayerCommand(command_id=id, commands_list=c_list)
                 session.add(command)
@@ -77,6 +88,15 @@ class SC2_DB:
             for play_info in play_list:
                 game_id = play_info[0]
                 player_id = play_info[1]
+                existing_play = (
+                    session.query(Play)
+                    .filter_by(game_id=game_id)
+                    .filter_by(player_id=player_id)
+                    .first()
+                )
+                if existing_play:
+                    # print("This play relationship already resides in database.")
+                    continue
                 play = Play(game_id=game_id, player_id=player_id)
                 session.add(play)
             session.commit()
@@ -88,24 +108,37 @@ class SC2_DB:
                 game_id = issue_info[0]
                 player_id = issue_info[1]
                 command_id = issue_info[2]
+                existing_issued_commands = (
+                    session.query(Issues).filter_by(game_id=game_id).filter_by(player_id=player_id).first()
+                )
+                if existing_issued_commands:
+                    # print("These commands have already been issued")
+                    continue
                 issue = Issues(
-                    game_id=game_id, player_id=player_id, command_id=command_id
+                    command_id=command_id, player_id=player_id, game_id=game_id
                 )
                 session.add(issue)
             session.commit()
 
     @classmethod
-    def get_player_info(cls, id):
+    def get_player_by_id(cls, id):
         with cls.Session() as session:
-            player = session.query(Player).filter_by(id=id).first()
+            player = session.query(Player).filter_by(player_id=id).first()
             if player:
                 return {
-                    "player_id": player.id,
+                    "player_id": player.player_id,
                     "name": player.name,
                     "race": player.race,
                 }
             else:
                 return None
+
+    @classmethod
+    def get_all_players(cls):
+        with cls.Session() as session:
+            players = session.query(Player).all()
+            for player in players:
+                print(f"Player ID: {player.player_id}, Name: {player.name}, Race: {player.race}")
 
     @classmethod
     def _create_game_id(cls) -> int:

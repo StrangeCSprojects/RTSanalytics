@@ -16,6 +16,8 @@ def main():
     extractor.run()
 
     print("SC2 REPLAY DATA HAS BEEN PROCESSED AND STORED!!!\n")
+    
+    SC2_DB.get_all_players()
 
 
 # Interpret this module

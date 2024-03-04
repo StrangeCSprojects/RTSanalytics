@@ -28,9 +28,9 @@ class PlayerCommand(Base):
 
 class Issues(Base):
     __tablename__ = "issues"
-    game_id = Column(Integer, ForeignKey("games.game_id"), primary_key=True)
-    player_id = Column(Integer, ForeignKey("players.player_id"), primary_key=True)
     command_id = Column(Integer, ForeignKey("commands.command_id"))
+    player_id = Column(Integer, ForeignKey("players.player_id"), primary_key=True)
+    game_id = Column(Integer, ForeignKey("games.game_id"), primary_key=True)
 
     # Define relationships
     game = relationship("Game", backref="issues")

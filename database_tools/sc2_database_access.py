@@ -1,4 +1,4 @@
-import json
+from json import dumps
 from database_tools.general_database_access import DataStorage
 from database_tools.sc2_database import SC2_DB
 
@@ -19,7 +19,7 @@ class CommandDataStorage(DataStorage):
     def set_data(self, new_record) -> None:
         command_id = new_record[0]
         commands_list = new_record[1]
-        serialized_commands = json.dumps(commands_list)  # Converts list to JSON string
+        serialized_commands = dumps(commands_list)  # Converts list to JSON string
         self._data[command_id] = serialized_commands
 
 
