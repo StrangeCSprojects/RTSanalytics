@@ -6,24 +6,23 @@
 
 # Import any needed modules
 from database_tools.sc2_database import SC2_DB
-from replay_extraction_tools.extractor import *
+from replay_extraction_tools.sc2_extractor import SC2Extractor
+
 
 def main():
     """Main entry point"""
+
+    # Create an extractor and then run it on the replays folder
+    extractor = SC2Extractor("replay_extraction_tools/replays")
+    extractor.run()
+
+    print("SC2 REPLAY DATA HAS BEEN PROCESSED AND STORED!!!\n")
     
-    # Ensure the database is initialized
-    SC2_DB.create_tables()
-    
-    # Analyze the replays from the replays folder
-    replay_folder_path = "replay_extraction_tools/replays"
-    replay_analysis("cstrange", replay_folder_path)
-    
-    # Test retrieving data from the database
-    row = SC2_DB.retrieve_table_data('games', 2) # Get the second replay's data
-    for data in row:
-        print(data)
+    SC2_DB.get_all_players()
 
 
 # Interpret this module
 if __name__ == "__main__":
+    # Initialize the database
+    SC2_DB.init("example_sc2_database")
     main()
