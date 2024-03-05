@@ -13,8 +13,8 @@ def main():
     """Main entry point"""
 
     # Create an extractor and then run it on the replays folder
-    extractor = SC2Extractor("replay_extraction_tools/replays")
-    extractor.run()
+    extractor = SC2Extractor()
+    extractor.run("replay_extraction_tools/replays")
 
     print("SC2 REPLAY DATA HAS BEEN PROCESSED AND STORED!!!\n")
     

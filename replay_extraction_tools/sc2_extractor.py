@@ -1,9 +1,5 @@
 # Import any needed modules
-from imaplib import Commands
 import os
-from re import S
-from sys import platlibdir
-from typing import Self
 import sc2reader
 from database_tools.sc2_database import SC2_DB
 from replay_extraction_tools.extractor import Extractor
@@ -23,11 +19,11 @@ class SC2Extractor(Extractor):
     to a database
     """
 
-    def __init__(self, folder_path: str) -> None:
+    def __init__(self) -> None:
         """
         SC2Extractor constructor
         """
-        super().__init__(folder_path)
+        super().__init__()
 
         self._game_data = GameDataStorage()
 
@@ -168,8 +164,8 @@ class SC2Extractor(Extractor):
             self._play_two,
         ]
 
-    def run(self) -> None:
-        return super().run()
+    def run(self, folder_path: str) -> None:
+        super().run(folder_path)
 
     def _batch_insert(self, table_list: list[DataStorage]) -> None:
         return super()._batch_insert(table_list)
