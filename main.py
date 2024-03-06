@@ -16,9 +16,14 @@ def main():
     extractor = SC2Extractor()
     extractor.run("replay_extraction_tools/replays")
 
-    print("SC2 REPLAY DATA HAS BEEN PROCESSED AND STORED!!!\n")
-    SC2_DB.get_all_players()
-
+    print("All player IDs...")
+    print(SC2_DB.get_all_players())
+    print("All game IDs...")
+    print(SC2_DB.get_all_games())
+    print("Player ID and game ID combos for all replays...")
+    print(SC2_DB.get_players_in_game(1))
+    print(SC2_DB.get_players_in_game(2))
+    print(SC2_DB.get_players_in_game(3))
 
 # Interpret this module
 if __name__ == "__main__":

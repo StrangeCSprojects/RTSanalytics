@@ -95,13 +95,35 @@ class SC2_DB:
                 return None
 
     @classmethod
+    def get_player_by_id(cls, id: int) -> dict:
+        with cls.Session() as session:
+            player = session.query(Player).filter_by(player_id=id).first()
+            if player:
+                return {
+                    "player_id": player.player_id,
+                    "name": player.name
+                }
+            else:
+                return None
+            
+    @classmethod
+    def get_players_in_game(cls, game_id: int):
+        with cls.Session() as session:
+            plays = session.query(Play).filter_by(game_id=game_id).all()
+            result = [play.player_id for play in plays]
+            return result
+
+    @classmethod
     def get_all_players(cls):
         with cls.Session() as session:
-            players = session.query(Player).all()
-            for player in players:
-                print(
-                    f"Player ID: {player.player_id}, Name: {player.name}"
-                )
+            players = {player.player_id for player in session.query(Player).all()}
+            return players
+        
+    @classmethod
+    def get_all_games(cls):
+        with cls.Session() as session:
+            games = {game.game_id for game in session.query(Game).all()}
+            return games
 
     @classmethod
     def _create_game_id(cls) -> int:
