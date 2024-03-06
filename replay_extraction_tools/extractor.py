@@ -8,9 +8,8 @@ class Extractor(ABC):
     table classes and inserts that data into a database.
     """
 
-    def __init__(self, folder_path: str) -> None:
-        # super().__init__()
-        self.folder_path = folder_path
+    def __init__(self) -> None:
+        self.folder_path = None
 
     @abstractmethod
     def extract(self) -> dict:
@@ -28,7 +27,8 @@ class Extractor(ABC):
     def _get_tables(self) -> list[DataStorage]:
         pass
 
-    def run(self) -> None:
+    def run(self, folder_path: str) -> None:
+        self.folder_path = folder_path
         self.filter_into_tables(self.extract())
         self._batch_insert(self._get_tables())
 
