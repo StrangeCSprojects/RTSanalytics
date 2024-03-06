@@ -24,13 +24,9 @@ class SC2Extractor(Extractor):
         """
         super().__init__()
 
+        self._player_data = PlayerDataStorage()
         self._game_data = GameDataStorage()
-
-        self._play_one = PlayDataStorage()
-        self._player_one = PlayerDataStorage()
-
-        self._play_two = PlayDataStorage()
-        self._player_two = PlayerDataStorage()
+        self._play_data = PlayDataStorage()
 
     def extract(self) -> dict:
         """
@@ -45,10 +41,7 @@ class SC2Extractor(Extractor):
             if os.path.isfile(file_path):
                 # Filling replay dictionary
                 replay_counter += 1
-                # print(f"Loading replay {replay_counter}.....   ")
                 replay = sc2reader.load_replay(file_path, load_map=True)
-                # print(type(replay))
-                # print(dir(replay))
                 replay_container[replay_counter] = replay
 
         return replay_container
@@ -63,12 +56,7 @@ class SC2Extractor(Extractor):
             replay = replay_container[replay_key]
             if not replay.winner:
                 continue  # We are only storing games where there is a winner
-
-            # Create IDs
-            game_id = SC2_DB._create_game_id()
-            player_one_id = SC2_DB._create_player_id()
-            player_two_id = SC2_DB._create_player_id()
-
+            
             # Players data
             player_one = replay.players[0]
             player_two = replay.players[1]
@@ -76,6 +64,19 @@ class SC2Extractor(Extractor):
             # Player names
             player_one_name = player_one.name
             player_two_name = player_two.name
+
+            # Get player and game IDs
+            game_id = SC2_DB._create_game_id()
+            player_one_info = self._player_data._get_player_from_storage(player_one_name)
+            if player_one_info:
+                player_one_id = player_one_info["player_id"]
+            else:
+                player_one_id = SC2_DB._create_player_id()
+            player_two_info = self._player_data._get_player_from_storage(player_two_name)
+            if player_two_info:
+                player_two_id = player_two_info["player_id"]
+            else:
+                player_two_id = SC2_DB._create_player_id()
 
             # Player races
             player_one_race = player_one.play_race
@@ -115,8 +116,8 @@ class SC2Extractor(Extractor):
             )
             player_one_record = (player_one_id, player_one_name)
 
-            self._play_one.set_data(play_one_record)
-            self._player_one.set_data(player_one_record)
+            self._play_data.set_data(play_one_record)
+            self._player_data.set_data(player_one_record)
 
             # Player Two data
             play_two_record = (
@@ -128,8 +129,8 @@ class SC2Extractor(Extractor):
             )
             player_two_record = (player_two_id, player_two_name)
 
-            self._play_two.set_data(play_two_record)
-            self._player_two.set_data(player_two_record)
+            self._play_data.set_data(play_two_record)
+            self._player_data.set_data(player_two_record)
 
             # Game data
             game_data_record = (game_id, game_map, game_mode)
@@ -137,11 +138,9 @@ class SC2Extractor(Extractor):
 
     def _get_tables(self) -> list[DataStorage]:
         return [
-            self._player_one,
-            self._player_two,
+            self._player_data,
             self._game_data,
-            self._play_one,
-            self._play_two,
+            self._play_data
         ]
 
     def run(self, folder_path: str) -> None:
