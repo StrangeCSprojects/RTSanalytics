@@ -45,7 +45,7 @@ class SC2DataRetriever(DataRetriever):
         """
         pass
 
-    def get_commands(self):
+    def get_commands(self, game_id:int, player_id:int) -> list[tuple[tuple[str,str], int]]:
         """
         Retrieve data about a single command from the database.
         """
