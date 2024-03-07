@@ -42,6 +42,8 @@ class SC2Extractor(Extractor):
                 # Filling replay dictionary
                 replay_counter += 1
                 replay = sc2reader.load_replay(file_path, load_map=True)
+                for event in replay.events:
+                    print(event)
                 replay_container[replay_counter] = replay
 
         return replay_container
@@ -151,3 +153,4 @@ class SC2Extractor(Extractor):
 
     def build_order(self):
         pass
+
