@@ -57,13 +57,18 @@ class SC2Analyzer(Analyzer):
             player_one_id, player_two_id = self.data_retriever.get_players_in_game(
                 game_id
             )
+
+            # Retrieve command lists for each player.
+            player_one_commands = game.get_commands(game_id, player_one_id)
+            player_two_commands = game.get_commands(game_id, player_two_id)
+
             # Retrieve races for each player.
             player_one_race = self.data_retriever.get_player(player_one_id)[1]
             player_two_race = self.data_retriever.get_player(player_two_id)[1]
 
             # Placeholder for build order calculation.
-            player_one_build = build_order_calculator()  # To be implemented.
-            player_two_build = build_order_calculator()  # To be implemented.
+            player_one_build = build_order_calculator.determine_build(player_one_race, player_one_commands)  # To be implemented.
+            player_two_build = build_order_calculator.determine_build(player_two_race, player_two_commands)  # To be implemented.
 
             # Determine the winner based on game data.
             if self.data_retriever.get_play(game_id, player_one_id)[2] == True:
