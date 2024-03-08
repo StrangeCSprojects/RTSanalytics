@@ -1,4 +1,6 @@
+from json import loads
 from data_analysis_tools.general.data_retriever import DataRetriever
+from database_tools.sc2_database import SC2_DB
 
 
 class SC2DataRetriever(DataRetriever):
@@ -31,32 +33,29 @@ class SC2DataRetriever(DataRetriever):
         """
         Retrieve a single play's data from the database.
         """
-        pass
+        return self.database.get_play(game_id, player_id)
 
-    def get_game(self):
+    def get_game(self, game_id: int):
         """
         Retrieve a single game's data from the database.
         """
         pass
 
-    def get_issues(self):
-        """
-        Retrieve data about a single issue from the database.
-        """
-        pass
-
-    def get_commands(self, game_id:int, player_id:int) -> list[tuple[tuple[str,str], int]]:
+    def get_commands(self, game_id:int, player_id:int):
         """
         Retrieve data about a single command from the database.
         """
-        pass
+        play = self.get_play(game_id, player_id)
+        serialized_commands = play[2]
+        result = loads(serialized_commands)
+        return result
 
     def get_all_players(self):
         """
         Retrieve data for all players from the database.
         This method is to be implemented to specify how to fetch data for all players.
         """
-        pass
+        return self.database.get_all_players()
 
     def get_all_plays(self):
         """
@@ -68,7 +67,7 @@ class SC2DataRetriever(DataRetriever):
         """
         Retrieve data for all games from the database.
         """
-        pass
+        return self.database.get_all_games()
 
     def get_all_issues(self):
         """
@@ -82,6 +81,21 @@ class SC2DataRetriever(DataRetriever):
         """
         pass
 
-    def get_players_in_game(self, game_id:int) -> tuple[int,int]:
-        pass
-    
+    def get_players_in_game(self, game_id:int):
+        """
+        Retrieve data for all players in a specific game
+        """
+        return self.database.get_players_in_game(game_id)
+
+    def get_winner(self, game_id: int, player_id: int):
+        """
+        Returns True or False depending on whether or not
+        a specific player won a specific sc2 game
+        """
+        return self.get_play(game_id, player_id)[1]
+
+    def get_player_race(self, game_id: int, player_id: int):
+        """
+        Retrieves race of a player in a specific game
+        """
+        return self.get_play(game_id, player_id)[0]
