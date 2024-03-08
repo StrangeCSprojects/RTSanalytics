@@ -1,4 +1,5 @@
 # Import any needed modules
+from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker
 from sqlalchemy.util import clsname_as_plain_name
@@ -87,42 +88,47 @@ class SC2_DB:
         with cls.Session() as session:
             player = session.query(Player).filter_by(name=name).first()
             if player:
-                return {
-                    "player_id": player.player_id,
-                    "name": player.name
-                }
+                return (player.player_id, player.name)
             else:
                 return None
 
     @classmethod
-    def get_player_by_id(cls, id: int) -> dict:
+    def get_player_by_id(cls, id: int):
         with cls.Session() as session:
             player = session.query(Player).filter_by(player_id=id).first()
             if player:
-                return {
-                    "player_id": player.player_id,
-                    "name": player.name
-                }
+                return (player.player_id, player.name)
             else:
                 return None
-            
+
     @classmethod
     def get_players_in_game(cls, game_id: int):
         with cls.Session() as session:
             plays = session.query(Play).filter_by(game_id=game_id).all()
-            result = [play.player_id for play in plays]
-            return result
+            players = tuple(cls.get_player_by_id(play.player_id) for play in plays)
+            return players
+
+    @classmethod
+    def get_play(cls, game_id: int, player_id: int):
+        with cls.Session() as session:
+            play = (
+                session.query(Play)
+                .filter_by(game_id=game_id)
+                .filter_by(player_id=player_id)
+                .first()
+            )
+            return (play.race, play.winner, play.commands)
 
     @classmethod
     def get_all_players(cls):
         with cls.Session() as session:
-            players = {player.player_id for player in session.query(Player).all()}
+            players = tuple((player.player_id, player.name) for player in session.query(Player).all())
             return players
-        
+
     @classmethod
     def get_all_games(cls):
         with cls.Session() as session:
-            games = {game.game_id for game in session.query(Game).all()}
+            games = tuple((game.game_id, game.mode, game.map) for game in session.query(Game).all())
             return games
 
     @classmethod

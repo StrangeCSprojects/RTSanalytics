@@ -27,13 +27,14 @@ class PlayerDataStorage(DataStorage):
 
     def set_data(self, new_record) -> None:
         self._data.append(new_record)
-        
+
     def _get_player_from_storage(self, name: str) -> dict:
         p_query = [(p_id, p_name) for p_id, p_name in self._data if p_name == name]
         if p_query:
             p_id, p_name = p_query[0]
             return {"player_id": p_id, "p_name": p_name}
         return None
+
 
 class GameDataStorage(DataStorage):
     """

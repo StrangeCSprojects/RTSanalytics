@@ -88,13 +88,36 @@ class SC2Extractor(Extractor):
             player_one_commands = []
             player_two_commands = []
             for event in replay.events:
-                if isinstance(event, sc2reader.events.game.CommandEvent):
-                    command_time = event.second
-                    command_name = event.ability_name
+                # Adjustment for sc2's longer seconds
+                time_adjustment = 1.4
+
+                # Process unit and building commands
+                if (hasattr(event, 'unit') and event.unit is not None) and (event.second > 0):
+                    # Adjust time to correct for in-game time scale
+                    command_time = event.second // time_adjustment
+
+                    command_type = event.name
+                    command_name = event.unit.name
+
+                    # Determine which player executed the command and append to their list
                     if event.player.name == player_one_name:
-                        player_one_commands.append((command_time, command_name))
+                        player_one_commands.append(((command_type, command_name), command_time))
                     else:
-                        player_two_commands.append((command_time, command_name))
+                        player_two_commands.append(((command_type, command_name), command_time))
+
+                # Process upgrade commands
+                elif (hasattr(event, 'upgrade_type_name')) and (event.second > 0):
+                    # Adjust time to correct for in-game time scale
+                    command_time = event.second // time_adjustment
+                    
+                    command_type = event.name
+                    command_name = event.upgrade_type_name
+
+                    # Determine which player executed the command and append to their list
+                    if event.player.name == player_one_name:
+                        player_one_commands.append(((command_type, command_name), command_time))
+                    else:
+                        player_two_commands.append(((command_type, command_name), command_time))
 
             # Game data
             game_map = replay.map_name
