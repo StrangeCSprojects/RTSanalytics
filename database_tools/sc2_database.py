@@ -117,7 +117,13 @@ class SC2_DB:
                 .filter_by(player_id=player_id)
                 .first()
             )
-            return (play.race, play.winner, play.commands)
+            return (play.game_id, play.player_id, play.race, play.winner, play.commands)
+
+    @classmethod
+    def get_all_plays(cls):
+        with cls.Session() as session:
+            plays = tuple((play.game_id, play.player_id, play.race, play.winner, play.commands) for play in session.query(Play).all())
+            return plays
 
     @classmethod
     def get_all_players(cls):
@@ -128,7 +134,7 @@ class SC2_DB:
     @classmethod
     def get_all_games(cls):
         with cls.Session() as session:
-            games = tuple((game.game_id, game.mode, game.map) for game in session.query(Game).all())
+            games = tuple((game.game_id, game.map, game.mode) for game in session.query(Game).all())
             return games
 
     @classmethod
