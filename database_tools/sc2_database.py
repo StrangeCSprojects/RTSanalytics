@@ -122,19 +122,28 @@ class SC2_DB:
     @classmethod
     def get_all_plays(cls):
         with cls.Session() as session:
-            plays = tuple((play.game_id, play.player_id, play.race, play.winner, play.commands) for play in session.query(Play).all())
+            plays = tuple(
+                (play.game_id, play.player_id, play.race, play.winner, play.commands)
+                for play in session.query(Play).all()
+            )
             return plays
 
     @classmethod
     def get_all_players(cls):
         with cls.Session() as session:
-            players = tuple((player.player_id, player.name) for player in session.query(Player).all())
+            players = tuple(
+                (player.player_id, player.name)
+                for player in session.query(Player).all()
+            )
             return players
 
     @classmethod
     def get_all_games(cls):
         with cls.Session() as session:
-            games = tuple((game.game_id, game.map, game.mode) for game in session.query(Game).all())
+            games = tuple(
+                (game.game_id, game.map, game.mode)
+                for game in session.query(Game).all()
+            )
             return games
 
     @classmethod

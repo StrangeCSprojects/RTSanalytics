@@ -1,4 +1,3 @@
-
 """
     This is a python script used for easier
     debugging of the SC2_RTS_Analytics package
@@ -24,7 +23,7 @@ def main():
     print(f"All game data: {SC2_DB.get_all_games()}")
     print(f"All player data: {SC2_DB.get_all_players()}")
     print(f"Data for both players in game #3: {SC2_DB.get_players_in_game(3)}\n")
-    
+
     # Try calling the same functions from data retriever object
     retriever = SC2DataRetriever(SC2_DB)
     print("Calling functions from sc2 data retriever...")
@@ -32,6 +31,7 @@ def main():
     print(f"All game data: {retriever.get_all_games()}")
     print(f"All player data: {retriever.get_all_players()}")
     print(f"Data for both players in game #3: {retriever.get_players_in_game(3)}\n")
+
 
 # Interpret this module
 if __name__ == "__main__":
