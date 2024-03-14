@@ -3,6 +3,7 @@ from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker
 from sqlalchemy.util import clsname_as_plain_name
+from database_tools.general.general_database import General_DB
 from database_tools.entities.sc2_db_entities import (
     Base,
     Game,
@@ -11,7 +12,7 @@ from database_tools.entities.sc2_db_entities import (
 )
 
 
-class SC2_DB:
+class SC2_DB(General_DB):
     """A class for interacting with the SC2 database"""
 
     engine = None

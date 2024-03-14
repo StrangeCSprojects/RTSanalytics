@@ -1,6 +1,6 @@
 import pytest
 from sqlalchemy.orm import declarative_base
-from database_tools.sc2_database import SC2_DB
+from database_tools.sc2.sc2_database import SC2_DB
 
 
 Base = declarative_base()  # Define Base using declarative_base() from sqlalchemy.orm

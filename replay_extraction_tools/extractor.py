@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from database_tools.general_database_access import DataStorage
+from database_tools.general.general_database_access import DataStorage
 
 
 class Extractor(ABC):
