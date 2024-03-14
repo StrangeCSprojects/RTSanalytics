@@ -3,6 +3,7 @@ from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker
 from sqlalchemy.util import clsname_as_plain_name
+from database_tools.general.general_database import General_DB
 from database_tools.entities.sc2_db_entities import (
     Base,
     Game,
@@ -11,7 +12,7 @@ from database_tools.entities.sc2_db_entities import (
 )
 
 
-class SC2_DB:
+class SC2_DB(General_DB):
     """A class for interacting with the SC2 database"""
 
     engine = None
@@ -117,18 +118,33 @@ class SC2_DB:
                 .filter_by(player_id=player_id)
                 .first()
             )
-            return (play.race, play.winner, play.commands)
+            return (play.game_id, play.player_id, play.race, play.winner, play.commands)
+
+    @classmethod
+    def get_all_plays(cls):
+        with cls.Session() as session:
+            plays = tuple(
+                (play.game_id, play.player_id, play.race, play.winner, play.commands)
+                for play in session.query(Play).all()
+            )
+            return plays
 
     @classmethod
     def get_all_players(cls):
         with cls.Session() as session:
-            players = tuple((player.player_id, player.name) for player in session.query(Player).all())
+            players = tuple(
+                (player.player_id, player.name)
+                for player in session.query(Player).all()
+            )
             return players
 
     @classmethod
     def get_all_games(cls):
         with cls.Session() as session:
-            games = tuple((game.game_id, game.mode, game.map) for game in session.query(Game).all())
+            games = tuple(
+                (game.game_id, game.map, game.mode)
+                for game in session.query(Game).all()
+            )
             return games
 
     @classmethod

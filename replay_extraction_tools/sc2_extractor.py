@@ -1,11 +1,11 @@
 # Import any needed modules
 import os
 import sc2reader
-from sqlalchemy import false, true
-from database_tools.sc2_database import SC2_DB
+from sqlalchemy import true, false
 from replay_extraction_tools.extractor import Extractor
-from database_tools.general_database_access import DataStorage
-from database_tools.sc2_database_access import (
+from database_tools.sc2.sc2_database import SC2_DB
+from database_tools.general.general_database_access import DataStorage
+from database_tools.sc2.sc2_database_access  import (
     PlayDataStorage,
     PlayerDataStorage,
     GameDataStorage,
