@@ -55,7 +55,6 @@ class SC2DetermineBuild(DetermineBuild):
         )  # Placeholder for economy-related command values (to be populated)
         non_economy_commands = (
             {    # Terran Units
-                ("UnitBornEvent", "SCV"): 50,
                 ("UnitBornEvent", "Marine"): 50,
                 ("UnitBornEvent", "Marauder"): 125,
                 ("UnitBornEvent", "Reaper"): 100,
@@ -74,7 +73,6 @@ class SC2DetermineBuild(DetermineBuild):
                 ("UnitBornEvent", "Battlecruiser"): 700,
 
                 # Terran Buildings
-                ("UnitInitEvent", "CommandCenter"): 400,
                 ("UnitInitEvent", "SupplyDepot"): 100,
                 ("UnitInitEvent", "SupplyDepotLowered"): 100,
                 ("UnitInitEvent", "Barracks"): 150,

@@ -54,7 +54,7 @@ class SC2Analyzer(Analyzer):
         for game in games:
             game_id = game[0]
             # Retrieve player IDs for each game.
-            player_oned, player_two = self.data_retriever.get_players_in_game(
+            player_one, player_two = self.data_retriever.get_players_in_game(
                 game_id
             )
             player_one_id = player_one[0]
