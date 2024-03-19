@@ -1,8 +1,235 @@
 import pytest
 from data_analysis_tools.sc2.sc2_analyzer import SC2Analyzer
+import random
+
+
+def create_player_name():
+    """A generator function to yield random player names."""
+    names_lyst = [
+        "Alex",
+        "Jordan",
+        "Sam",
+        "Pat",
+        "Jamie",
+        "Morgan",
+        "Taylor",
+        "Casey",
+        "Smith",
+        "Johnson",
+        "Williams",
+        "Brown",
+        "Jones",
+        "Miller",
+        "Davis",
+        "Wilson",
+        "TheDestroyer",
+        "QuickSilver",
+        "Ninja",
+        "Ghost",
+        "Phoenix",
+        "Shadow",
+        "Vortex",
+        "Blaze",
+    ]
+    name = random.choice(names_lyst)
+    return name
+
+def create_aggr_commands():
+    commands_aggr_terran = [
+        # Economy resources: 1800
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+         (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+
+        # Non-Economy resources: 2750
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "EngineeringBay"), 1),
+        (("UnitInitEvent", "EngineeringBay"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "Factory"), 1),
+        (("UnitInitEvent", "Factory"), 1),
+        (("UnitInitEvent", "Factory"), 1),
+        (("UnitInitEvent", "Factory"), 1),
+        (("UnitInitEvent", "Factory"), 1),
+]
+    return commands_aggr_terran
+
+def create_std_commmands():
+    commands_std_terran = [
+            # Economy resources: 2200
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitBornEvent", "SCV"), 1),
+            (("UnitInitEvent", "CommandCenter"), 1),
+            (("UnitInitEvent", "CommandCenter"), 1),
+            (("UnitInitEvent", "CommandCenter"), 1),
+
+            # Non-Economy resources: 1650
+            (("UnitInitEvent", "Barracks"), 1),
+            (("UnitInitEvent", "Barracks"), 1),
+            (("UnitInitEvent", "Barracks"), 1),
+            (("UnitInitEvent", "EngineeringBay"), 1),
+            (("UnitInitEvent", "EngineeringBay"), 1),
+            (("UnitInitEvent", "SupplyDepot"), 1),
+            (("UnitInitEvent", "SupplyDepot"), 1),
+            (("UnitInitEvent", "Factory"), 1),
+            (("UnitInitEvent", "Factory"), 1),
+            (("UnitInitEvent", "Factory"), 1),
+    ]
+    return commands_std_terran
+
+def create_eco_commands():
+    commands_eco_terran = [
+        # Economy resources: 3400
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+         (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+
+        # Non-Economy resources: 1150
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "EngineeringBay"), 1),
+        (("UnitInitEvent", "EngineeringBay"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "Factory"), 1),
+    ]
+    return commands_eco_terran
+
+def create_id():
+    player_id = random.randint(0, 9999999)
+    return player_id
+
+def generate_game_records(num_records):
+    for _ in range(num_records):
+        # Player one table
+        player_one_id = create_id()
+        player_one_name = create_player_name()
+
+        # Player two table
+        player_two_id = create_id()
+        player_two_name = create_player_name()
+
+        # Game table
+        game_id = create_id()
+        game_mode = "1v1"
+        game_map = "Solaris LE"
+
+        # Player one play table
+        game_one_id = game_id
+        player_one_id = player_one_id
+        race_one = "Terran"
+        winner_one = True
+        commands_one = None
+
+        # Player two play table
+        game_two_id = game_id
+        player_two_id = player_two_id
+        race_two = "Terran"
+        winner_two = False
+        commands_two = None
+
+        player_one_data = (player_one_id, player_one_name)
+        player_two_data = (player_two_id, player_two_name)
+        game_data = (game_id, game_mode, game_map)
+        player_one_play_data = (
+            game_one_id,
+            player_one_id,
+            race_one,
+            winner_one,
+            commands_one,
+        )
+        player_two_play_data = (
+            game_two_id,
+            player_two_id,
+            race_two,
+            winner_two,
+            commands_two,
+        )
+
+        record = (
+            player_one_data,
+            player_two_data,
+            game_data,
+            player_one_play_data,
+            player_two_play_data,
+        )
+
+        yield record
+
 
 def test_winrate_build():
     pass
+
 
 def test_winrate_race():
     pass
