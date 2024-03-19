@@ -5,3 +5,4 @@ __pycache__
 ui_run
 *db*
 *.db
+.pytest_cache
