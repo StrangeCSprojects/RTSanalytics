@@ -48,50 +48,50 @@ class RaceBuilds:
             min_econ_eco, max_econ_eco, min_non_econ_eco, max_non_econ_ecnomic
         )
 
+    def get_build(self, econ_resources, non_econ_resources) -> str:
+        """
+        Determines the build type based on the provided economy and non-economy resources.
 
-def get_build(self, econ_resources, non_econ_resources) -> str:
-    """
-    Determines the build type based on the provided economy and non-economy resources.
+        Parameters:
+            - econ_resources: The amount of economy resources available.
+            - non_econ_resources: The amount of non-economy resources available.
 
-    Parameters:
-        - econ_resources: The amount of economy resources available.
-        - non_econ_resources: The amount of non-economy resources available.
+        Returns:
+            - A string representing the build type that matches the provided resources.
+        """
+        # std build checks
+        if self.std_build.min_econ <= econ_resources <= self.std_build.max_econ:
+            if (
+                self.std_build.min_non_econ
+                <= non_econ_resources
+                <= self.std_build.max_non_econ
+            ):
+                return f"{self.std_build} {self}"
 
-    Returns:
-        - A string representing the build type that matches the provided resources.
-    """
-    # std build checks
-    if self.std_build.min_econ <= econ_resources <= self.std_build.max_econ:
-        if (
-            self.std_build.min_non_econ
-            <= non_econ_resources
-            <= self.std_build.max_non_econ
-        ):
-            return f"{self.std_build} {self}"
+        # Aggressive build checks
+        elif self.aggr_build.min_econ <= econ_resources <= self.aggr_build.max_econ:
+            if (
+                self.aggr_build.min_non_econ
+                <= non_econ_resources
+                <= self.aggr_build.max_non_econ
+            ):
+                return f"{self.aggr_build} {self}"
 
-    # Aggressive build checks
-    elif self.aggr_build.min_econ <= econ_resources <= self.aggr_build.max_econ:
-        if (
-            self.aggr_build.min_non_econ
-            <= non_econ_resources
-            <= self.aggr_build.max_non_econ
-        ):
-            return f"{self.aggr_build} {self}"
 
-    # eco build checks
-    elif self.eco_build.min_econ <= econ_resources <= self.eco_build.max_econ:
-        if (
-            self.eco_build.min_non_econ
-            <= non_econ_resources
-            <= self.eco_build.max_non_econ
-        ):
-            return f"{self.eco_build} {self}"
+        # eco build checks
+        elif self.eco_build.min_econ <= econ_resources <= self.eco_build.max_econ:
+            if (
+                self.eco_build.min_non_econ
+                <= non_econ_resources
+                <= self.eco_build.max_non_econ
+            ):
+                return f"{self.eco_build} {self}"
 
-    else:
-        # No matching build
-        print("ERROR: No matching build found in choose_build.")
+        else:
+            # No matching build
+            print("ERROR: No matching build found in choose_build.")
 
-    """
+        """
     Returns a string representation of the RaceBuilds object, primarily the race name.
     """
 
@@ -105,7 +105,7 @@ class ZergBuilds(RaceBuilds):
     Pre-defines resource range values unique to Zerg for determining build types.
     """
 
-    def __init__() -> None:
+    def __init__(self) -> None:
         """Pre-defined resource range values for Zerg"""
         # Zerg Build Values at 5-6 Minutes
         min_econ_std = 2300
@@ -114,14 +114,14 @@ class ZergBuilds(RaceBuilds):
         max_non_econ_std = 2700
 
         min_econ_aggr = 1300
-        max_econ_aggr = 2300
-        min_non_econ_aggr = 2700
+        max_econ_aggr = 2299
+        min_non_econ_aggr = 2701
         max_non_econ_aggr = 3700
 
-        min_econ_eco = 2800
+        min_econ_eco = 3301
         max_econ_eco = 4300
         min_non_econ_eco = 1200
-        max_non_econ_eco = 2200
+        max_non_econ_eco = 1699
 
         name = "Zerg"
         super().__init__(
@@ -147,7 +147,7 @@ class ProtossBuilds(RaceBuilds):
     Pre-defines resource range values unique to Protoss for determining build types.
     """
 
-    def __init__() -> None:
+    def __init__(self) -> None:
         """Pre-defined resource range values for Protoss"""
         # Protoss Build Values at 5-6 Minutes
         min_econ_std = 2200
@@ -156,14 +156,14 @@ class ProtossBuilds(RaceBuilds):
         max_non_econ_std = 2600
 
         min_econ_aggr = 1200
-        max_econ_aggr = 2200
-        min_non_econ_aggr = 2600
+        max_econ_aggr = 2201
+        min_non_econ_aggr = 2601
         max_non_econ_aggr = 3600
 
-        min_econ_eco = 2700
+        min_econ_eco = 3201
         max_econ_eco = 4200
-        min_non_econ_eco = 1100
-        max_non_econ_eco = 2100
+        min_non_econ_eco = 800
+        max_non_econ_eco = 1599
 
         name = "Protoss"
         super().__init__(
@@ -189,7 +189,7 @@ class TerranBuilds(RaceBuilds):
     Pre-defines resource range values unique to Terran for determining build types.
     """
 
-    def __init__() -> None:
+    def __init__(self) -> None:
         """Pre-defined resource range values for Terran"""
         # Terran Build Values at 5-6 Minutes
         min_econ_std = 2000
@@ -198,14 +198,14 @@ class TerranBuilds(RaceBuilds):
         max_non_econ_std = 2500
 
         min_econ_aggr = 1000
-        max_econ_aggr = 2000
-        min_non_econ_aggr = 2500
+        max_econ_aggr = 1999
+        min_non_econ_aggr = 2501
         max_non_econ_aggr = 3500
 
-        min_econ_eco = 2500
+        min_econ_eco = 3001
         max_econ_eco = 4000
-        min_non_econ_eco = 1000
-        max_non_econ_eco = 2000
+        min_non_econ_eco = 600
+        max_non_econ_eco = 1499
 
         name = "Terran"
         super().__init__(
