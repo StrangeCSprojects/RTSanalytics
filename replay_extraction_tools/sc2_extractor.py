@@ -174,6 +174,4 @@ class SC2Extractor(Extractor):
     def _batch_insert(self, table_list: list[DataStorage]) -> None:
         return super()._batch_insert(table_list)
 
-    def build_order(self):
-        pass
 
