@@ -47,7 +47,10 @@ class SC2DataRetriever(DataRetriever):
         """
         play = self.get_play(game_id, player_id)
         serialized_commands = play[2]
-        result = loads(serialized_commands)
+        temp_result = loads(serialized_commands)
+
+        result = [(tuple(inner_list[0]), inner_list[1]) for inner_list in temp_result]
+
         return result
 
     def get_all_players(self):
