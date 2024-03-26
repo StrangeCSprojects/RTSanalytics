@@ -3,6 +3,78 @@ from data_analysis_tools.sc2.sc2_analyzer import SC2Analyzer
 import random
 from typing import Callable
 
+from json import loads
+from data_analysis_tools.general.data_retriever import DataRetriever
+from database_tools.sc2.sc2_database import SC2_DB
+
+
+class MockDataRetriever(DataRetriever):
+    """
+    A subclass of DataRetriever tailored for retrieving StarCraft II (SC2) related data.
+    It provides methods for fetching specific data about players, plays, games, issues, and commands,
+    as well as methods for fetching all records of these types from the database.
+
+    This class leverages inheritance to extend or modify the functionality of the DataRetriever
+    class to suit the specific needs of accessing and analyzing StarCraft II data.
+    """
+
+    def __init__(self, database) -> None:
+        """
+        Initialize the MockDataRetriever with a database connection or configuration.
+
+        :param database: The database connection or configuration to be used for data retrieval.
+        """
+        super().__init__(
+            database
+        )  # Calls the initializer of the superclass (DataRetriever)
+
+    def get_play(self, game_id:int, player_id:int):
+        """
+        Retrieve a single play's data from the database.
+        """
+        return self.database.get_play(game_id, player_id)
+
+    def get_commands(self, game_id:int, player_id:int):
+        """
+        Retrieve data about a single command from the database.
+        """
+        play = self.get_play(game_id, player_id)
+        serialized_commands = play[2]
+        result = loads(serialized_commands)
+        return result
+
+    def get_all_players(self):
+        """
+        Retrieve data for all players from the database.
+        This method is to be implemented to specify how to fetch data for all players.
+        """
+        return self.database.get_all_players()
+
+    def get_all_games(self):
+        """
+        Retrieve data for all games from the database.
+        """
+        return self.database.get_all_games()
+
+    def get_players_in_game(self, game_id:int):
+        """
+        Retrieve data for all players in a specific game
+        """
+        return self.database.get_players_in_game(game_id)
+
+    def get_winner(self, game_id: int, player_id: int):
+        """
+        Returns True or False depending on whether or not
+        a specific player won a specific sc2 game
+        """
+        return self.get_play(game_id, player_id)[1]
+
+    def get_player_race(self, game_id: int, player_id: int):
+        """
+        Retrieves race of a player in a specific game
+        """
+        return self.get_play(game_id, player_id)[0]
+
 
 def create_player_name():
     """A generator function to yield random player names."""
