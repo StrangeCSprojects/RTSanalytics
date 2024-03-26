@@ -3,78 +3,17 @@ from data_analysis_tools.sc2.sc2_analyzer import SC2Analyzer
 import random
 from typing import Callable
 
-from json import loads
-from data_analysis_tools.general.data_retriever import DataRetriever
+from json import loads, dumps
+from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
 from database_tools.sc2.sc2_database import SC2_DB
 
 
-class MockDataRetriever(DataRetriever):
-    """
-    A subclass of DataRetriever tailored for retrieving StarCraft II (SC2) related data.
-    It provides methods for fetching specific data about players, plays, games, issues, and commands,
-    as well as methods for fetching all records of these types from the database.
-
-    This class leverages inheritance to extend or modify the functionality of the DataRetriever
-    class to suit the specific needs of accessing and analyzing StarCraft II data.
-    """
-
-    def __init__(self, database) -> None:
-        """
-        Initialize the MockDataRetriever with a database connection or configuration.
-
-        :param database: The database connection or configuration to be used for data retrieval.
-        """
-        super().__init__(
-            database
-        )  # Calls the initializer of the superclass (DataRetriever)
-
-    def get_play(self, game_id:int, player_id:int):
-        """
-        Retrieve a single play's data from the database.
-        """
-        return self.database.get_play(game_id, player_id)
-
-    def get_commands(self, game_id:int, player_id:int):
-        """
-        Retrieve data about a single command from the database.
-        """
-        play = self.get_play(game_id, player_id)
-        serialized_commands = play[2]
-        result = loads(serialized_commands)
-        return result
-
-    def get_all_players(self):
-        """
-        Retrieve data for all players from the database.
-        This method is to be implemented to specify how to fetch data for all players.
-        """
-        return self.database.get_all_players()
-
-    def get_all_games(self):
-        """
-        Retrieve data for all games from the database.
-        """
-        return self.database.get_all_games()
-
-    def get_players_in_game(self, game_id:int):
-        """
-        Retrieve data for all players in a specific game
-        """
-        return self.database.get_players_in_game(game_id)
-
-    def get_winner(self, game_id: int, player_id: int):
-        """
-        Returns True or False depending on whether or not
-        a specific player won a specific sc2 game
-        """
-        return self.get_play(game_id, player_id)[1]
-
-    def get_player_race(self, game_id: int, player_id: int):
-        """
-        Retrieves race of a player in a specific game
-        """
-        return self.get_play(game_id, player_id)[0]
-
+@pytest.fixture(scope="module")
+def setup_database():
+    # Initialize the test database
+    SC2_DB.init("test_analyzer_db")
+    yield  # Run the tests
+    SC2_DB.engine.dispose()
 
 def create_player_name():
     """A generator function to yield random player names."""
@@ -321,19 +260,101 @@ def generate_eco_vs_std_70():
         else:
             yield create_game_record(create_eco_commands, create_std_commands, False)
 
+def test_winrate_build(setup_database):
+    games_list = []
+    players_list = []
+    plays_list = []
+
+    for record in generate_std_vs_aggr_60():
+        # print(record)
+        # print()
+        # print()
+        player_one = record[0]
+        player_two = record[1]
+        game = record[2]
 
 
-def test_winrate_build():
-    pass
+        play_one_raw = record[3]
+        game_id, player_id, race, is_winner, commands = play_one_raw
+        serialized_commands = dumps(commands)
+        play_one = (game_id, player_id, race, is_winner, serialized_commands)
+
+
+        play_two_raw = record[4]
+        game_id, player_id, race, is_winner, commands = play_two_raw
+        serialized_commands = dumps(commands)
+        play_two = (game_id, player_id, race, is_winner, serialized_commands)
+
+        players_list.append(player_one)
+        players_list.append(player_two)
+
+        games_list.append(game)
+
+        plays_list.append(play_one)
+        plays_list.append(play_two)
+
+    for record in generate_aggr_vs_eco_80():
+        player_one = record[0]
+        player_two = record[1]
+        game = record[2]
+
+        play_one_raw = record[3]
+        game_id, player_id, race, is_winner, commands = play_one_raw
+        serialized_commands = dumps(commands)
+        play_one = (game_id, player_id, race, is_winner, serialized_commands)
+
+
+        play_two_raw = record[4]
+        game_id, player_id, race, is_winner, commands = play_two_raw
+        serialized_commands = dumps(commands)
+        play_two = (game_id, player_id, race, is_winner, serialized_commands)
+
+        players_list.append(player_one)
+        players_list.append(player_two)
+
+        games_list.append(game)
+
+        plays_list.append(play_one)
+        plays_list.append(play_two)
+
+    for record in generate_eco_vs_std_70():
+        player_one = record[0]
+        player_two = record[1]
+        game = record[2]
+
+        play_one_raw = record[3]
+        game_id, player_id, race, is_winner, commands = play_one_raw
+        serialized_commands = dumps(commands)
+        play_one = (game_id, player_id, race, is_winner, serialized_commands)
+
+
+        play_two_raw = record[4]
+        game_id, player_id, race, is_winner, commands = play_two_raw
+        serialized_commands = dumps(commands)
+        play_two = (game_id, player_id, race, is_winner, serialized_commands)
+
+        players_list.append(player_one)
+        players_list.append(player_two)
+
+        games_list.append(game)
+
+        plays_list.append(play_one)
+        plays_list.append(play_two)
+
+    SC2_DB.add_games(games_list)
+    SC2_DB.add_players(players_list)
+    SC2_DB.add_plays(plays_list)
+
+    data_retriever = SC2DataRetriever(SC2_DB)
+    
+    analyzer = SC2Analyzer(data_retriever)
+
+    assert analyzer.winrate_build()['Aggressive Terran'] == {'Standard Terran': 40, 'Economic Terran': 80}
+
+    assert analyzer.winrate_build()['Standard Terran'] == {'Economic Terran': 30, 'Aggressive Terran': 60}
+
+    assert analyzer.winrate_build()['Economic Terran'] == {'Aggressive Terran': 20, 'Standard Terran': 70}
 
 
 def test_winrate_race():
     pass
-
-def main():
-    for record in generate_std_vs_aggr_60():
-        print(record)
-        print()
-
-if __name__ == "__main__":
-    main()

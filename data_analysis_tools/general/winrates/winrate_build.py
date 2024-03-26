@@ -36,9 +36,6 @@ class WinrateBuild(Winrate):
             # Update total match count for both matchups
             matchups[build1][build2]['total'] += 1
             matchups[build2][build1]['total'] += 1
-            
-            # Update win count for the winner
-            print(winner)
 
             matchups[winner][build1 if winner == build2 else build2]['wins'] += 1
         
@@ -50,6 +47,8 @@ class WinrateBuild(Winrate):
                 win_rate = (record['wins'] / record['total']) * 100 if record['total'] > 0 else 0
                 win_rates[build][opponent] = int(win_rate)
         
+        print(win_rates['Aggressive Terran'])
+
         return win_rates
 
 

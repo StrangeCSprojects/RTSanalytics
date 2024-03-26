@@ -118,7 +118,7 @@ class SC2_DB(General_DB):
                 .filter_by(player_id=player_id)
                 .first()
             )
-            return (play.game_id, play.player_id, play.race, play.winner, play.commands)
+            return (play.race, play.winner, play.commands)
 
     @classmethod
     def get_all_plays(cls):
