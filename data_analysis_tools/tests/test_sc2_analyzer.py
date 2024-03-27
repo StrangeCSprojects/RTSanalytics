@@ -16,6 +16,7 @@ def setup_database():
     yield  # Run the tests
     SC2_DB.engine.dispose()
 
+
 def create_player_name() -> str:
     """
     :return: a random name
@@ -49,7 +50,8 @@ def create_player_name() -> str:
     name = random.choice(names_lyst)
     return name
 
-def create_aggr_commands() -> list[tuple[tuple[str,str], int]]:
+
+def create_aggr_commands() -> list[tuple[tuple[str, str], int]]:
     """
     :return: the list of commands that would qualify as an 'Aggressive Terran' build
     """
@@ -67,7 +69,7 @@ def create_aggr_commands() -> list[tuple[tuple[str,str], int]]:
         (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
-         (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
@@ -77,7 +79,6 @@ def create_aggr_commands() -> list[tuple[tuple[str,str], int]]:
         (("UnitBornEvent", "SCV"), 1),
         (("UnitInitEvent", "CommandCenter"), 1),
         (("UnitInitEvent", "CommandCenter"), 1),
-
         # Non-Economy resources: 2750
         (("UnitInitEvent", "Barracks"), 1),
         (("UnitInitEvent", "Barracks"), 1),
@@ -97,54 +98,55 @@ def create_aggr_commands() -> list[tuple[tuple[str,str], int]]:
         (("UnitInitEvent", "Factory"), 1),
         (("UnitInitEvent", "Factory"), 1),
         (("UnitInitEvent", "Factory"), 1),
-]
+    ]
     return commands_aggr_terran
 
-def create_std_commands() -> list[tuple[tuple[str,str], int]]:
+
+def create_std_commands() -> list[tuple[tuple[str, str], int]]:
     """
     :return: the list of commands that would qualify as an 'Standard Terran' build
     """
     commands_std_terran = [
-            # Economy resources: 2200
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitBornEvent", "SCV"), 1),
-            (("UnitInitEvent", "CommandCenter"), 1),
-            (("UnitInitEvent", "CommandCenter"), 1),
-            (("UnitInitEvent", "CommandCenter"), 1),
-
-            # Non-Economy resources: 1650
-            (("UnitInitEvent", "Barracks"), 1),
-            (("UnitInitEvent", "Barracks"), 1),
-            (("UnitInitEvent", "Barracks"), 1),
-            (("UnitInitEvent", "EngineeringBay"), 1),
-            (("UnitInitEvent", "EngineeringBay"), 1),
-            (("UnitInitEvent", "SupplyDepot"), 1),
-            (("UnitInitEvent", "SupplyDepot"), 1),
-            (("UnitInitEvent", "Factory"), 1),
-            (("UnitInitEvent", "Factory"), 1),
-            (("UnitInitEvent", "Factory"), 1),
+        # Economy resources: 2200
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        (("UnitInitEvent", "CommandCenter"), 1),
+        # Non-Economy resources: 1650
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "Barracks"), 1),
+        (("UnitInitEvent", "EngineeringBay"), 1),
+        (("UnitInitEvent", "EngineeringBay"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "SupplyDepot"), 1),
+        (("UnitInitEvent", "Factory"), 1),
+        (("UnitInitEvent", "Factory"), 1),
+        (("UnitInitEvent", "Factory"), 1),
     ]
     return commands_std_terran
 
-def create_eco_commands() -> list[tuple[tuple[str,str], int]]:
+
+def create_eco_commands() -> list[tuple[tuple[str, str], int]]:
     """
     :return: the list of commands that would qualify as an 'Economic Terran' build
     """
@@ -162,7 +164,7 @@ def create_eco_commands() -> list[tuple[tuple[str,str], int]]:
         (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
-         (("UnitBornEvent", "SCV"), 1),
+        (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
         (("UnitBornEvent", "SCV"), 1),
@@ -176,7 +178,6 @@ def create_eco_commands() -> list[tuple[tuple[str,str], int]]:
         (("UnitInitEvent", "CommandCenter"), 1),
         (("UnitInitEvent", "CommandCenter"), 1),
         (("UnitInitEvent", "CommandCenter"), 1),
-
         # Non-Economy resources: 1150
         (("UnitInitEvent", "Barracks"), 1),
         (("UnitInitEvent", "Barracks"), 1),
@@ -189,6 +190,7 @@ def create_eco_commands() -> list[tuple[tuple[str,str], int]]:
     ]
     return commands_eco_terran
 
+
 def create_id() -> None:
     """
     :return: a random player id
@@ -196,17 +198,20 @@ def create_id() -> None:
     player_id = random.randint(0, 9999999)
     return player_id
 
-def create_game_record_build(build_type_one: Callable, build_type_two: Callable, player_one_win: bool) -> tuple:
+
+def create_game_record_build(
+    build_type_one: Callable, build_type_two: Callable, player_one_win: bool
+) -> tuple:
     """
     Creates a record that contains all of the information for a game that would be gathered from a replay.
     With the only variable in the record being the build types.
-    
-    Parameters: 
+
+    Parameters:
         build_type_one: the type of build order player one uses
         build_type_two: the type of build order player two uses
         player_one_win: whether or not player one won the game
 
-    :return: a tuple containing all the data required for a game 
+    :return: a tuple containing all the data required for a game
 
     """
     # Player one table
@@ -263,17 +268,20 @@ def create_game_record_build(build_type_one: Callable, build_type_two: Callable,
 
     return record
 
-def create_game_record_race(player_one_race: str, player_two_race: str, player_one_win: bool) -> tuple:
+
+def create_game_record_race(
+    player_one_race: str, player_two_race: str, player_one_win: bool
+) -> tuple:
     """
     Creates a record that contains all of the information for a game that would be gathered from a replay.
     With the only variable in each record being the race.
-    
-    Parameters: 
+
+    Parameters:
         player_one_race: the type of race player one uses
         player_two_race: the type of race player two uses
         player_one_win: whether or not player one won the game
 
-    :return: a tuple containing all the data required for a game 
+    :return: a tuple containing all the data required for a game
 
     """
     # Player one table
@@ -330,15 +338,21 @@ def create_game_record_race(player_one_race: str, player_two_race: str, player_o
 
     return record
 
+
 def generate_std_vs_aggr_60():
     """
     Generates ten games of 'Standard Terran' vs 'Aggressive Terran'. 'Standard Terran' wins six of the ten games.
     """
     for i in range(10):
         if i < 6:
-            yield create_game_record_build(create_std_commands, create_aggr_commands, True)
+            yield create_game_record_build(
+                create_std_commands, create_aggr_commands, True
+            )
         else:
-            yield create_game_record_build(create_std_commands, create_aggr_commands, False)
+            yield create_game_record_build(
+                create_std_commands, create_aggr_commands, False
+            )
+
 
 def generate_aggr_vs_eco_80():
     """
@@ -346,9 +360,14 @@ def generate_aggr_vs_eco_80():
     """
     for i in range(10):
         if i < 8:
-            yield create_game_record_build(create_aggr_commands, create_eco_commands, True)
+            yield create_game_record_build(
+                create_aggr_commands, create_eco_commands, True
+            )
         else:
-            yield create_game_record_build(create_aggr_commands, create_eco_commands, False)
+            yield create_game_record_build(
+                create_aggr_commands, create_eco_commands, False
+            )
+
 
 def generate_eco_vs_std_70():
     """
@@ -356,9 +375,14 @@ def generate_eco_vs_std_70():
     """
     for i in range(10):
         if i < 7:
-            yield create_game_record_build(create_eco_commands, create_std_commands, True)
+            yield create_game_record_build(
+                create_eco_commands, create_std_commands, True
+            )
         else:
-            yield create_game_record_build(create_eco_commands, create_std_commands, False)
+            yield create_game_record_build(
+                create_eco_commands, create_std_commands, False
+            )
+
 
 def generate_terran_vs_zerg_50():
     """
@@ -370,6 +394,7 @@ def generate_terran_vs_zerg_50():
         else:
             yield create_game_record_race("Terran", "Zerg", False)
 
+
 def generate_zerg_vs_protoss_30():
     """
     Generates ten games of 'Zerg' vs 'Protoss'. 'Zerg' wins three of the ten games.
@@ -379,6 +404,7 @@ def generate_zerg_vs_protoss_30():
             yield create_game_record_race("Zerg", "Protoss", True)
         else:
             yield create_game_record_race("Zerg", "Protoss", False)
+
 
 def generate_protoss_vs_terran_90():
     """
@@ -400,7 +426,7 @@ def generate_protoss_vs_terran_90():
 #     Tests the winrate_build method from sc2_analyzer.py
 
 #     Parameters:
-#         setup_database: allows us to use the test database file, doesn't need to be called 
+#         setup_database: allows us to use the test database file, doesn't need to be called
 #     """
 
 #     # Lists that are used to fill database with dummy data
@@ -494,7 +520,7 @@ def generate_protoss_vs_terran_90():
 #     SC2_DB.add_plays(plays_list)
 
 #     data_retriever = SC2DataRetriever(SC2_DB)
-    
+
 #     analyzer = SC2Analyzer(data_retriever)
 
 #     # Assert Tests
@@ -509,7 +535,7 @@ def generate_protoss_vs_terran_90():
 #     Tests the winrate_race method from sc2_analyzer.py
 
 #     Parameters:
-#         setup_database: allows us to use the test database file, doesn't need to be called 
+#         setup_database: allows us to use the test database file, doesn't need to be called
 #     """
 
 #     # Lists that are used to fill database with dummy data
@@ -603,7 +629,7 @@ def generate_protoss_vs_terran_90():
 #     SC2_DB.add_plays(plays_list)
 
 #     data_retriever = SC2DataRetriever(SC2_DB)
-    
+
 #     analyzer = SC2Analyzer(data_retriever)
 
 #     # Assert Tests
