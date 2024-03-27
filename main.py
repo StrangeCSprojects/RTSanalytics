@@ -5,7 +5,7 @@
 
 # Import any needed modules
 from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
-from replay_extraction_tools.sc2_extractor import SC2Extractor
+from replay_extraction_tools.sc2.sc2_extractor import SC2Extractor
 from database_tools.sc2.sc2_database import SC2_DB
 
 
@@ -17,7 +17,7 @@ def main():
     extractor = SC2Extractor()
     # extractor.run("replay_extraction_tools/replays")
 
-    print("Implementing tests...")
+    print("Implementing extractor tests...")
 
 
 # Interpret this module
