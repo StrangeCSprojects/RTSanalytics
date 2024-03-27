@@ -10,7 +10,9 @@ from database_tools.sc2.sc2_database import SC2_DB
 
 
 def main():
-    """Main entry point"""
+    """
+    Main entry point
+    """
 
     # Create an extractor and then run it on the replays folder
     # FIX THIS CODE
