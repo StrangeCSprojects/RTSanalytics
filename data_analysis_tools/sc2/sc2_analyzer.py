@@ -104,13 +104,18 @@ class SC2Analyzer(Analyzer):
         games = self.data_retriever.get_all_games()
 
         for game in games:
-            game_id = game.game_id
+            game_id = game[0]
             # Retrieve player IDs and their races for the game
-            player_one_id, player_two_id = self.data_retriever.get_players_in_game(
+            player_one, player_two = self.data_retriever.get_players_in_game(
                 game_id
             )
-            player_one_race = self.data_retriever.get_player_race(player_one_id)
-            player_two_race = self.data_retriever.get_player_race(player_two_id)
+
+            player_one_id = player_one[0]
+            player_two_id = player_two[0]
+
+            # Retrieve races for each player.
+            player_one_race = self.data_retriever.get_player_race(game_id, player_one_id)
+            player_two_race = self.data_retriever.get_player_race(game_id, player_two_id)
 
             # Determine the winner's race based on game data
             if self.data_retriever.get_winner(game_id, player_one_id):
