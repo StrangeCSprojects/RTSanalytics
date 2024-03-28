@@ -51,7 +51,6 @@ class SC2Extractor(Extractor):
     def _process_commands(replay: sc2reader.resources.Replay, p1, p2):
         # Get command data for both players
         p1_name = p1.name
-        p2_name = p2.name
         p1_commands = []
         p2_commands = []
         for event in replay.events:
