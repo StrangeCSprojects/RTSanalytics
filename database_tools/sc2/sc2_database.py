@@ -20,9 +20,11 @@ class SC2_DB(General_DB):
 
     @classmethod
     def init(cls, db_name):
-        """Initializes database connection"""
+        """
+        Initializes database connection
+        """
         # Establish connection to the database file
-        cls.engine = create_engine(f"sqlite:///database_tools/{db_name}.db")
+        cls.engine = create_engine(f"sqlite:///database_tools/data/{db_name}.db")
         Base.metadata.create_all(cls.engine)
         cls.Session = sessionmaker(bind=cls.engine)
 
