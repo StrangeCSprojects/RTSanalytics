@@ -1,5 +1,4 @@
 # Import any needed modules
-from modulefinder import ReplacePackage
 import os
 import sc2reader
 from sqlalchemy import true, false
