@@ -106,8 +106,7 @@ class SC2Extractor(Extractor):
         a group of tables then return a list of those tables.
         """
 
-        for replay_key in replay_container:
-            replay = replay_container[replay_key]
+        for replay in replay_container.values():
             if not replay.winner or len(replay.players) != 2:
                 continue  # We are only storing games where there is a winner and two players
 
