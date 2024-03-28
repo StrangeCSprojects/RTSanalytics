@@ -15,7 +15,6 @@ def main():
     """
 
     # Create an extractor and then run it on the replays folder
-    # FIX THIS CODE
     extractor = SC2Extractor()
     extractor.run("replay_extraction_tools\\replays")
 
