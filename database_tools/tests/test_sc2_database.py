@@ -67,7 +67,7 @@ def test_get_play(setup_database):
     plays = [(1, 1, "Terran", True, "command1"), (1, 2, "Protoss", False, "command2")]
     SC2_DB.add_plays(plays)
     # Retrieve a play
-    game_id, player_id, race, winner, commands = SC2_DB.get_play(1, 1)
+    race, winner, commands = SC2_DB.get_play(1, 1)
     # Check if the play was retrieved correctly
     assert (race, winner, commands) == ("Terran", True, "command1")
 
