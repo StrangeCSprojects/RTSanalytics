@@ -35,7 +35,7 @@ class SC2DataRetriever(DataRetriever):
         """
         return self.database.get_play(game_id, player_id)
 
-    def get_game(self, game_id: int):
+    def get_game(self, game_id:int):
         """
         Retrieve a single game's data from the database.
         """
@@ -49,6 +49,7 @@ class SC2DataRetriever(DataRetriever):
         serialized_commands = play[2]
         temp_result = loads(serialized_commands)
 
+        # turning list of lists, into a list of tuples
         result = [(tuple(inner_list[0]), inner_list[1]) for inner_list in temp_result]
 
         return result
