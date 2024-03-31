@@ -22,6 +22,13 @@ class BuildType:
             min_non_econ (int): Minimum non-economic resources for the build.
             max_non_econ (int): Maximum non-economic resources for the build.
         """
+
+        # Error handling checking that min values are not greater than max values
+        if (min_econ > max_econ):
+            raise ValueError(f"min values cannot be greater than max values: min_econ == {min_econ} > max_econ == {max_econ}")
+        elif (min_non_econ > max_non_econ):
+            raise ValueError(f"min values cannot be greater than max values: min_non_econ == {min_non_econ} > max_non_econ == {max_non_econ}")
+        
         self.min_econ = min_econ
         self.max_econ = max_econ
         self.min_non_econ = min_non_econ

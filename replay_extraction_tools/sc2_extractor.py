@@ -37,13 +37,20 @@ class SC2Extractor(Extractor):
 
         # Getting replays from folder
         for filename in os.listdir(self.folder_path):
+            print(filename)
             file_path = os.path.join(self.folder_path, filename)
+            print(file_path)
             if os.path.isfile(file_path):
                 # Filling replay dictionary
                 replay_counter += 1
-                replay = sc2reader.load_replay(file_path, load_map=True)
-                for event in replay.events:
-                    print(event)
+
+                try:
+                    replay = sc2reader.load_replay(file_path, load_map=True)
+                    print("Success!")
+                    print()
+                except Exception as e:
+                    print(f"Failed to load replay {file_path}: {e}")
+
                 replay_container[replay_counter] = replay
 
         return replay_container
@@ -55,6 +62,8 @@ class SC2Extractor(Extractor):
         """
 
         for replay_key in replay_container:
+
+
             replay = replay_container[replay_key]
             if not replay.winner:
                 continue  # We are only storing games where there is a winner
@@ -66,6 +75,7 @@ class SC2Extractor(Extractor):
             # Player names
             player_one_name = player_one.name
             player_two_name = player_two.name
+
 
             # Get player and game IDs
             game_id = SC2_DB._create_game_id()
@@ -91,16 +101,16 @@ class SC2Extractor(Extractor):
                 # Adjustment for sc2's longer seconds
                 time_adjustment = 1.4
 
-                # Process unit and building commands
-                if (hasattr(event, 'unit') and event.unit is not None) and (event.second > 0):
+                # Process unit, building, and upgrade commands
+                if (event.name in ("UnitBornEvent", "UnitInitEvent")) and (event.second > 0):
                     # Adjust time to correct for in-game time scale
                     command_time = event.second // time_adjustment
 
                     command_type = event.name
                     command_name = event.unit.name
-
+                    
                     # Determine which player executed the command and append to their list
-                    if event.player.name == player_one_name:
+                    if event.unit_controller.name == player_one_name:
                         player_one_commands.append(((command_type, command_name), command_time))
                     else:
                         player_two_commands.append(((command_type, command_name), command_time))
@@ -129,6 +139,11 @@ class SC2Extractor(Extractor):
                     else:
                         player_one_wins = False
                     break  # No need to check the other player if player one is the winner
+
+            print(f"Replay {replay_key}")
+            print(f"Player one: {player_one_name}\n\trace: {player_one_race}\n\twinner?: {player_one_wins}")
+            print(f"Player_two_name: {player_two_name}\n\trace: {player_two_race}\n\twinner?: {not player_one_wins}")
+            print()
 
             # Create data records and store them into appropriate units
             # Player one data
@@ -174,4 +189,6 @@ class SC2Extractor(Extractor):
     def _batch_insert(self, table_list: list[DataStorage]) -> None:
         return super()._batch_insert(table_list)
 
-
+SC2_DB.init("sc2_db")
+extractor = SC2Extractor()
+extractor.run("replay_extraction_tools/replays")

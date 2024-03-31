@@ -20,10 +20,6 @@ class Extractor(ABC):
         pass
 
     @abstractmethod
-    def build_order(self):
-        pass
-
-    @abstractmethod
     def _get_tables(self) -> list[DataStorage]:
         pass
 
