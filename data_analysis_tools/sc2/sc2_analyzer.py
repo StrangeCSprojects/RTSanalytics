@@ -13,7 +13,7 @@ from data_analysis_tools.general.winrates.winrate_race import (
 from data_analysis_tools.sc2.sc2_build_order.sc2_determine_build import (
     SC2DetermineBuild,
 )  # For determining SC2 build orders.
-
+from database_tools.sc2.sc2_database import SC2_DB
 
 class SC2Analyzer(Analyzer):
     """
@@ -149,3 +149,13 @@ class SC2Analyzer(Analyzer):
 
         # Calculate and return win rates for the compiled matchups.
         return winrate_calculator.calculate_matchup_winrates(match_ups_list)
+
+
+
+SC2_DB.init('sc2_db')
+
+sc2_data_retriever = SC2DataRetriever(SC2_DB)
+sc2_analyzer = SC2Analyzer(sc2_data_retriever)
+
+print(sc2_analyzer.winrate_build())
+print(sc2_analyzer.winrate_race())

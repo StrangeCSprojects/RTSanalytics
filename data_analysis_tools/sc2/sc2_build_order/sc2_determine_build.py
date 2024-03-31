@@ -160,7 +160,7 @@ class SC2DetermineBuild(DetermineBuild):
         # Filter commands based on time and relevance to economy/non-economy
         for command in commands:
             command_name, time = command
-            if time > 5.30:  # Stop processing commands after 5 minutes and 30 seconds
+            if time > 300:  # Stop processing commands after 5 minutes and 30 seconds
                 break
             if command_name in economy_commands or command_name in non_economy_commands:
                 relevant_commands.append(command_name)

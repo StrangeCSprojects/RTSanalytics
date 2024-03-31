@@ -46,9 +46,6 @@ class WinrateBuild(Winrate):
             for opponent, record in opponents.items():
                 win_rate = (record['wins'] / record['total']) * 100 if record['total'] > 0 else 0
                 win_rates[build][opponent] = int(win_rate)
-        
-        print(win_rates['Aggressive Terran'])
-
         return win_rates
 
 
