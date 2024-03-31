@@ -12,7 +12,7 @@ def setup_sc2_extractor():
     yield extractor
 
 
-def test_extract(setup_sc2_extractor):
+def test_extract_and_filter(setup_sc2_extractor):
     # Check if the provided replay folder path contains any StarCraft II replay files
     contains_replays = any(
         filename.endswith(".SC2Replay")
@@ -29,32 +29,17 @@ def test_extract(setup_sc2_extractor):
         # Assert that replay container is empty if no replay files exist in the folder
         assert not replay_container
 
-
-# def test_filter_into_tables(setup_sc2_extractor):
-#     # Get replay data from replay folder
-#     replay_container = setup_sc2_extractor.extract()
-
-#     # Call the filter_into_tables method
-#     setup_sc2_extractor.filter_into_tables(replay_container)
-
-    # TODO:
-    #
-    # CREATE "DUMMY" REPLAY CONTAINER (DON'T CALL EXTRACT METHOD AND GETT REAL DATA)
-    # NEED TO CHECK IF ANY GAMES WITHOUT A WINNER HAVE BEEN STORED
-    # NEED TO CHECK IF ANY GAMES WITH NUMBER OF PLAYERS NOT EQUAL TO 2
-    # NEED TO CHECK THAT COMMAND DATA IS PROPERLY SORTED INTO LISTS
-    # NEED TO CHECK THAT, NO MATTER WHAT, EACH GAME HAS ONE WINNER AND LOSER
-    #
-    # NO NEED TO CHECK ANYTHING ELSE SINCE ALL DEPENDENCIES HAVE BEEN TESTED
+    # Call the filter function
+    setup_sc2_extractor.filter_into_tables(replay_container)
 
 
-# FINISH THIS TEST LATER
-# def test_run(setup_sc2_extractor, tmpdir):
-#     # Set up test data
-#     replay_folder_path = tmpdir.mkdir("replays")
-#     # Create mock replay files in the temporary directory
+# Finish this test later
+def test_run(setup_sc2_extractor):
+    # Set up test data
+    replay_folder_path = tmpdir.mkdir("replays")
+    # Create mock replay files in the temporary directory
 
-#     # Call the run method
-#     setup_sc2_extractor.run(replay_folder_path)
+    # Call the run method
+    setup_sc2_extractor.run(replay_folder_path)
 
-#     # Assert any necessary conditions based on the behavior of the method
+    # Assert any necessary conditions based on the behavior of the method
