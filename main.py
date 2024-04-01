@@ -13,10 +13,9 @@ def main():
     """
     Main entry point
     """
-
     # Create an extractor and then run it on the replays folder
     extractor = SC2Extractor()
-    extractor.run("replay_extraction_tools\\replays")
+    extractor.run("replay_extraction_tools/replays")
 
     print("\nImplementing extractor tests...\n")
 
@@ -26,3 +25,4 @@ if __name__ == "__main__":
     # Initialize the database
     SC2_DB.init("example_sc2_database")
     main()
+    # SC2_DB.engine.dispose()

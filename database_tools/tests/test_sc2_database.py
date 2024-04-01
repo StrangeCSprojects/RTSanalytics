@@ -1,6 +1,7 @@
 import pytest
 from sqlalchemy.orm import declarative_base
 from database_tools.sc2.sc2_database import SC2_DB
+from database_tools.entities.sc2_db_entities import Play, Player, Game
 
 
 Base = declarative_base()  # Define Base using declarative_base() from sqlalchemy.orm
@@ -12,6 +13,13 @@ def setup_database():
     # Initialize the test database
     SC2_DB.init("test_db")
     yield  # Run the tests
+    # Clean the data from relevant tables after all tests are finished
+    with SC2_DB.Session() as session:
+        session.query(Game).delete()
+        session.query(Player).delete()
+        session.query(Play).delete()
+        session.commit()
+    # Close the database connection after cleaning
     SC2_DB.engine.dispose()
 
 
