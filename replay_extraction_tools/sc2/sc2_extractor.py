@@ -38,7 +38,7 @@ class SC2Extractor(Extractor):
         # Getting replays from folder
         for filename in os.listdir(self.folder_path):
             file_path = os.path.join(self.folder_path, filename)
-            if os.path.isfile(file_path) and not file_path.endswith(".py"):
+            if os.path.isfile(file_path) and file_path.endswith(".SC2Replay"):
                 # Filling replay dictionary
                 replay_counter += 1
                 replay = sc2reader.load_replay(file_path, load_map=True)

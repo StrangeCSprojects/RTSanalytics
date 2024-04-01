@@ -2,7 +2,7 @@ import pytest
 import os
 
 from sc2reader.objects import Player
-from database_tools.entities.sc2_db_entities import Game
+from database_tools.entities.sc2_db_entities import Game, Play, Player
 from database_tools.sc2.sc2_database import SC2_DB
 from replay_extraction_tools.sc2.sc2_extractor import SC2Extractor
 
