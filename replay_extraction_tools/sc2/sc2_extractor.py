@@ -179,7 +179,7 @@ class SC2Extractor(Extractor):
             self._player_data.set_data(player_two_record)
 
             # Game data
-            game_data_record = (game_id, game_map, game_mode)
+            game_data_record = (game_id, game_mode, game_map)
             self._game_data.set_data(game_data_record)
 
     def _get_tables(self) -> list[DataStorage]:

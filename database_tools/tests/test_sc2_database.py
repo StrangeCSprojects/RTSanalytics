@@ -10,7 +10,7 @@ Base = declarative_base()  # Define Base using declarative_base() from sqlalchem
 
 # Fixture to set up and tear down the database connection for each test
 @pytest.fixture()
-def setup_database():
+def setup_database(scope="module"):
     # Initialize the test database
     SC2_DB.init("test_db")
     yield  # Run the tests
@@ -39,7 +39,7 @@ def test_add_plays(setup_database):
     assert all_plays == tuple(plays)
     with SC2_DB.Session() as session:
         session.query(Play).delete()
-    
+
 
 def test_add_players(setup_database):
     # Create a list of player data
