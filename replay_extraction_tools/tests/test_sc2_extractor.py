@@ -40,15 +40,22 @@ def test_extract_and_filter(setup_sc2_extractor):
     else:
         # Assert that replay container is empty if no replay files exist in the folder
         assert not replay_container
-        return # No need to further test this folder path
+        return  # No need to further test this folder path
 
     # Call the filter function
     setup_sc2_extractor.filter_into_tables(replay_container)
-    
+
     # Check for correct number of players and games
-    assert len(setup_sc2_extractor._player_data._data) == 6 # SC2_DB eliminates duplicate players
-    assert len(setup_sc2_extractor._game_data._data) == 3 # 4 games - 1 ("gathering resources" game)
-    assert len(setup_sc2_extractor._play_data._data) == 2 * len(setup_sc2_extractor._game_data)
+    assert (
+        setup_sc2_extractor._player_data.get_length() == 6
+    )  # SC2_DB eliminates duplicate players
+    assert (
+        setup_sc2_extractor._game_data.get_length() == 3
+    )  # 4 games - 1 ("gathering resources" game)
+    assert (
+        setup_sc2_extractor._play_data.get_length()
+        == 2 * setup_sc2_extractor._game_data.get_length()
+    )
 
 
 def test_run(setup_sc2_extractor):
