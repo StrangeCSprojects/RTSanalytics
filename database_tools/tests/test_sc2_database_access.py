@@ -39,7 +39,7 @@ def test_push_play_data(setup_database):
         assert play is not None
         assert play.race == "Terran"
         assert play.winner == True
-        assert play.commands == "command1"
+        assert play.commands == '"command1"'
 
     # Attempt to push the same game data again
     play_storage.push()

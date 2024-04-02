@@ -2,7 +2,9 @@ from abc import ABC, abstractmethod
 
 
 class DataStorage(ABC):
-    """An abstract class for a temporary data storage unit/container"""
+    """
+    An abstract class for a temporary data storage unit/container
+    """
 
     def __init__(self):
         self._data = []
@@ -14,3 +16,6 @@ class DataStorage(ABC):
     @abstractmethod
     def set_data(self) -> None:
         pass
+
+    def get_length(self) -> int:
+        return len(self._data)
