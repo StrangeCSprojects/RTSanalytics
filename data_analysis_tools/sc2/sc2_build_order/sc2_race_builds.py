@@ -38,15 +38,20 @@ class RaceBuilds:
               resources that define the build.
         """
         self.name = name
-        self.std_build = Standard(
-            min_econ_std, max_econ_std, min_non_econ_std, max_non_econ_std
-        )
-        self.aggr_build = Aggressive(
-            min_econ_aggr, max_econ_aggr, min_non_econ_aggr, max_non_econ_aggr
-        )
-        self.eco_build = Economic(
-            min_econ_eco, max_econ_eco, min_non_econ_eco, max_non_econ_ecnomic
-        )
+
+        try:
+            self.std_build = Standard(
+                min_econ_std, max_econ_std, min_non_econ_std, max_non_econ_std
+            )
+            self.aggr_build = Aggressive(
+                min_econ_aggr, max_econ_aggr, min_non_econ_aggr, max_non_econ_aggr
+            )
+            self.eco_build = Economic(
+                min_econ_eco, max_econ_eco, min_non_econ_eco, max_non_econ_ecnomic
+            )
+        except ValueError as error: # Needs logging done
+            print(error)
+
 
     def get_build(self, econ_resources, non_econ_resources) -> str:
         """
@@ -89,11 +94,7 @@ class RaceBuilds:
 
         else:
             # No matching build
-            print("ERROR: No matching build found in choose_build.")
-
-        """
-    Returns a string representation of the RaceBuilds object, primarily the race name.
-    """
+            raise ValueError(f"No matching build found using econ_resources: {econ_resources} and non_econ_resources: {non_econ_resources}")
 
     def __str__(self) -> str:
         return self.name

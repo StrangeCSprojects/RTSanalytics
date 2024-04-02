@@ -40,8 +40,12 @@ class SC2Extractor(Extractor):
             if os.path.isfile(file_path) and file_path.endswith(".SC2Replay"):
                 # Filling replay dictionary
                 replay_counter += 1
-                replay = sc2reader.load_replay(file_path, load_map=True)
-                print(f"'{filename}' has been processed.\n")
+
+                try:
+                    replay = sc2reader.load_replay(file_path, load_map=True)
+                except Exception as e:
+                    print(f"Failed to load replay {file_path}: {e}")
+
                 replay_container[replay_counter] = replay
 
         return replay_container
@@ -114,6 +118,7 @@ class SC2Extractor(Extractor):
             # Player names
             player_one_name = player_one.name
             player_two_name = player_two.name
+
 
             # Get player and game IDs
             game_id = SC2_DB._create_game_id()

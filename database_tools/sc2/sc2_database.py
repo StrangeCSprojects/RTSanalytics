@@ -17,6 +17,7 @@ class SC2_DB(General_DB):
     """
     engine = None
     Session = None
+        # ID initialization
 
     @classmethod
     def init(cls, db_name):
@@ -27,10 +28,10 @@ class SC2_DB(General_DB):
         cls.engine = create_engine(f"sqlite:///database_tools/data/{db_name}.db")
         Base.metadata.create_all(cls.engine)
         cls.Session = sessionmaker(bind=cls.engine)
-
-        # ID initialization
         cls._game_id_count = 0
         cls._player_id_count = 0
+
+
 
     @classmethod
     def add_games(cls, game_list):
