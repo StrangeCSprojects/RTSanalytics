@@ -6,7 +6,7 @@
 # Import any needed modules
 from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
 from replay_extraction_tools.sc2.sc2_extractor import SC2Extractor
-from database_tools.sc2.sc2_database import SC2_DB
+from database_tools.sc2.sc2_database import SC2_Replay_DB
 
 
 def main():
@@ -21,6 +21,6 @@ def main():
 # Interpret this module
 if __name__ == "__main__":
     # Initialize the database
-    SC2_DB.init("example_sc2_database")
+    SC2_Replay_DB.init("example_sc2_database")
     main()
     # SC2_DB.engine.dispose()
