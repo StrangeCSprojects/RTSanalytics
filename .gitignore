@@ -3,6 +3,6 @@ venv
 *vs*
 __pycache__
 ui_run
-*db*
 *.db
 .pytest_cache
+data

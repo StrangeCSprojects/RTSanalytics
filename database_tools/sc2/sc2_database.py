@@ -2,7 +2,6 @@
 from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker
-from sqlalchemy.util import clsname_as_plain_name
 from database_tools.general.general_database import General_DB
 from database_tools.entities.sc2_db_entities import (
     Base,
@@ -13,16 +12,19 @@ from database_tools.entities.sc2_db_entities import (
 
 
 class SC2_DB(General_DB):
-    """A class for interacting with the SC2 database"""
-
+    """
+    A class for interacting with the SC2 database
+    """
     engine = None
     Session = None
 
     @classmethod
     def init(cls, db_name):
-        """Initializes database connection"""
+        """
+        Initializes database connection
+        """
         # Establish connection to the database file
-        cls.engine = create_engine(f"sqlite:///database_tools/{db_name}.db")
+        cls.engine = create_engine(f"sqlite:///database_tools/data/{db_name}.db")
         Base.metadata.create_all(cls.engine)
         cls.Session = sessionmaker(bind=cls.engine)
 
