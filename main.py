@@ -13,11 +13,9 @@ def main():
     """
     Main entry point
     """
-    # Create an extractor and then run it on the replays folder
-    extractor = SC2Extractor()
-    extractor.run("replay_extraction_tools/replays")
+    # Print a hello message to developers!
 
-    print("\nImplementing extractor tests...\n")
+    print("\nHello there!\n")
 
 
 # Interpret this module
