@@ -1,7 +1,7 @@
 from data_analysis_tools.general.analyzer import (
     Analyzer,
 )  # Base class for analysis tools.
-from data_analysis_tools.sc2.sc2_data_retriever import (
+from database_tools.sc2.sc2_data_retriever import (
     SC2DataRetriever,
 )  # Specific data retriever for SC2 data.
 from data_analysis_tools.general.winrates.winrate_build import (

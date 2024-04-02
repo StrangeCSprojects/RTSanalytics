@@ -4,7 +4,7 @@ import random
 from typing import Callable
 
 from json import loads, dumps
-from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
+from database_tools.sc2.sc2_data_retriever import SC2DataRetriever
 from database_tools.sc2.sc2_database import SC2_DB
 
 

@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import Mock
-from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
+from database_tools.sc2.sc2_data_retriever import SC2DataRetriever
 
 
 @pytest.fixture(scope="module")
