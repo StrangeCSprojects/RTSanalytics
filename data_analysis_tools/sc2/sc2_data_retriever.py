@@ -73,12 +73,6 @@ class SC2DataRetriever(DataRetriever):
         """
         return self.database.get_all_games()
 
-    def get_all_issues(self):
-        """
-        Retrieve data for all issues from the database.
-        """
-        pass
-
     def get_all_commands(self):
         """
         Retrieve data for all commands from the database.

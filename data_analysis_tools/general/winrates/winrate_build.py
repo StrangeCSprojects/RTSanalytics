@@ -1,9 +1,6 @@
 from data_analysis_tools.general.winrates.winrate import Winrate
 
 class WinrateBuild(Winrate):
-    def __init__(self) -> None:
-        super().__init__()
-        self.match_ups = {}
 
     def calculate_matchup_winrates(self, matches: list[tuple]) -> dict:
         """
