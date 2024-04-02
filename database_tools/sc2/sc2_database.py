@@ -3,7 +3,7 @@ from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker
 from database_tools.general.general_database import General_DB
-from database_tools.entities.sc2_db_entities import (
+from entities.sc2_db_entities import (
     Base,
     Game,
     Play,

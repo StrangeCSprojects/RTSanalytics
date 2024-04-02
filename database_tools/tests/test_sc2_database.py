@@ -1,8 +1,7 @@
 import pytest
-from sc2reader.engine.engine import game
 from sqlalchemy.orm import declarative_base
 from database_tools.sc2.sc2_database import SC2_DB
-from database_tools.entities.sc2_db_entities import Play, Player, Game
+from database_tools.sc2.entities.sc2_db_entities import Play, Player, Game
 
 
 Base = declarative_base()  # Define Base using declarative_base() from sqlalchemy.orm
