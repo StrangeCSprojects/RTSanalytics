@@ -58,14 +58,21 @@ def test_extract_and_filter(setup_sc2_extractor):
     )
 
 
-def test_run(setup_sc2_extractor):
-    # Call the run method
-    replay_folder_path = setup_sc2_extractor.folder_path
-    setup_sc2_extractor.run(replay_folder_path)
+def test_batch_insert(setup_sc2_extractor):
+    # Insert data storage into actual database
+    data_tables = [
+        setup_sc2_extractor._player_data,
+        setup_sc2_extractor._game_data,
+        setup_sc2_extractor._play_data,
+    ]
+    setup_sc2_extractor._batch_insert(data_tables)
 
     # Now check if duplicate games/players have been removed in database
     with SC2_DB.Session() as session:
-        assert session.query(Player).count() == 4
-        # assert session.query(Play).count() == 2 * session.query(Game).count()
-        # assert session.query(Game).count() == 3
-        
+        player_count = session.query(Player).count()
+        game_count = session.query(Game).count()
+        play_count = session.query(Play).count()
+
+        assert player_count == 4
+        assert game_count == 3
+        assert play_count == 6  # Will always be double the number of games
