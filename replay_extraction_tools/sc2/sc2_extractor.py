@@ -27,7 +27,6 @@ class SC2Extractor(Extractor):
         self._game_data = GameDataStorage()
         self._play_data = PlayDataStorage()
 
-
     def extract(self) -> dict:
         """
         extract data from a group of replays and return a dictionary of replay data
@@ -190,3 +189,4 @@ class SC2Extractor(Extractor):
 
     def _batch_insert(self, table_list: list[DataStorage]) -> None:
         super()._batch_insert(table_list)
+
