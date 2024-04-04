@@ -1,4 +1,4 @@
-from data_analysis_tools.general.data_retriever import DataRetriever
+from database_tools.general.data_retriever import DataRetriever
 
 
 class Analyzer:

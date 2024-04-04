@@ -4,17 +4,17 @@ import random
 from typing import Callable
 
 from json import loads, dumps
-from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
-from database_tools.sc2.sc2_database import SC2_Replay_DB
+from database_tools.sc2.sc2_data_retriever import SC2DataRetriever
+from database_tools.sc2.sc2_database import SC2ReplayDB
 
 
 @pytest.fixture(scope="module")
 def setup_database():
     """Creates a database file to be used for testing"""
     # Initialize the test database
-    SC2_Replay_DB.init("test_analyzer_db")
+    SC2ReplayDB.init("test_analyzer_db")
     yield  # Run the tests
-    SC2_Replay_DB.engine.dispose()
+    SC2ReplayDB.engine.dispose()
 
 
 def create_player_name() -> str:
