@@ -3,7 +3,7 @@ import os
 import sc2reader
 from sqlalchemy import true, false
 from replay_extraction_tools.General.extractor import Extractor
-from database_tools.sc2.sc2_database import SC2_Replay_DB
+from database_tools.sc2.sc2_database import SC2ReplayDB
 from database_tools.general.general_database_access import DataStorage
 from database_tools.sc2.sc2_database_access import (
     PlayDataStorage,
@@ -121,21 +121,21 @@ class SC2Extractor(Extractor):
 
 
             # Get player and game IDs
-            game_id = SC2_Replay_DB._create_game_id()
+            game_id = SC2ReplayDB._create_game_id()
             player_one_info = self._player_data._get_player_from_storage(
                 player_one_name
             )
             if player_one_info:
                 player_one_id = player_one_info["player_id"]
             else:
-                player_one_id = SC2_Replay_DB._create_player_id()
+                player_one_id = SC2ReplayDB._create_player_id()
             player_two_info = self._player_data._get_player_from_storage(
                 player_two_name
             )
             if player_two_info:
                 player_two_id = player_two_info["player_id"]
             else:
-                player_two_id = SC2_Replay_DB._create_player_id()
+                player_two_id = SC2ReplayDB._create_player_id()
 
             # Player races
             player_one_race = player_one.play_race

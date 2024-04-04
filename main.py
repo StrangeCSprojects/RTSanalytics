@@ -4,9 +4,9 @@
 """
 
 # Import any needed modules
-from data_analysis_tools.sc2.sc2_data_retriever import SC2DataRetriever
+from database_tools.sc2.sc2_data_retriever import SC2DataRetriever
 from replay_extraction_tools.sc2.sc2_extractor import SC2Extractor
-from database_tools.sc2.sc2_database import SC2_Replay_DB
+from database_tools.sc2.sc2_database import SC2ReplayDB
 
 
 def main():

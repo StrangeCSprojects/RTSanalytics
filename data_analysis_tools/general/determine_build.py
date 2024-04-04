@@ -1,6 +1,6 @@
 # Import the necessary components from the `abc` module to create an abstract base class.
 from abc import ABC, abstractmethod
-from data_analysis_tools.general.data_retriever import DataRetriever
+from database_tools.general.data_retriever import DataRetriever
 
 
 class DetermineBuild(ABC):

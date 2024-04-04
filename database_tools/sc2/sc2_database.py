@@ -2,7 +2,7 @@
 from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker
-from database_tools.general.general_database import General_DB
+from database_tools.general.general_database import GeneralDB
 from database_tools.entities.sc2_db_entities import (
     Base,
     Game,
@@ -11,7 +11,7 @@ from database_tools.entities.sc2_db_entities import (
 )
 
 
-class SC2_Replay_DB(General_DB):
+class SC2ReplayDB(GeneralDB):
     """
     A class for interacting with the SC2 database
     """

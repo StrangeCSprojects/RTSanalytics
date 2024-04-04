@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class General_DB(ABC):
+class GeneralDB(ABC):
     """
     A class for interacting with the SC2 database. Concrete implementations of the General_DB class
     must provide a method of storing data in a database system like SQLAlchemy, SQLite, or any other systems

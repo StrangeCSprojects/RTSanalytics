@@ -1,6 +1,6 @@
 from json import loads
-from data_analysis_tools.general.data_retriever import DataRetriever
-from database_tools.sc2.sc2_database import SC2_Replay_DB
+from database_tools.general.data_retriever import DataRetriever
+from database_tools.sc2.sc2_database import SC2ReplayDB
 
 
 class SC2DataRetriever(DataRetriever):
