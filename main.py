@@ -17,10 +17,16 @@ def main():
 
     print("\nHello there!\n")
 
+    test = {}
+    test["test"] = 1
+    test["test"] = 2
+
+    print(test["test"])
+
 
 # Interpret this module
 if __name__ == "__main__":
     # Initialize the database
-    SC2_Replay_DB.init("example_sc2_database")
+    # SC2_Replay_DB.init("example_sc2_database")
     main()
     # SC2_DB.engine.dispose()
