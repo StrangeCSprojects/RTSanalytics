@@ -1,6 +1,6 @@
 import pytest
-from database_tools.entities.sc2_db_entities import Game, Play, Player
 from database_tools.sc2.sc2_database import SC2ReplayDB
+from database_tools.sc2.entities.sc2_db_entities import Play, Player, Game
 from database_tools.sc2.sc2_database_access import (
     PlayDataStorage,
     PlayerDataStorage,

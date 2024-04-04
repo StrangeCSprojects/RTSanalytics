@@ -3,7 +3,7 @@ from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker
 from database_tools.general.general_database import GeneralDB
-from database_tools.entities.sc2_db_entities import (
+from database_tools.sc2.entities.sc2_db_entities import (
     Base,
     Game,
     Play,
@@ -30,7 +30,6 @@ class SC2ReplayDB(GeneralDB):
         cls.Session = sessionmaker(bind=cls.engine)
         cls._game_id_count = 0
         cls._player_id_count = 0
-
 
 
     @classmethod
