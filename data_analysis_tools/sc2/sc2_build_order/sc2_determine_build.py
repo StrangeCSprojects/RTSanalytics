@@ -142,7 +142,7 @@ class SC2DetermineBuild(DetermineBuild):
         relative_error_list = []  # contains all the relative errors
 
         # gets the error between the benchmark unit and user unit with the corresponding unit type
-        for benchmark_unit, user_unit in (
+        for benchmark_unit, user_unit in zip(
             benchmark_unit_dictionary[unit_type],
             user_unit_dictionary[unit_type],
         ):
