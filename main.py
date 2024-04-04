@@ -1,6 +1,6 @@
 """
     This is a python script used for easier
-    debugging of the SC2_RTS_Analytics package
+    debugging, testing, and experimenting
 """
 
 # Import any needed modules
@@ -13,20 +13,9 @@ def main():
     """
     Main entry point
     """
-    # Print a hello message to developers!
 
-    print("\nHello there!\n")
-
-    test = {}
-    test["test"] = 1
-    test["test"] = 2
-
-    print(test["test"])
 
 
 # Interpret this module
 if __name__ == "__main__":
-    # Initialize the database
-    # SC2_Replay_DB.init("example_sc2_database")
     main()
-    # SC2_DB.engine.dispose()
