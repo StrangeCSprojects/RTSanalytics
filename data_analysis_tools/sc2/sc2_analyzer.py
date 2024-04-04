@@ -81,8 +81,6 @@ class SC2Analyzer(Analyzer):
             except ValueError as error:
                 print(error)
                 continue
-            except TypeError as error:
-                print(error)
 
             # Determine the winner based on game data.
             if self.data_retriever.get_winner(game_id, player_one_id)   :
