@@ -39,7 +39,7 @@ class SC2DetermineBuild(DetermineBuild):
         )  # dictionary containing each build order and the percent of similarity to the user's build
 
         # user build should at least reach 50% or defaults to misc. build
-        highest_accuracry = 50
+        highest_accuracy = 50
         closest_build_order = "Misc."
 
         # iterate through each build of the same race in the database
@@ -54,8 +54,8 @@ class SC2DetermineBuild(DetermineBuild):
 
         # find the build that is most similar to the user's build
         for score in confidence_scores:
-            if confidence_scores[score] >= highest_accuracry:
-                highest_accuracry = confidence_scores[score]
+            if confidence_scores[score] >= highest_accuracy:
+                highest_accuracy = confidence_scores[score]
                 closest_build_order = score
         return closest_build_order
 
@@ -189,4 +189,4 @@ class SC2DetermineBuild(DetermineBuild):
         while len(user_unit_dictionary[unit_type]) < len(
             benchmark_unit_dictionary[unit_type]
         ):
-            user_unit_dictionary[unit_type] = 10000
+            user_unit_dictionary[unit_type] = 100000
