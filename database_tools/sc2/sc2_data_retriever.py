@@ -1,6 +1,6 @@
 from json import loads
 from database_tools.general.data_retriever import DataRetriever
-from database_tools.sc2.sc2_database import SC2_DB
+from database_tools.sc2.sc2_database import SC2ReplayDB
 
 
 class SC2DataRetriever(DataRetriever):
@@ -13,7 +13,7 @@ class SC2DataRetriever(DataRetriever):
     class to suit the specific needs of accessing and analyzing StarCraft II data.
     """
 
-    def __init__(self, database) -> None:
+    def __init__(self, database:SC2ReplayDB) -> None:
         """
         Initialize the SC2DataRetriever with a database connection or configuration.
 

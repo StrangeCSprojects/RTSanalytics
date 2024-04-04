@@ -11,7 +11,7 @@ from entities.sc2_db_entities import (
 )
 
 
-class SC2_DB(General_DB):
+class SC2_Replay_DB(General_DB):
     """
     A class for interacting with the SC2 database
     """

@@ -6,7 +6,7 @@
 # import os
 # from sc2reader.objects import Player
 # from database_tools.entities.sc2_db_entities import Game, Play, Player
-# from database_tools.sc2.sc2_database import SC2_DB
+# from database_tools.sc2.sc2_database import SC2ReplayDB
 # from replay_extraction_tools.sc2.sc2_extractor import SC2Extractor
 
 
@@ -15,7 +15,7 @@
 #     # Set up fixture
 #     extractor = SC2Extractor()
 #     extractor.folder_path = "replay_extraction_tools/replays"
-#     SC2_DB.init("test_extractor_db")
+#     SC2ReplayDB.init("test_extractor_db")
 #     yield extractor
 #     # Clean the data from relevant tables after all tests are finished
 #     with SC2_DB.Session() as session:
@@ -24,7 +24,7 @@
 #         session.query(Play).delete()
 #         session.commit()
 #     # Close the database connection after cleaning
-#     SC2_DB.engine.dispose()
+#     SC2ReplayDB.engine.dispose()
 
 
 # def test_extract_and_filter(setup_sc2_extractor):
@@ -71,7 +71,7 @@
 #     setup_sc2_extractor._batch_insert(data_tables)
 
 #     # Now check if duplicate games/players have been removed in database
-#     with SC2_DB.Session() as session:
+#     with SC2ReplayDB.Session() as session:
 #         player_count = session.query(Player).count()
 #         game_count = session.query(Game).count()
 #         play_count = session.query(Play).count()

@@ -1,10 +1,5 @@
 from data_analysis_tools.general.determine_build import DetermineBuild
-from data_analysis_tools.sc2.sc2_build_order.sc2_race_builds import (
-    ZergBuilds,
-    ProtossBuilds,
-    TerranBuilds,
-    RaceBuilds,
-)
+from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
 
 
 class SC2DetermineBuild(DetermineBuild):
@@ -13,169 +8,185 @@ class SC2DetermineBuild(DetermineBuild):
     StarCraft II race based on gameplay commands. Supports Zerg, Protoss, and Terran races.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, data_retriever: SC2BuildOrderDataRetriever) -> None:
         """
-        Initializes the SC2DetermineBuild object with build management instances for each race.
-        Sets up a tuple containing all race build instances for later use.
-        """
-        super().__init__()
-        self.zerg_builds = ZergBuilds()
-        self.protoss_builds = ProtossBuilds()
-        self.terran_builds = TerranBuilds()
-        self.race_types = (self.zerg_builds, self.protoss_builds, self.terran_builds)
-
-        # Error handling, all races need to be of type RaceBuild
-        for race in self.race_types:
-            if not isinstance(race, RaceBuilds):
-                raise TypeError("All race build objects must inherit from RaceBuild class")
-
-
-
-    def determine_build(self, race: str, commands: list[tuple[tuple[str,str],int]]) -> str:
-        """
-        Determines the build based on the race and a list of commands executed in the game.
-        Filters commands relevant to the economy and non-economy aspects up to 5 minutes and 30 seconds,
-        then calculates resources allocated to each aspect to decide on the build strategy.
+        Initializes the SC2DetermineBuild object, compares user builds against the benchmark
+        builds from the sc2_build_order_database (via sc2_data_retriever) to determine
+        which benchmark build the user build is most similar to.
 
         Parameters:
-            race (str): The race for which to determine the build (Zerg, Protoss, or Terran).
-            commands (list[tuple[tuple[command_type, command_name],time]])): A list of tuples, each containing a tuple (command type, command name) and the time executed.
+            data_retriever: retrieves build order data from the sc2_build_order_database
+        """
+        super().__init__(data_retriever)
+
+    def determine_build(
+        self, race: str, user_commands: list[tuple[tuple[str, str], int]]
+    ) -> str:
+        """
+        Compares the user's build against all builds of the same race in the sc2_build_order_database
+        and returns the build that has the highest accuracy of at least 50%. If the user's build doesn't
+        match any build at least 50% then just returns misc.
+
+        Parameters:
+            race: The race for which to determine the build (Zerg, Protoss, or Terran).
+            user_commands: A list of tuples, each containing a tuple (command type, command name) and the time executed.
 
         Returns:
-            str: The determined build strategy or an error message if the race is not recognized.
+            str: The determined build strategy or misc if none can be determined.
         """
-        # Keys: Tuple[event.name, event.unit.name]
-        # Values: resource cost
-        economy_commands = (
-            {
-                ("UnitBornEvent", "SCV"): 50,
-                ("UnitBornEvent", "Probe"): 50,
-                ("UnitBornEvent", "Drone"): 50,
-                ("UnitInitEvent", "CommandCenter"): 400,
-                ("UnitInitEvent", "OrbitalCommand"): 400,              
-                ("UnitInitEvent", "Nexus"): 400,
-                ("UnitInitEvent", "Hatchery"): 300,
-                ("UnitInitEvent", "Refinery"): 75,
-                ("UnitInitEvent", "Assimilator"): 75,
-                ("UnitInitEvent", "Extractor"): 25,
-                ("UnitTypeChangeEvent", "OrbitalCommand"): 150,    
-            }
-        )  # Placeholder for economy-related command values (to be populated)
-        non_economy_commands = (
-            {    # Terran Units
-                ("UnitBornEvent", "Marine"): 50,
-                ("UnitBornEvent", "Marauder"): 125,
-                ("UnitBornEvent", "Reaper"): 100,
-                ("UnitBornEvent", "Ghost"): 275,
-                ("UnitBornEvent", "Hellion"): 100,
-                ("UnitBornEvent", "Hellbat"): 100,
-                ("UnitBornEvent", "SiegeTank"): 275,
-                ("UnitBornEvent", "Cyclone"): 175,
-                ("UnitBornEvent", "WidowMine"): 100,
-                ("UnitBornEvent", "Thor"): 500,
-                ("UnitBornEvent", "Viking"): 225,
-                ("UnitBornEvent", "Medivac"): 200,
-                ("UnitBornEvent", "Liberator"): 275,
-                ("UnitBornEvent", "Raven"): 250,
-                ("UnitBornEvent", "Banshee"): 250,
-                ("UnitBornEvent", "Battlecruiser"): 700,
+        confidence_scores = (
+            {}
+        )  # dictionary containing each build order and the percent of similarity to the user's build
 
-                # Terran Buildings
-                ("UnitInitEvent", "SupplyDepot"): 100,
-                ("UnitInitEvent", "SupplyDepotLowered"): 100,
-                ("UnitInitEvent", "Barracks"): 150,
-                ("UnitInitEvent", "EngineeringBay"): 125,
-                ("UnitInitEvent", "Bunker"): 100,
-                ("UnitInitEvent", "MissileTurret"): 100,
-                ("UnitInitEvent", "SensorTower"): 225,
-                ("UnitInitEvent", "GhostAcademy"): 200,
-                ("UnitInitEvent", "Factory"): 250,
-                ("UnitInitEvent", "Starport"): 250,
-                ("UnitInitEvent", "Armory"): 250,
-                ("UnitInitEvent", "FusionCore"): 300,
+        # user build should at least reach 50% or defaults to misc. build
+        highest_accuracy = 50
+        closest_build_order = "Misc."
 
-                # Terran Infantry Weapon Upgrades
-                ("UpgradeCompleteEvent", "TerranInfantryWeaponsLevel1"): 200,
-                ("UpgradeCompleteEvent", "TerranInfantryWeaponsLevel2"): 350,
-                ("UpgradeCompleteEvent", "TerranInfantryWeaponsLevel3"): 500,
+        # iterate through each build of the same race in the database
+        for benchmark_build in self.data_retriever.get_all_builds_of_race(race):
+            benchmark_name = benchmark_build[0]  # name of build
+            benchmark_commands = benchmark_build[
+                1
+            ]  # tuple(tuple(tuple(unit_type, unit_name),time),weight)
+            confidence_scores[benchmark_name] = self._compare_build_orders(
+                benchmark_commands, user_commands
+            )
 
-                # Terran Infantry Armor Upgrades
-                ("UpgradeCompleteEvent", "TerranInfantryArmorsLevel1"): 200,
-                ("UpgradeCompleteEvent", "TerranInfantryArmorsLevel2"): 350,
-                ("UpgradeCompleteEvent", "TerranInfantryArmorsLevel3"): 500,
+        # find the build that is most similar to the user's build
+        for score in confidence_scores:
+            if confidence_scores[score] >= highest_accuracy:
+                highest_accuracy = confidence_scores[score]
+                closest_build_order = score
+        return closest_build_order
 
-                # Terran Vehicle Weapon Upgrades
-                ("UpgradeCompleteEvent", "TerranVehicleWeaponsLevel1"): 200,
-                ("UpgradeCompleteEvent", "TerranVehicleWeaponsLevel2"): 350,
-                ("UpgradeCompleteEvent", "TerranVehicleWeaponsLevel3"): 500,
+    def _compare_build_orders(
+        self,
+        benchmark_commands: list[tuple[tuple[tuple[str, str], int]], float],
+        user_commands,
+    ) -> float:
+        """
+        Helper method, compares the user's build to one of the benchmark builds and returns the relative error
+        between them.
 
-                # Terran Ship Weapon Upgrades
-                ("UpgradeCompleteEvent", "TerranShipWeaponsLevel1"): 200,
-                ("UpgradeCompleteEvent", "TerranShipWeaponsLevel2"): 350,
-                ("UpgradeCompleteEvent", "TerranShipWeaponsLevel3"): 500,
+        Parameters:
+            benchmark_commands: The list of commands from the benchmark build. Contains: Unit, Name, Time, Weight
+            user_commands: The list of commands from the user build. Contains: Unit, Name, Time
 
-                # Terran Vechicle and Ship Armor Upgrades
-                ("UpgradeCompleteEvent", "TerranVehicleAndShipArmorsLevel1"): 200,
-                ("UpgradeCompleteEvent", "TerranVehicleAndShipArmorsLevel2"): 350,
-                ("UpgradeCompleteEvent", "TerranVehicleAndShipArmorsLevel3"): 500,
+        Returns:
+            Percent number of how similar the two builds are
+        """
+        # used to sort the units by types
+        benchmark_unit_dictionary = {}
+        user_unit_dictionary = {}
+        relative_error_list = []
 
-                # Engineering Bay Upgrades
-                ("UpgradeCompleteEvent", "HiSecAutoTracking"): 200,
-                ("UpgradeCompleteEvent", "TerranBuildingArmor"): 300,
+        # sort the units by types
+        for command in benchmark_commands:
+            benchmark_unit = command[0][0]  # (unit_type, unit_name)
+            benchmark_time = command[0][1]  # time the unit was recorded
+            benchmark_weight = command[
+                1
+            ]  # value used in weighted average, determines how important unit is to build
+            self._load_unit_dictionary(
+                benchmark_unit_dictionary, benchmark_unit, benchmark_time
+            )
 
-                # Ghost Academy Upgrades
-                ("UpgradeCompleteEvent", "PersonalCloaking"): 300,
+        # sort the units by types
+        for command in user_commands:
+            command_unit = command[0][0]  # (unit_type, unit_name)
+            command_time = command[0][1]  # time the unit was recorded
+            self._load_unit_dictionary(user_unit_dictionary, command_unit, command_time)
 
-                # Barracks Upgrades
-                ("UpgradeCompleteEvent", "ShieldWall"): 200,
-                ("UpgradeCompleteEvent", "Stimpack"): 200,
-                ("UpgradeCompleteEvent", "PunisherGrenades"): 100,
+        for unit_type in benchmark_unit_dictionary:
+            # matches up the user unit types with the benchmark unit types
+            try:
+                user_unit_dictionary[unit_type]
+            except KeyError:
+                user_unit_dictionary[unit_type] = []
 
-                # Factory Upgrades
-                ("UpgradeCompleteEvent", "HighCapacityBarrels"): 200,
-                ("UpgradeCompleteEvent", "DrillClaws"): 150,
-                ("UpgradeCompleteEvent", "HurricaneThrusters"): 200,
-                ("UpgradeCompleteEvent", "SmartServos"): 200,
+            # pad user unit types to match benchmark user types if necessary
+            if len(user_unit_dictionary[unit_type]) < len(
+                benchmark_unit_dictionary[unit_type]
+            ):
+                self._pad_user_unit_dictionary(
+                    benchmark_unit_dictionary, user_unit_dictionary, unit_type
+                )
 
-                # Starport Upgrades
-                ("UpgradeCompleteEvent", "BansheeCloak"): 200,
-                ("UpgradeCompleteEvent", "BansheeSpeed"): 250,
-                ("UpgradeCompleteEvent", "InterferenceMatrix"): 100,
+            relative_error_list.append(
+                self._relative_error_of_unit_type(
+                    benchmark_unit_dictionary, user_unit_dictionary, unit_type
+                )
+            )
+            mean_relative_error = sum(relative_error_list) / len(relative_error_list)
+            return mean_relative_error
 
-                # Fusion Core 
-                ("UpgradeCompleteEvent", "BattlecruiserEnableSpecializations"): 300,
-                ("UpgradeCompleteEvent", "MedivacCaduceusReactor"): 200,
-                ("UpgradeCompleteEvent", "LiberatorAGRangeUpgrade"): 300,
-                
-                # Building Upgrades
-                ("UnitTypeChangeEvent", "PlanetaryFortress"): 150,    
+    def _relative_error_of_unit_type(
+        self,
+        benchmark_unit_dictionary: dict[str : list[int]],
+        user_unit_dictionary: dict[str : list[int]],
+        unit_type: tuple[str, str],
+    ) -> float:
+        """
+        Helper method, compares the user's build to one of the benchmark builds and returns the relative error
+        between them.
 
-            }
-        )  # Placeholder for non-economy-related command values (to be populated)
-        economy_resources = 0  # Total resources allocated to economy
-        non_economy_resources = 0  # Total resources allocated to non-economy
+        Parameters:
+            benchmark_unit_dictionary: Dict{unit_type:{list of times}}, a dictionary of all the times unit_types are created
+            user_unit_dictionary: Dict{unit_type:{list of times}}, a dictionary of all the times unit_types are created
+            unit_type: The type of unit I.E. (InitUnitEvent, SCV)
 
-        relevant_commands = []  # Commands executed within the relevant time frame
+        Returns:
+            Percent number of how similar the two builds are
+        """
 
-        # Filter commands based on time and relevance to economy/non-economy
-        for command in commands:
-            command_name, time = command
-            if time > 300:  # Stop processing commands after 5 minutes and 30 seconds
-                break
-            if command_name in economy_commands or command_name in non_economy_commands:
-                relevant_commands.append(command_name)
+        relative_error_list = []  # contains all the relative errors
 
-        # Calculate resources allocated to economy and non-economy
-        for command in relevant_commands:
-            if command in economy_commands:
-                economy_resources += economy_commands[command]
-            else:
-                non_economy_resources += non_economy_commands[command]
+        # gets the error between the benchmark unit and user unit with the corresponding unit type
+        for benchmark_unit, user_unit in (
+            benchmark_unit_dictionary[unit_type],
+            user_unit_dictionary[unit_type],
+        ):
+            absolute_error = abs(benchmark_unit - user_unit)
+            relative_error = absolute_error / benchmark_unit
 
-        # Determine the build for the specified race based on calculated resources
-        for race_type in self.race_types:
-            if race == str(race_type):
-                return race_type.get_build(economy_resources, non_economy_resources)
+            # relative error can't be greater than one
+            if relative_error > 1:
+                relative_error = 1
+            relative_error_list.append(relative_error)
+        mean_relative_error = sum(relative_error_list) / len(relative_error_list)
+        return mean_relative_error
 
-        # Error handling: a build should match 
-        raise ValueError(f"No build could be determined given economy_resources: {economy_resources}, non_economy_resources: {non_economy_resources}")
+    def _load_unit_dictionary(
+        self, unit_dictionary: dict[str : list[int]], unit_type: tuple[str, str], time
+    ) -> None:
+        """
+        Helper method, loads the unit and its corresponding time into a dictionary.
+
+        Parameters:
+            unit_dictionary: Dict{unit_type:{list of times}}, a dictionary of all the times unit_types are created
+            unit_type: The type of unit I.E. (InitUnitEvent, SCV)
+            time: Time unit was created
+        """
+        if unit_type not in unit_dictionary:
+            unit_dictionary[unit_type] = []
+        unit_dictionary[unit_type].append(time)
+
+    def _pad_user_unit_dictionary(
+        self,
+        benchmark_unit_dictionary: dict[str : list[int]],
+        user_unit_dictionary: dict[str : list[int]],
+        unit_type: tuple[str, str],
+    ) -> None:
+        """
+        Helper method, pads the user_unit_dictionary[unit_type] with times of 10,000 so that the
+        user_unit_dictionary is the same size as the benchmark_unit_dictionary
+
+        Parameters:
+            benchmark_unit_dictionary: Dict{unit_type:{list of times}}, a dictionary of all the times unit_types are created
+            user_unit_dictionary: Dict{unit_type:{list of times}}, a dictionary of all the times unit_types are created
+            unit_type: The type of unit I.E. (InitUnitEvent, SCV)
+        """
+        while len(user_unit_dictionary[unit_type]) < len(
+            benchmark_unit_dictionary[unit_type]
+        ):
+            user_unit_dictionary[unit_type] = 100000
