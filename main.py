@@ -15,15 +15,8 @@ def main():
     Main entry point
     """
 
-    with open("test.csv", 'r') as csv_file:
-        csv_file = csv.reader(csv_file)
-        next(csv_file, None)
-        for i in csv_file:
-            print(i)
-        # print(csv_file.read())
-
-
 
 # Interpret this module
 if __name__ == "__main__":
+
     main()
