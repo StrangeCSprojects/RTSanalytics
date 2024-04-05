@@ -6,6 +6,6 @@ Base = declarative_base()
 
 class PlayerBuildOrder(Base):
     __tablename__ = "build_order"
-    name = Column(Integer, ForeignKey("games.game_id"), primary_key=True)
-    player_id = Column(Integer, ForeignKey("players.player_id"), primary_key=True)
+    name = Column(String, primary_key=True)
     race = Column(String)
+    commands = Column(String) # Remember to use json.loads before storing commands
