@@ -1,0 +1,5 @@
+Unit_Type,Unit_Name,Time,Weight
+UnitInit,SCV,60,1
+UnitInit,Marine,180,1
+UnitInit,Reaper,200,1
+UnitInit,Siege Tank,250,1

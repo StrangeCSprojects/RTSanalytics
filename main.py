@@ -7,6 +7,7 @@
 from database_tools.sc2.sc2_data_retriever import SC2DataRetriever
 from replay_extraction_tools.sc2.sc2_extractor import SC2Extractor
 from database_tools.sc2.sc2_database import SC2ReplayDB
+import csv
 
 
 def main():
@@ -15,7 +16,7 @@ def main():
     """
 
 
-
 # Interpret this module
 if __name__ == "__main__":
+
     main()
