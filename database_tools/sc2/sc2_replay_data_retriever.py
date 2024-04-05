@@ -3,7 +3,7 @@ from database_tools.general.data_retriever import DataRetriever
 from database_tools.sc2.sc2_database import SC2ReplayDB
 
 
-class SC2DataRetriever(DataRetriever):
+class SC2ReplayDataRetriever(DataRetriever):
     """
     A subclass of DataRetriever tailored for retrieving StarCraft II (SC2) related data.
     It provides methods for fetching specific data about players, plays, games, issues, and commands,
