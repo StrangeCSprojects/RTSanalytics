@@ -4,8 +4,8 @@ import random
 from typing import Callable
 
 from json import loads, dumps
-from database_tools.sc2.sc2_data_retriever import SC2DataRetriever
-from database_tools.sc2.sc2_database import SC2ReplayDB
+from database_tools.sc2.sc2_replay_data_retriever import SC2ReplayDataRetriever
+from database_tools.sc2.sc2_replay_database import SC2ReplayDB
 
 
 @pytest.fixture(scope="module")
