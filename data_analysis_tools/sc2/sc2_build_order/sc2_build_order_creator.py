@@ -21,7 +21,7 @@ class SC2BuildOrderCreator(BuildOrderCreator):
         # Initialize the build data storage.
         self._build_data = BuildOrderStorage()
 
-    def create_build(self, race:str, file_name: str) -> None:
+    def create_build(self, name:str, race:str, file_name: str) -> None:
         """
         Reads a CSV file containing SC2 build commands, processes each command,
         and stores them into the build data storage. Each command in the CSV is
@@ -58,6 +58,6 @@ class SC2BuildOrderCreator(BuildOrderCreator):
 
             # Store the processed commands in the build data storage and
             # then push the data to the underlying system or database.
-            build_order = (race, commands_list)
+            build_order = (name, race, commands_list)
             self._build_data.set(build_order)
             self._build_data.push()
