@@ -13,7 +13,7 @@ def main():
     """
     Main entry point
     """
-
+    print("Implementing build order database.")
 
 
 # Interpret this module
