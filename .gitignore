@@ -6,3 +6,4 @@ ui_run
 *.db
 .pytest_cache
 data
+main.py
