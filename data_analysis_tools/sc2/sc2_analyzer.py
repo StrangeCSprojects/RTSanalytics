@@ -1,9 +1,9 @@
 from data_analysis_tools.general.analyzer import (
     Analyzer,
 )  # Base class for analysis tools.
-from database_tools.sc2.sc2_data_retriever import (
-    SC2DataRetriever,
-)  # Specific data retriever for SC2 data.
+from database_tools.sc2.sc2_replay_data_retriever import (
+    SC2ReplayDataRetriever,
+)  # Specific data retriever for SC2 replay data.
 from data_analysis_tools.general.winrates.winrate_build import (
     WinrateBuild,
 )  # For calculating win rates based on builds.
@@ -13,7 +13,7 @@ from data_analysis_tools.general.winrates.winrate_race import (
 from data_analysis_tools.sc2.sc2_build_order.sc2_determine_build import (
     SC2DetermineBuild,
 )  # For determining SC2 build orders.
-from database_tools.sc2.sc2_database import SC2ReplayDB
+from database_tools.sc2.sc2_replay_database import SC2ReplayDB
 
 class SC2Analyzer(Analyzer):
     """
