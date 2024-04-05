@@ -26,15 +26,3 @@ class Play(Base):
     # Define relationships
     game = relationship("Game", backref="plays")
     player = relationship("Player", backref="plays")
-
-class PlayerBuildOrder(Base):
-    __tablename__ = "build_order"
-    game_id = Column(Integer, ForeignKey("games.game_id"), primary_key=True)
-    player_id = Column(Integer, ForeignKey("players.player_id"), primary_key=True)
-    race = Column(String)
-    winner = Column(Boolean)
-    commands = Column(String)
-
-    # Define relationships
-    game = relationship("Game", backref="plays")
-    player = relationship("Player", backref="plays")
