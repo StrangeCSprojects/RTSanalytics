@@ -3,7 +3,6 @@ from distutils.command import build
 from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker, strategies
-# from database_tools.general.general_database import GeneralDB // Determine whether you want to keep this file or not
 from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder
 
 
