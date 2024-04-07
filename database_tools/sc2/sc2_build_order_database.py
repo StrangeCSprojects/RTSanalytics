@@ -52,7 +52,7 @@ class SC2BuildOrderDB():
                 return None
 
     @classmethod
-    def get_all_builds(cls):
+    def get_builds(cls):
         with cls.Session() as session:
             builds = tuple(
                 (build_order.name, build_order.race, build_order.commands)
