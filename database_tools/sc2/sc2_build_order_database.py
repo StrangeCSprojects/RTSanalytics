@@ -59,9 +59,3 @@ class SC2BuildOrderDB():
                 for build_order in session.query(PlayerBuildOrder).all()
             )
             return builds
-
-    @classmethod
-    def _create_build_order_id(cls) -> int:
-        """Increment and return build order id"""
-        cls._build_order_id_count += 1
-        return cls._build_order_id_count 
