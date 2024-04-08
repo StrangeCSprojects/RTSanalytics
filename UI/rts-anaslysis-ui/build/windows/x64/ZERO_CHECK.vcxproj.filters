@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="B:\RTSanalytics\UI\rts-anaslysis-ui\build\windows\x64\CMakeFiles\62593ad3e8d896e8e625ecbf4f6fae75\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{BB23029E-483E-336C-A3CC-3579072ED47C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
