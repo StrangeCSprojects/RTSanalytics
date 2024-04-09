@@ -1,30 +1,37 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:rts_ui/main.dart';
+import 'package:flutter/material.dart';
+import '../lib/stats.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Stats widget test', (WidgetTester tester) async {
+    // Build the Stats widget and trigger a frame.
+    await tester.pumpWidget(const Stats());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the Stats widget is displayed.
+    expect(find.byType(Stats), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Verify that the HomeScreen widget is displayed.
+    expect(find.byType(HomeScreen), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the ContentBox widget is displayed.
+    expect(find.byType(ContentBox), findsOneWidget);
+
+    // Verify that the RaceRateContents widget is displayed.
+    expect(find.byType(RaceRateContents), findsOneWidget);
+
+    // Verify that the RaceWinRate widget is displayed.
+    expect(find.byType(RaceWinRate), findsOneWidget);
+
+    // Verify that the RaceRateFormat widget is displayed.
+    expect(find.byType(RaceRateFormat), findsWidgets);
+
+    // Verify that the ContentTitle widget is displayed.
+    expect(find.byType(ContentTitle), findsOneWidget);
+
+    // Verify that the BuildOrderContainer widget is displayed.
+    expect(find.byType(BuildOrderContainer), findsOneWidget);
+
+    // Verify that the BuildOrderWidget widget is displayed.
+    expect(find.byType(BuildOrderWidget), findsWidgets);
   });
 }
