@@ -57,7 +57,7 @@ class RaceRateContents extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 871,
-      height: 230,
+      height: 180,
       color:  Color.fromARGB(0, 75, 135, 145),
       child: RaceWinRate(),
     );
@@ -179,6 +179,12 @@ class BuildOrderContainer extends StatelessWidget {
     children: const [
       BuildOrderWidget(name: 'Build Name', race: 'Race', winRate: 'Win rate'),
       BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
+      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
+      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
+      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
+      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
+      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
+      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
     ],
       ),
     );
@@ -239,16 +245,23 @@ class BuildOrderWidget extends StatelessWidget {
                   Expanded(child: Text(name,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 30))),
                   Expanded(child: Text(race, textAlign: TextAlign.center,style: const TextStyle(color: Colors.white, fontSize: 30))),
                   Expanded(child: Text(winRate,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 30))),
-                  Expanded(
-                    child: Scrollbar(
-                      interactive: true,
-                      controller: ScrollController(),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Text(buildorder, style: const TextStyle(color: Colors.white, fontSize: 30)),
+                  Expanded( // Keep the Expanded widget
+                  child: Center( // Center the button
+                    child: SizedBox( // Use SizedBox to set the width and height of the button
+                      width: 200, // Set the width of the button
+                      height: 60, // Set the height of the button
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Handle button press here
+                        },
+                        child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF34585E), // background color
+                        ),
                       ),
                     ),
                   ),
+                ),
                   BuildOrderSideSpacer(),
                 ],
               ),
