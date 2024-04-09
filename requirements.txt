@@ -2,4 +2,4 @@ sc2reader==1.8.0
 black==24.2.0
 sqlalchemy==2.0.28
 pytest==8.1.1
-Flask==3.03
+Flask==3.0.3
