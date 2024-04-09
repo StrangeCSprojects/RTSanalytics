@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'globals.dart';
 
@@ -144,14 +145,15 @@ class ContentTitle extends StatelessWidget {
                       width: 200, // Set the width of the button
                       height: 60, // Set the height of the button
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Handle button press here
-                        },
-                        child: Text('Import', style: TextStyle(color: Colors.white, fontSize: 30)),
+                        onPressed: kIsWeb ? () {
+                          // Handle button press here for web
+                        } : null,
+                        child: Text(kIsWeb ? 'Download' : 'Import', style: TextStyle(color: Colors.white, fontSize: 30)),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF34585E), // background color
+                          backgroundColor: kIsWeb ? Color(0xFF34585E) : Color.fromARGB(255, 250, 0, 0), // background color
+                          surfaceTintColor: Color.fromARGB(255, 250, 0, 0),
                         ),
-                      ),
+                      )
                     ),
                   ),
                 ),
@@ -159,7 +161,7 @@ class ContentTitle extends StatelessWidget {
         ),
       ),
     );
-  }
+  } 
 }
 
 class BuildOrderContainer extends StatelessWidget {
@@ -247,19 +249,20 @@ class BuildOrderWidget extends StatelessWidget {
                   Expanded(child: Text(winRate,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 30))),
                   Expanded( // Keep the Expanded widget
                   child: Center( // Center the button
-                    child: SizedBox( // Use SizedBox to set the width and height of the button
-                      width: 200, // Set the width of the button
-                      height: 60, // Set the height of the button
+                    child: SizedBox(
+                      width: 200,
+                      height: 60,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: kIsWeb ? null : () {
                           // Handle button press here
                         },
                         child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF34585E), // background color
+                          backgroundColor: kIsWeb ? Colors.grey : Color(0xFF34585E), // background color
+                          surfaceTintColor: Colors.grey,
                         ),
                       ),
-                    ),
+                    )
                   ),
                 ),
                   BuildOrderSideSpacer(),
