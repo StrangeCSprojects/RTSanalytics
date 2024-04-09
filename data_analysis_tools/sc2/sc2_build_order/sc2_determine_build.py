@@ -1,3 +1,4 @@
+from math import inf
 from data_analysis_tools.general.determine_build import DetermineBuild
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
 
@@ -62,7 +63,7 @@ class SC2DetermineBuild(DetermineBuild):
     def _compare_build_orders(
         self,
         benchmark_commands: list[tuple[tuple[tuple[str, str], int]], float],
-        user_commands,
+        user_commands: list[tuple[tuple[str, str], int]],
     ) -> float:
         """
         Helper method, compares the user's build to one of the benchmark builds and returns the relative error
@@ -117,13 +118,16 @@ class SC2DetermineBuild(DetermineBuild):
                     benchmark_unit_dictionary, user_unit_dictionary, unit_type
                 )
             )
-            mean_relative_error = sum(relative_error_list) / len(relative_error_list)
-            return mean_relative_error
+        print(relative_error_list)
+
+        mean_relative_error = sum(relative_error_list) / len(relative_error_list)
+        print(mean_relative_error)
+        return mean_relative_error
 
     def _relative_error_of_unit_type(
         self,
-        benchmark_unit_dictionary: dict[str : list[int]],
-        user_unit_dictionary: dict[str : list[int]],
+        benchmark_unit_dictionary: dict[tuple[str, str] : list[int]],
+        user_unit_dictionary: dict[tuple[str, str] : list[int]],
         unit_type: tuple[str, str],
     ) -> float:
         """
@@ -157,7 +161,7 @@ class SC2DetermineBuild(DetermineBuild):
         return mean_relative_error
 
     def _load_unit_dictionary(
-        self, unit_dictionary: dict[str : list[int]], unit_type: tuple[str, str], time
+        self, unit_dictionary: dict[tuple[str, str] : list[int]], unit_type: tuple[str, str], time:int
     ) -> None:
         """
         Helper method, loads the unit and its corresponding time into a dictionary.
@@ -173,8 +177,8 @@ class SC2DetermineBuild(DetermineBuild):
 
     def _pad_user_unit_dictionary(
         self,
-        benchmark_unit_dictionary: dict[str : list[int]],
-        user_unit_dictionary: dict[str : list[int]],
+        benchmark_unit_dictionary: dict[tuple[str, str] : list[int]],
+        user_unit_dictionary: dict[tuple[str, str] : list[int]],
         unit_type: tuple[str, str],
     ) -> None:
         """
@@ -186,7 +190,10 @@ class SC2DetermineBuild(DetermineBuild):
             user_unit_dictionary: Dict{unit_type:{list of times}}, a dictionary of all the times unit_types are created
             unit_type: The type of unit I.E. (InitUnitEvent, SCV)
         """
+        print(len(user_unit_dictionary[unit_type]))
+        print(len(benchmark_unit_dictionary[unit_type]))
+
         while len(user_unit_dictionary[unit_type]) < len(
             benchmark_unit_dictionary[unit_type]
         ):
-            user_unit_dictionary[unit_type] = 100000
+            user_unit_dictionary[unit_type].append(inf)

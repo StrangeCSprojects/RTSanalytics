@@ -1,12 +1,13 @@
 # Import any needed modules
-from distutils.command import build
+# from distutils.command import build
 from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker, strategies
-from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder
+from database_tools.general.general_database import GeneralDB
+from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder, Base
 
 
-class SC2BuildOrderDB():
+class SC2BuildOrderDB(GeneralDB):
     """
     A class for interacting with the SC2 RTS build order database
     """
@@ -35,7 +36,7 @@ class SC2BuildOrderDB():
                 if existing_build_order:
                     continue
                 build_order = PlayerBuildOrder(
-                    ame=build_name,
+                    name=build_name,
                     race=build_race,
                     commands=build_commands,
                 )
@@ -43,7 +44,7 @@ class SC2BuildOrderDB():
             session.commit()
 
     @classmethod
-    def get_build_by_name(cls, build_name: string):
+    def get_build_by_name(cls, build_name: str):
         with cls.Session() as session:
             build = session.query(PlayerBuildOrder).filter_by(name=build_name).first()
             if build:
