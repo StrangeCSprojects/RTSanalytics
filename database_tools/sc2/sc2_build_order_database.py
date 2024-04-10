@@ -6,10 +6,11 @@ from sqlalchemy.orm import ClassManager, sessionmaker, strategies
 from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder
 
 
-class SC2BuildOrderDB():
+class SC2BuildOrderDB:
     """
     A class for interacting with the SC2 RTS build order database
     """
+
     engine = None
     Session = None
 
