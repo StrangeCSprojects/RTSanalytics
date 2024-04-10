@@ -31,11 +31,20 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         """
         Retrieve all build orders with a specified race
         """
+        result = []
         all_builds = self.database.get_builds()
-        unserialized_builds = [
-            (build.name, build.race, loads(build.command)) for build in all_builds
-        ]
-        return unserialized_builds
+        for build in all_builds:
+            if build[1] != race:
+                continue
+            play = self.get_play(game_id, player_id)
+            serialized_commands = build[2]
+            temp_result = loads(serialized_commands)
+
+            # turning list of lists, into a list of tuples
+            result_commands = [(tuple(inner_list[0]), inner_list[1]) for inner_list in temp_result]
+            result.append((build[0], result_commands))
+
+        return result
 
     def get_all_builds(self):
         """
