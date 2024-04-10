@@ -35,7 +35,7 @@ class SC2BuildOrderDB():
                 if existing_build_order:
                     continue
                 build_order = PlayerBuildOrder(
-                    ame=build_name,
+                    name = build_name,
                     race=build_race,
                     commands=build_commands,
                 )
