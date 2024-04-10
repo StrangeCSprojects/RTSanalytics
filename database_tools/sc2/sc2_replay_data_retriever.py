@@ -13,7 +13,7 @@ class SC2ReplayDataRetriever(DataRetriever):
     class to suit the specific needs of accessing and analyzing StarCraft II data.
     """
 
-    def __init__(self, database:SC2ReplayDB) -> None:
+    def __init__(self, database: SC2ReplayDB) -> None:
         """
         Initialize the SC2DataRetriever with a database connection or configuration.
 
@@ -23,25 +23,25 @@ class SC2ReplayDataRetriever(DataRetriever):
             database
         )  # Calls the initializer of the superclass (DataRetriever)
 
-    def get_player(self, player_id:int):
+    def get_player(self, player_id: int):
         """
         Retrieve a single player's data from the database.
         """
         pass
 
-    def get_play(self, game_id:int, player_id:int):
+    def get_play(self, game_id: int, player_id: int):
         """
         Retrieve a single play's data from the database.
         """
         return self.database.get_play(game_id, player_id)
 
-    def get_game(self, game_id:int):
+    def get_game(self, game_id: int):
         """
         Retrieve a single game's data from the database.
         """
         pass
 
-    def get_commands(self, game_id:int, player_id:int):
+    def get_commands(self, game_id: int, player_id: int):
         """
         Retrieve data about a single command from the database.
         """
@@ -79,7 +79,7 @@ class SC2ReplayDataRetriever(DataRetriever):
         """
         pass
 
-    def get_players_in_game(self, game_id:int):
+    def get_players_in_game(self, game_id: int):
         """
         Retrieve data for all players in a specific game
         """
