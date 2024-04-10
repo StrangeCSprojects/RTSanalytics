@@ -33,16 +33,12 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         Retrieve all build orders with a specified race
         """
         all_builds = self.database.get_builds()
-<<<<<<< Updated upstream
-        return (build for build in all_builds if build[1] == race)
-=======
         for build in all_builds:
             if build[1] != race:
                 continue
 
             serialized_commands = build[2]
             temp_result = loads(serialized_commands)
->>>>>>> Stashed changes
 
 
     def get_all_builds(self):
