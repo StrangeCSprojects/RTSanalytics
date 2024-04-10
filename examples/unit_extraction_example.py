@@ -38,7 +38,7 @@ def extract(file_path) -> None:
         #     print((event.name, event.upgrade_type_name))
         #     # print(event.unit_controller.name) # Player name who created the unit
 
-file_path = "examples/sc2_replays/terran_unit_types.SC2Replay"
+file_path = "examples/sc2_replays/zerg_unit_types.SC2Replay"
 extract(file_path)
 
 
