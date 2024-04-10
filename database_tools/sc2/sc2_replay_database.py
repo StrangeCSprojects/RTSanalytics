@@ -15,9 +15,10 @@ class SC2ReplayDB(GeneralDB):
     """
     A class for interacting with the SC2 database
     """
+
     engine = None
     Session = None
-        # ID initialization
+    # ID initialization
 
     @classmethod
     def init(cls, db_name):
@@ -30,7 +31,6 @@ class SC2ReplayDB(GeneralDB):
         cls.Session = sessionmaker(bind=cls.engine)
         cls._game_id_count = 0
         cls._player_id_count = 0
-
 
     @classmethod
     def add_games(cls, game_list):

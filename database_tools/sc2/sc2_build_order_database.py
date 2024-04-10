@@ -11,6 +11,7 @@ class SC2BuildOrderDB(GeneralDB):
     """
     A class for interacting with the SC2 RTS build order database
     """
+
     engine = None
     Session = None
 

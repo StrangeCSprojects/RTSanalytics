@@ -2,6 +2,7 @@ from json import dumps
 from database_tools.general.general_database_access import DataStorage
 from database_tools.sc2.sc2_replay_database import SC2ReplayDB
 
+
 class PlayDataStorage(DataStorage):
     """
     Contains data for the Play table
