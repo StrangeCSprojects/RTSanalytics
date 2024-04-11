@@ -10,11 +10,11 @@ from database_tools.sc2.sc2_database_access import (
 
 # Fixture to set up and tear down the database connection for each test
 @pytest.fixture(scope="module")
-def setup_database():
-    # Initialize the test database
-    SC2ReplayDB.init("test_db")
-    yield  # Run the tests
-    # Clean the data from relevant tables after all tests are finished
+def setup_database(scope="module"):
+    # Set up test database
+    SC2ReplayDB.init("test_replay_db")
+    yield # Run the tests
+    # Clean the data from the tables once the tests are finished
     with SC2ReplayDB.Session() as session:
         session.query(Game).delete()
         session.query(Player).delete()
