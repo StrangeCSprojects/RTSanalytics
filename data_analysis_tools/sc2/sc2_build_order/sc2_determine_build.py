@@ -44,7 +44,7 @@ class SC2DetermineBuild(DetermineBuild):
         closest_build_order = "Misc."
 
         # iterate through each build of the same race in the database
-        for benchmark_build in self.data_retriever.get_all_builds_of_race(race):
+        for benchmark_build in self.data_retriever.get_all_builds_by_race(race):
             benchmark_name = benchmark_build[0]  # name of build
             benchmark_commands = benchmark_build[
                 1
@@ -122,7 +122,10 @@ class SC2DetermineBuild(DetermineBuild):
 
         mean_relative_error = sum(relative_error_list) / len(relative_error_list)
         print(mean_relative_error)
-        return mean_relative_error
+
+        percent_similarity = (1 - mean_relative_error) * 100
+
+        return percent_similarity
 
     def _relative_error_of_unit_type(
         self,
@@ -190,9 +193,6 @@ class SC2DetermineBuild(DetermineBuild):
             user_unit_dictionary: Dict{unit_type:{list of times}}, a dictionary of all the times unit_types are created
             unit_type: The type of unit I.E. (InitUnitEvent, SCV)
         """
-        print(len(user_unit_dictionary[unit_type]))
-        print(len(benchmark_unit_dictionary[unit_type]))
-
         while len(user_unit_dictionary[unit_type]) < len(
             benchmark_unit_dictionary[unit_type]
         ):

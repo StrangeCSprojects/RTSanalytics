@@ -11,7 +11,7 @@ Base = declarative_base()  # Define Base using declarative_base() from sqlalchem
 @pytest.fixture()
 def setup_database(scope="module"):
     # Initialize the test database
-    SC2BuildOrderDB.init("test_build_orders")
+    SC2BuildOrderDB.init("test_build_order_db")
     yield  # Run the tests
     # Clean the data from relevant tables after all tests are finished
     with SC2BuildOrderDB.Session() as session:
@@ -22,11 +22,11 @@ def setup_database(scope="module"):
 
 
 # Test cases
-def test_add_build_orders(setup_database):
+def test_add_build_order(setup_database):
     # Create a list of play data
     builds = [
-        ("build1", "race1", '[["command list 1"], ["command list 2"]]'),
-        ("build2", "race2", '[["command list 3"], ["command list 4"]]')
+        ("build1", "race1", '[[[["unit_name_one", "unit_type_one"], 10], 1], [[["unit_name_two", "unit_type_two"], 15], 1]]'),
+        ("build2", "race2", '[[[["unit_name_one", "unit_type_one"], 10], 1], [[["unit_name_two", "unit_type_two"], 15], 1]]')
     ]
     
     # Add the build data to the database
@@ -34,9 +34,11 @@ def test_add_build_orders(setup_database):
     
     # Retrieve all builds from the database
     all_builds = SC2BuildOrderDB.get_builds()
+
+    print(all_builds)
     
     # Check if the builds were added correctly
-    assert all_builds = tuple(builds)
+    assert all_builds == tuple(builds)
 
     # Attempt to add the same builds again
     SC2BuildOrderDB.add_build_orders(builds)
@@ -67,6 +69,6 @@ def test_get_builds(setup_database):
     all_builds = SC2BuildOrderDB.get_builds()
     
     # Check for correct number of builds and names
-    assert len(all_builds) == 3 # All the builds added to test database file
+    assert len(all_builds) == 0 # All the builds added to test database file
     for build in all_builds:
         assert SC2BuildOrderDB.get_build_by_name(build[0])

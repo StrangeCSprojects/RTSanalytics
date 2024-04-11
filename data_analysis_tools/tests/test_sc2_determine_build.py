@@ -9,16 +9,16 @@ from json import loads, dumps
 def setup_database():
     """Creates a database file to be used for testing"""
     # Initialize the test database
-    SC2BuildOrderDB.init("test_sc2_determine_build_db")
-    yield  # Run the tests
+    SC2BuildOrderDB.init("sddf")
+    data_retriever = SC2BuildOrderDataRetriever(SC2BuildOrderDB)
+    yield data_retriever # Yields the database instance
+    # yield  # Run the tests
     SC2BuildOrderDB.engine.dispose()
 
 def test_determine_build(setup_database):
-    database = SC2BuildOrderDB
-    data_retriever = SC2BuildOrderDataRetriever(database)
-    determine_build = SC2DetermineBuild(data_retriever)
+    determine_build = SC2DetermineBuild(setup_database)
 
-    build_one = (("Three CC Battle-Mech","Terran", [
+    build_one = ("Three CC Battle-Mech","Terran", dumps([
          ((("UnitInitEvent", "SupplyDepot"),10),1),
          ((("UnitInitEvent", "Barracks"),20),1),
          ((("UnitInitEvent", "CommandCenter"),40),1),
@@ -30,7 +30,7 @@ def test_determine_build(setup_database):
          ((("UnitInitEvent", "Armory"),150),1),
          ((("UnitInitEvent", "Armory"),150),1),
     ]))
-    build_two = (("1/1/1 Bio","Terran", [
+    build_two = ("1/1/1 Bio","Terran", dumps([
          ((("UnitInitEvent", "SupplyDepot"),10),1),
          ((("UnitInitEvent", "Barracks"),20),1),
          ((("UnitInitEvent", "CommandCenter"),40),1),
@@ -44,7 +44,7 @@ def test_determine_build(setup_database):
          ((("UnitInitEvent", "EngineBay"),170),1),
          ((("UnitInitEvent", "EngineBay"),170),1),
     ]))
-    build_three = (("Threaper Bio", "Terran", [
+    build_three = ("Threaper Bio", "Terran", dumps([
          ((("UnitInitEvent", "SupplyDepot"),10),1),
          ((("UnitInitEvent", "Barracks"),20),1),
          ((("UnitInitEvent", "Barracks"),22),1),
@@ -80,21 +80,20 @@ def test_determine_build(setup_database):
          ((("UnitInitEvent", "EngineBay"),1070),1),
     ]
 
-    builds_list = [dumps(build_one), dumps(build_two), dumps(build_three)]
+    builds_list = [build_one, build_two, build_three]
     SC2BuildOrderDB.add_build_orders(builds_list)
     race = "Terran"
 
     assert(determine_build.determine_build(race, user_commands) == "1/1/1 Bio")
 
-def test_compare_build_orders():
+def test_compare_build_orders(setup_database):
     """
     Tests the functionality of comparing user-generated build orders against a benchmark build order in a 
     StarCraft II context. This method assesses how closely a player's build order (timing and sequence of 
     unit and building creation) aligns with an optimal or standard build order.
     """
     # Initialize the mock database and related objects for testing.
-    database = SC2BuildOrderDB
-    data_retriever = SC2BuildOrderDataRetriever(database)
+    data_retriever = SC2BuildOrderDataRetriever(setup_database)
     determine_build = SC2DetermineBuild(data_retriever)
 
     # Define the benchmark build order as a sequence of precisely timed commands for unit and building creation.
@@ -127,9 +126,9 @@ def test_compare_build_orders():
     ]
 
     # Assert that the calculated discrepancy between the benchmark and user's build orders is as expected.
-    assert round(determine_build._compare_build_orders(benchmark_commands, user_commands),2) == .23
+    assert round(determine_build._compare_build_orders(benchmark_commands, user_commands),2) == 76.56
 
-def test_relative_error_of_unit_type():
+def test_relative_error_of_unit_type(setup_database):
     """
     The test assesses the relative error calculation for multiple unit types.
     The relative error is computed as the average deviation of the user's 
@@ -140,8 +139,7 @@ def test_relative_error_of_unit_type():
     demonstrating the method's ability to accurately reflect discrepancies in build order execution.
     """
     # Initialize the mock database and related objects for testing.
-    database = SC2BuildOrderDB
-    data_retriever = SC2BuildOrderDataRetriever(database)
+    data_retriever = SC2BuildOrderDataRetriever(setup_database)
     determine_build = SC2DetermineBuild(data_retriever)
 
     # Define benchmark timings for various units and buildings as they would appear in an ideal build order.
@@ -172,15 +170,14 @@ def test_relative_error_of_unit_type():
     assert round(determine_build._relative_error_of_unit_type(benchmark_unit_dictionary, user_unit_dictionary, unit_type_three), 2) == 0.08
     assert round(determine_build._relative_error_of_unit_type(benchmark_unit_dictionary, user_unit_dictionary, unit_type_four), 2) == 0.25
 
-def test_load_unit_dictionary():
+def test_load_unit_dictionary(setup_database):
     """
     This method populates a dictionary with unit types and their initialization times, handling both new entries
     and updates to existing ones. The test sequentially adds units to the dictionary and asserts the correctness
     of the dictionary's state after each addition.
     """
     # Initialize the mock database and related objects for testing.
-    database = SC2BuildOrderDB
-    data_retriever = SC2BuildOrderDataRetriever(database)
+    data_retriever = SC2BuildOrderDataRetriever(setup_database)
     determine_build = SC2DetermineBuild(data_retriever)
 
     # Initialize an empty dictionary for tracking units and their initialization times.
@@ -216,7 +213,7 @@ def test_load_unit_dictionary():
     determine_build._load_unit_dictionary(unit_dictionary, unit_type_five, time_five)
     assert unit_dictionary == {("UnitInitEvent", "Barracks"): [5, 10], ("UnitInitEvent", "SupplyDepot"): [7], ("UnitBornEvent", "SCV"): [15, 15]}
 
-def test_pad_user_unit_dictionary():
+def test_pad_user_unit_dictionary(setup_database):
     """
     This test simulates the scenario where a user's recorded timestamps for a specific unit type, 
     in this case, "Barracks", are incomplete compared to a benchmark dataset. The benchmark dataset 
@@ -235,8 +232,7 @@ def test_pad_user_unit_dictionary():
     padded_dictionary = {("UnitInitEvent", "Barracks"): [22,180,181,300,301,303,float('inf'),float('inf')]}
 
     # Setup for SC2 build order analysis tools
-    database = SC2BuildOrderDB
-    data_retriever = SC2BuildOrderDataRetriever(database)
+    data_retriever = SC2BuildOrderDataRetriever(setup_database)
     determine_build = SC2DetermineBuild(data_retriever)
 
     # Execute the padding method to adjust the user's dictionary

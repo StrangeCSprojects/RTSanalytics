@@ -11,7 +11,7 @@ def setup_database():
     SC2BuildOrderDB.init("test_build_orders")
     yield  # Run the tests
     # Clean the data from relevant tables after all tests are finished
-    with SC2ReplayDB.Session() as session:
+    with SC2BuildOrderDB.Session() as session:
         session.query(PlayerBuildOrder).delete()
         session.commit()
     # Close the database connection after cleaning
@@ -21,7 +21,7 @@ def setup_database():
 def test_push_build_data(setup_database):
     # Initialize data storage
     build_storage = BuildOrderDataStorage()
-    build_data = ("name1", "race1", [["command list 1"], ["command list 2"]])
+    build_data = ("name1", "race1", [((("unit_name_one", "unit_type_one"),10),1), ((("unit_name_two", "unit_type_two"),15),1)])
     build_storage.set_data(build_data)
 
     # Push the data to the database
@@ -32,7 +32,8 @@ def test_push_build_data(setup_database):
         build = session.query(PlayerBuildOrder).filter_by(name="name1").first()
         assert build is not None
         assert build.race == "race1"
-        assert build.commands == '[["command  list 1], ["command list 2"]]'
+        # print(build.commands)
+        assert build.commands == '[[[["unit_name_one", "unit_type_one"], 10], 1], [[["unit_name_two", "unit_type_two"], 15], 1]]'
 
     # Attempt to push the same game data again
     build_storage.push()

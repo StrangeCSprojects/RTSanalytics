@@ -21,7 +21,7 @@ class SC2Analyzer(Analyzer):
     It focuses on determining information such as build orders and win rates for different matchups.
     """
 
-    def __init__(self, data_retriever: SC2DataRetriever) -> None:
+    def __init__(self, data_retriever: SC2ReplayDataRetriever) -> None:
         """
         Initializes the SC2Analyzer with a specific SC2DataRetriever.
 
@@ -150,10 +150,10 @@ class SC2Analyzer(Analyzer):
 
 
 
-SC2ReplayDB.init('sc2_db')
+# SC2ReplayDB.init('sc2_db')
 
-sc2_data_retriever = SC2DataRetriever(SC2ReplayDB)
-sc2_analyzer = SC2Analyzer(sc2_data_retriever)
+# sc2_data_retriever = SC2ReplayDataRetriever(SC2ReplayDB)
+# sc2_analyzer = SC2Analyzer(sc2_data_retriever)
 
-print(sc2_analyzer.winrate_build())
-print(sc2_analyzer.winrate_race())
+# print(sc2_analyzer.winrate_build())
+# print(sc2_analyzer.winrate_race())

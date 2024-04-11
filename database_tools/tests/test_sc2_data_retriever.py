@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import Mock
-from database_tools.sc2.sc2_data_retriever import SC2DataRetriever
+from database_tools.sc2.sc2_replay_data_retriever import SC2ReplayDataRetriever
 
 
 @pytest.fixture(scope="module")
@@ -16,7 +16,7 @@ def setup_database():
 
 def test_get_play(setup_database):
     # Initialize SC2DataRetriever with mock database
-    data_retriever = SC2DataRetriever(setup_database)
+    data_retriever = SC2ReplayDataRetriever(setup_database)
 
     # Test getting play data
     game_id = 1
@@ -29,7 +29,7 @@ def test_get_play(setup_database):
 
 def test_get_all_players(setup_database):
     # Initialize SC2DataRetriever with mock database
-    data_retriever = SC2DataRetriever(setup_database)
+    data_retriever = SC2ReplayDataRetriever(setup_database)
 
     # Test getting all players
     all_players = data_retriever.get_all_players()
@@ -40,7 +40,7 @@ def test_get_all_players(setup_database):
 
 def test_get_all_games(setup_database):
     # Initialize SC2DataRetriever with mock database
-    data_retriever = SC2DataRetriever(setup_database)
+    data_retriever = SC2ReplayDataRetriever(setup_database)
 
     # Test getting all games
     all_games = data_retriever.get_all_games()

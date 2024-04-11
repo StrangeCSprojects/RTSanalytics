@@ -30,6 +30,7 @@ class SC2BuildOrderDB(GeneralDB):
     def add_build_orders(cls, build_order_list):
         with cls.Session() as session:
             for build_order in build_order_list:
+                
                 build_name = build_order[0]
                 build_race = build_order[1]
                 build_commands = build_order[2]

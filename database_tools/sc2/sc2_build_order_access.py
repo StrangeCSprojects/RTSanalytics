@@ -15,5 +15,7 @@ class BuildOrderDataStorage(DataStorage):
 
     def set_data(self, new_record) -> None:
         name, race, commands = new_record
+        print(commands)
         serialized_commands = dumps(commands)
+        print(commands)
         self._data.append((name, race, serialized_commands))
