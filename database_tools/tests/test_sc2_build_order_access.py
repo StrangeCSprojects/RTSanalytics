@@ -8,7 +8,7 @@ from database_tools.sc2.sc2_build_order_access import BuildOrderDataStorage
 @pytest.fixture(scope="module")
 def setup_database():
     # Initialize the test database
-    SC2BuildOrderDB.init("test_build_orders")
+    SC2BuildOrderDB.init("test_build_db")
     yield  # Run the tests
     # Clean the data from relevant tables after all tests are finished
     with SC2BuildOrderDB.Session() as session:

@@ -12,7 +12,7 @@ from database_tools.sc2.sc2_database_access import (
 @pytest.fixture(scope="module")
 def setup_database(scope="module"):
     # Set up test database
-    SC2ReplayDB.init("test_db")
+    SC2ReplayDB.init("test_replay_db")
     yield # Run the tests
     # Clean the data from the tables once the tests are finished
     with SC2ReplayDB.Session() as session:

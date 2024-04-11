@@ -11,7 +11,7 @@ from database_tools.sc2.entities.sc2_replay_entities import (
 @pytest.fixture(scope="module")
 def setup_database(scope="module"):
     # Set up mock database
-    SC2ReplayDB.init("test_db")
+    SC2ReplayDB.init("test_replay_db")
     SC2ReplayDB.add_plays(
         [
             (1, 1, "Terran", True, "command1"),

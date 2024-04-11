@@ -1,5 +1,4 @@
 import pytest
-from unittest.mock import Mock
 from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
 
@@ -7,7 +6,7 @@ from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataR
 @pytest.fixture(scope="module")
 def setup_database():
     # Set up the database
-    SC2BuildOrderDB.init("test_build_orders")
+    SC2BuildOrderDB.init("test_build_db")
     data_retriever = SC2BuildOrderDataRetriever(SC2BuildOrderDB)
     yield data_retriever # Yields the database instance
 

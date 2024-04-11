@@ -11,7 +11,7 @@ Base = declarative_base()  # Define Base using declarative_base() from sqlalchem
 @pytest.fixture()
 def setup_database(scope="module"):
     # Initialize the test database
-    SC2BuildOrderDB.init("test_build_orders")
+    SC2BuildOrderDB.init("test_build_db")
     yield  # Run the tests
     # Clean the data from relevant tables after all tests are finished
     with SC2BuildOrderDB.Session() as session:
