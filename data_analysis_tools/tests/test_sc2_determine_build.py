@@ -2,6 +2,7 @@ import pytest
 from data_analysis_tools.sc2.sc2_build_order.sc2_determine_build import SC2DetermineBuild
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
 from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
+from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder
 from math import inf
 from json import loads, dumps
 
@@ -9,11 +10,15 @@ from json import loads, dumps
 def setup_database():
     """Creates a database file to be used for testing"""
     # Initialize the test database
-    SC2BuildOrderDB.init("sddf")
+    SC2BuildOrderDB.init("test_build_db")
     data_retriever = SC2BuildOrderDataRetriever(SC2BuildOrderDB)
     yield data_retriever # Yields the database instance
-    # yield  # Run the tests
+    with SC2BuildOrderDB.Session() as session:
+        session.query(PlayerBuildOrder).delete()
+        session.commit()
+    # Close the database connection after cleaning
     SC2BuildOrderDB.engine.dispose()
+
 
 def test_determine_build(setup_database):
     determine_build = SC2DetermineBuild(setup_database)
