@@ -11,9 +11,11 @@ class BuildOrderDataStorage(DataStorage):
     """
 
     def push(self) -> None:
-        SC2BuildOrderDB.add_build_order(self._data)
+        SC2BuildOrderDB.add_build_orders(self._data)
 
     def set_data(self, new_record) -> None:
         name, race, commands = new_record
+        print(commands)
         serialized_commands = dumps(commands)
+        print(commands)
         self._data.append((name, race, serialized_commands))

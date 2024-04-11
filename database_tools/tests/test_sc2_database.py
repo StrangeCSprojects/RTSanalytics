@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.orm import declarative_base
 from database_tools.sc2.sc2_replay_database import SC2ReplayDB
-from database_tools.sc2.entities.sc2_db_entities import Play, Player, Game
+from database_tools.sc2.entities.sc2_replay_entities import Play, Player, Game
 
 
 Base = declarative_base()  # Define Base using declarative_base() from sqlalchemy.orm
@@ -11,7 +11,7 @@ Base = declarative_base()  # Define Base using declarative_base() from sqlalchem
 @pytest.fixture()
 def setup_database(scope="module"):
     # Initialize the test database
-    SC2ReplayDB.init("test_db")
+    SC2ReplayDB.init("test_replay_db")
     yield  # Run the tests
     # Clean the data from relevant tables after all tests are finished
     with SC2ReplayDB.Session() as session:
