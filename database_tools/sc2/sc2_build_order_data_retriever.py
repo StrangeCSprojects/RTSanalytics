@@ -36,7 +36,6 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         for build in all_builds:
             if build[1] != race:
                 continue
-            play = self.get_play(game_id, player_id)
             serialized_commands = build[2]
             temp_result = loads(serialized_commands)
 
