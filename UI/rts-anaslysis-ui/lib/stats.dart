@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'globals.dart';
+import 'dart:html' as html;
 
 const Color backgroundColor = Color.fromARGB(0, 255, 255, 255);
 
@@ -148,17 +149,25 @@ class ContentTitle extends StatelessWidget {
                         onPressed: kIsWeb ? () {
                           // Handle button press here for web
                         } : null,
-                        child: Text(kIsWeb ? 'Download' : 'Import', style: TextStyle(color: Colors.white, fontSize: 30)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: kIsWeb ? Color(0xFF34585E) : Color.fromARGB(255, 250, 0, 0), // background color
-                          surfaceTintColor: Color.fromARGB(255, 250, 0, 0),
+                        child: Tooltip(
+                          message: kIsWeb ? '' : 'currently not able to import user submitted replys',
+                          child: Text(kIsWeb ? 'Download' : 'Import', style: TextStyle(color: Colors.white, fontSize: 30)),
                         ),
-                      )
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed))
+                                return kIsWeb ? Color(0xFF34585E) : Color.fromARGB(255, 68, 68, 68);
+                              return kIsWeb ? Color(0xFF34585E) : Color.fromARGB(255, 68, 68, 68);
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ]
-        ),
+          ),
       ),
     );
   } 
@@ -187,6 +196,7 @@ class BuildOrderContainer extends StatelessWidget {
       BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
       BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
       BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
+      BuildOrderSideSpacer(),
     ],
       ),
     );
@@ -206,6 +216,13 @@ class BuildOrderSideSpacer extends StatelessWidget {
       )
     );
   }
+}
+
+void downloadFile(String url, String fileName) {
+  // Create an anchor element
+  final anchor = html.AnchorElement(href: url)
+    ..setAttribute("download", fileName)
+    ..click();
 }
 
 class BuildOrderWidget extends StatelessWidget {
@@ -254,7 +271,9 @@ class BuildOrderWidget extends StatelessWidget {
                       height: 60,
                       child: ElevatedButton(
                         onPressed: kIsWeb ? null : () {
-                          // Handle button press here
+                          String downloadurl = './downloads/rtsanalytics.exe';
+                          String fileName = 'downloadedFile.pdf';
+                          downloadFile(downloadurl, fileName);
                         },
                         child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
                         style: ElevatedButton.styleFrom(
