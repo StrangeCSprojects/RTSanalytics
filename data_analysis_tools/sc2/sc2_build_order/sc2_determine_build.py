@@ -1,3 +1,4 @@
+from math import inf
 from data_analysis_tools.general.determine_build import DetermineBuild
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
 
@@ -43,7 +44,7 @@ class SC2DetermineBuild(DetermineBuild):
         closest_build_order = "Misc."
 
         # iterate through each build of the same race in the database
-        for benchmark_build in self.data_retriever.get_all_builds_of_race(race):
+        for benchmark_build in self.data_retriever.get_all_builds_by_race(race):
             benchmark_name = benchmark_build[0]  # name of build
             benchmark_commands = benchmark_build[
                 1
@@ -62,7 +63,7 @@ class SC2DetermineBuild(DetermineBuild):
     def _compare_build_orders(
         self,
         benchmark_commands: list[tuple[tuple[tuple[str, str], int]], float],
-        user_commands,
+        user_commands: list[tuple[tuple[str, str], int]],
     ) -> float:
         """
         Helper method, compares the user's build to one of the benchmark builds and returns the relative error
@@ -117,13 +118,19 @@ class SC2DetermineBuild(DetermineBuild):
                     benchmark_unit_dictionary, user_unit_dictionary, unit_type
                 )
             )
-            mean_relative_error = sum(relative_error_list) / len(relative_error_list)
-            return mean_relative_error
+        print(relative_error_list)
+
+        mean_relative_error = sum(relative_error_list) / len(relative_error_list)
+        print(mean_relative_error)
+
+        percent_similarity = (1 - mean_relative_error) * 100
+
+        return percent_similarity
 
     def _relative_error_of_unit_type(
         self,
-        benchmark_unit_dictionary: dict[str : list[int]],
-        user_unit_dictionary: dict[str : list[int]],
+        benchmark_unit_dictionary: dict[tuple[str, str] : list[int]],
+        user_unit_dictionary: dict[tuple[str, str] : list[int]],
         unit_type: tuple[str, str],
     ) -> float:
         """
@@ -157,7 +164,7 @@ class SC2DetermineBuild(DetermineBuild):
         return mean_relative_error
 
     def _load_unit_dictionary(
-        self, unit_dictionary: dict[str : list[int]], unit_type: tuple[str, str], time
+        self, unit_dictionary: dict[tuple[str, str] : list[int]], unit_type: tuple[str, str], time:int
     ) -> None:
         """
         Helper method, loads the unit and its corresponding time into a dictionary.
@@ -173,8 +180,8 @@ class SC2DetermineBuild(DetermineBuild):
 
     def _pad_user_unit_dictionary(
         self,
-        benchmark_unit_dictionary: dict[str : list[int]],
-        user_unit_dictionary: dict[str : list[int]],
+        benchmark_unit_dictionary: dict[tuple[str, str] : list[int]],
+        user_unit_dictionary: dict[tuple[str, str] : list[int]],
         unit_type: tuple[str, str],
     ) -> None:
         """
@@ -189,4 +196,4 @@ class SC2DetermineBuild(DetermineBuild):
         while len(user_unit_dictionary[unit_type]) < len(
             benchmark_unit_dictionary[unit_type]
         ):
-            user_unit_dictionary[unit_type] = 100000
+            user_unit_dictionary[unit_type].append(inf)

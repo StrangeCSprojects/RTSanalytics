@@ -1,6 +1,9 @@
 from data_analysis_tools.general.build_order.build_order_creator import (
     BuildOrderCreator,
 )
+
+from database_tools.sc2.sc2_build_order_access import BuildOrderDataStorage
+
 import csv
 
 
@@ -19,7 +22,7 @@ class SC2BuildOrderCreator(BuildOrderCreator):
         """
         super().__init__()
         # Initialize the build data storage.
-        self._build_data = BuildOrderStorage()
+        self._build_data = BuildOrderDataStorage()
 
     def create_build(self, name:str, race:str, file_name: str) -> None:
         """
