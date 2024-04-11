@@ -1,4 +1,3 @@
-from platform import java_ver
 import pytest
 from unittest.mock import Mock
 from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB

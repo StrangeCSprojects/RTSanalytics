@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.orm import declarative_base
 from database_tools.sc2.sc2_replay_database import SC2ReplayDB
-from database_tools.sc2.entities.sc2_db_entities import Play, Player, Game
+from database_tools.sc2.entities.sc2_replay_entities import Play, Player, Game
 
 
 Base = declarative_base()  # Define Base using declarative_base() from sqlalchemy.orm

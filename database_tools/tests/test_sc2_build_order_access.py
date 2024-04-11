@@ -11,7 +11,7 @@ def setup_database():
     SC2BuildOrderDB.init("test_build_orders")
     yield  # Run the tests
     # Clean the data from relevant tables after all tests are finished
-    with SC2ReplayDB.Session() as session:
+    with SC2BuildOrderDB.Session() as session:
         session.query(PlayerBuildOrder).delete()
         session.commit()
     # Close the database connection after cleaning

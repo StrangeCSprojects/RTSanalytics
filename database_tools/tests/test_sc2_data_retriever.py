@@ -1,22 +1,48 @@
 import pytest
-from unittest.mock import Mock
-from database_tools.sc2.sc2_data_retriever import SC2DataRetriever
+from database_tools.sc2.sc2_replay_data_retriever import SC2ReplayDataRetriever
+from database_tools.sc2.sc2_replay_database import SC2ReplayDB
+from database_tools.sc2.entities.sc2_replay_entities import (
+    Play,
+    Player,
+    Game
+)
 
 
 @pytest.fixture(scope="module")
-def setup_database():
+def setup_database(scope="module"):
     # Set up mock database
-    database_mock = Mock()
-    database_mock.get_play.return_value = ("Terran", True, "command1")
-    database_mock.get_all_players.return_value = [(1, "Player1"), (2, "Player2")]
-    database_mock.get_all_games.return_value = [(1, "Map1", "Mode1"), (2, "Map2", "Mode2")]
-
-    yield database_mock
+    SC2ReplayDB.init("test_db")
+    SC2ReplayDB.add_plays(
+        [
+            (1, 1, "Terran", True, "command1"),
+            (2, 4, "Zerg", False, "command2")
+        ]
+    )
+    SC2ReplayDB.add_players(
+        [
+            (1, "Player1"),
+            (2, "Player2")
+        ]
+    )
+    SC2ReplayDB.add_games(
+        [
+            (1, "Map1", "Mode1"),
+            (2, "Map2", "Mode2")
+        ]
+    )
+    yield # Run the tests
+    with SC2ReplayDB.Session() as session:
+        session.query(Game).delete()
+        session.query(Player).delete()
+        session.query(Play).delete()
+        session.commit()
+    # Close the connection to the test database
+    SC2ReplayDB.engine.dispose()
 
 
 def test_get_play(setup_database):
     # Initialize SC2DataRetriever with mock database
-    data_retriever = SC2DataRetriever(setup_database)
+    data_retriever = SC2ReplayDataRetriever(SC2ReplayDB)
 
     # Test getting play data
     game_id = 1
@@ -29,21 +55,21 @@ def test_get_play(setup_database):
 
 def test_get_all_players(setup_database):
     # Initialize SC2DataRetriever with mock database
-    data_retriever = SC2DataRetriever(setup_database)
+    data_retriever = SC2ReplayDataRetriever(SC2ReplayDB)
 
     # Test getting all players
     all_players = data_retriever.get_all_players()
 
     # Assert expected player data
-    assert all_players == [(1, "Player1"), (2, "Player2")]
+    assert all_players == ((1, "Player1"), (2, "Player2"))
 
 
 def test_get_all_games(setup_database):
     # Initialize SC2DataRetriever with mock database
-    data_retriever = SC2DataRetriever(setup_database)
+    data_retriever = SC2ReplayDataRetriever(SC2ReplayDB)
 
     # Test getting all games
     all_games = data_retriever.get_all_games()
 
     # Assert expected game data
-    assert all_games == [(1, "Map1", "Mode1"), (2, "Map2", "Mode2")]
+    assert all_games == ((1, "Map1", "Mode1"), (2, "Map2", "Mode2"))
