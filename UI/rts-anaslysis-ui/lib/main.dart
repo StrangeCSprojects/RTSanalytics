@@ -1,67 +1,36 @@
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'home.dart';
 import 'stats.dart';
 
 
 void main() {
-  runApp(const FigmaToCodeApp());
+  runApp(const MainContent());
 }
 
-
-
-class FigmaToCodeApp extends StatelessWidget {
-  const FigmaToCodeApp({super.key});
-
-  // // Fetch the output from the Python function
-  // Future<String> fetchOutput() async {
-  //   final response = await http.get(Uri.parse('http://localhost:5001//getPythonFunctionOutput'));
-  //   if (response.statusCode == 200) {
-  //     // If the server returns a 200 OK response, parse the JSON
-  //     return jsonDecode(response.body)['data'];
-  //   } else {
-  //     // If the server did not return a 200 OK response,
-  //     // throw an exception.
-  //     throw Exception('Failed to load data');
-  //   }
-  // }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     home: Scaffold(
-  //       body: FutureBuilder<String>(
-  //         future: fetchOutput(),
-  //         builder: (context, snapshot) {
-  //           if (snapshot.hasData) {
-  //             return Text("Output from Python: ${snapshot.data}");
-  //           } else if (snapshot.hasError) {
-  //             return Text("${snapshot.error}");
-  //           }
-  //           // By default, show a loading spinner.
-  //           return const CircularProgressIndicator();
-  //         },
-  //       ),
-  //     ),
-  //   );
-  // }
-
-
+class MainContent extends StatelessWidget {
+  const MainContent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-              body: Stack(
-                children: [
-                  Positioned.fill(
-                    child: Stats(),
-                  ),
-            ],
-          ),
+        body: Stack(
+          children: [
+            Positioned.fill(child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment(0.00, -1.00),
+                  end: Alignment(0, 1),
+                  colors: [Color(0xFF0D0802), Color(0xFF4B8791)],
+                ),
+              ),
+            ),
+            ),
+            Positioned.fill(
+              child: Stats(),
+            ),
+          ],
         ),
+      ),
     );
   }
 }
