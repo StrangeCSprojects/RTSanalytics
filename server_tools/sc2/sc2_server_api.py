@@ -1,10 +1,20 @@
+from data_analysis_tools.general.analyzer import Analyzer
+from database_tools.general.data_retriever import DataRetriever
 from server_tools.interfaces.GetBuildOrders import GetBuildOrders
 from server_tools.interfaces.DisplayOverlay import DisplayOverlay
 from server_tools.interfaces.GetWinratesRace import GetWinratesRace
+from data_analysis_tools.general.build_order.build_order_overlay import (
+    BuildOrderOverlay,
+)
 
 class SC2ServerAPI(GetBuildOrders, DisplayOverlay, GetWinratesRace):
+    # Declare the three class variables
+    overlay: BuildOrderOverlay
+    data_retriever: DataRetriever
+    analyzer: Analyzer
+
     def __init__(cls):
-        # Initialize class attributes here if needed
+        # Initialize your class attributes here if needed
         pass
 
     def get_build_orders(cls):
