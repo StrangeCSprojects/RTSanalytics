@@ -50,7 +50,7 @@ class SC2DetermineBuild(DetermineBuild):
                 1
             ]  # tuple(tuple(tuple(unit_type, unit_name),time),weight)
             confidence_scores[benchmark_name] = self._compare_build_orders(
-                benchmark_commands, user_commands
+                benchmark_commands, user_commands 
             )
 
         # find the build that is most similar to the user's build
