@@ -96,6 +96,8 @@ class SC2Analyzer(Analyzer):
             match_up = (player_one_build, player_two_build, winner_build)
             match_ups_list.append(match_up)
 
+        
+
         # Calculate and return win rates for the compiled matchups.
         return winrate_calculator.calculate_matchup_winrates(match_ups_list)
 

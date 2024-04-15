@@ -1,2 +1,4 @@
 2024-04-12 23:23:00,279 - sc2_build_order_creator.py:87 - ERROR - [Errno 2] No such file or directory: 'sc2_build/testme.docx'
 2024-04-12 23:23:25,698 - sc2_build_order_creator.py:88 - ERROR - [Errno 2] No such file or directory: 'sc2_build/testme.docx'
+2024-04-14 20:34:51,937 - sc2_build_order_creator.py:94 - ERROR - 'testme.docx' needs to be converted to a csv file
+2024-04-14 20:35:09,205 - sc2_build_order_creator.py:94 - ERROR - 'testme.docx' needs to be converted to a csv file
