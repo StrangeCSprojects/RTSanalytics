@@ -2,6 +2,9 @@ from json import loads
 import string
 from database_tools.general.data_retriever import DataRetriever
 from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
+import logging
+from config.sc2_logging_config import setup_logging
+setup_logging()
 
 
 class SC2BuildOrderDataRetriever(DataRetriever):
@@ -33,6 +36,7 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         """
         build = self.database.get_build_by_name(build_name)
         if not build:
+            self._log_build_not_found(build_name)
             return None
         race = build[1]
 
@@ -52,6 +56,9 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         """
         result = []
         all_builds = self.database.get_builds()
+
+        self._log_build_list_race_empty(race, all_builds)
+
         for build in all_builds:
             if build[1] != race:
                 continue
@@ -69,7 +76,10 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         Returns all the builds in the build order database
         """
         # REMEMBER TO CALL THE LOADS FUNCTION ON THE COMMAND LIST
-        return self.database.get_builds()
+
+        build_list = self.database.get_builds()
+        self._log_build_list_database_empty(build_list)
+        return build_list
 
     # def get_commands(self, build_order_name: str):
     #     """
@@ -83,3 +93,17 @@ class SC2BuildOrderDataRetriever(DataRetriever):
     #     result = [(tuple(inner_list[0]), inner_list[1]) for inner_list in temp_result]
 
     #     return result
+
+    def _log_build_not_found(self, build_name):
+        msg = f"There is no build order named: {build_name}"
+        logging.warning(msg)
+
+    def _log_build_list_race_empty(self, race, build_list):
+        if len(build_list) == 0:
+            msg = f"Race: {race} - Has no associated builds"
+            logging.warning(msg)
+
+    def _log_build_list_database_empty(self, build_list):
+        if len(build_list) == 0:
+            msg = f"No builds in database"
+            logging.warning(msg)

@@ -5,7 +5,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker, strategies
 from database_tools.general.general_database import GeneralDB
 from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder, Base
-
+import logging
+from config.sc2_logging_config import setup_logging
+setup_logging()
 
 class SC2BuildOrderDB(GeneralDB):
     """
@@ -52,6 +54,7 @@ class SC2BuildOrderDB(GeneralDB):
             if build:
                 return (build.name, build.race, build.commands)
             else:
+                cls._log_name_not_found(build_name)
                 return None
 
     @classmethod
@@ -62,3 +65,8 @@ class SC2BuildOrderDB(GeneralDB):
                 for build_order in session.query(PlayerBuildOrder).all()
             )
             return builds
+        
+    @classmethod
+    def _log_name_not_found(cls, build_name):
+        msg = f"Build: {build_name} - Build not found."
+        logging.warning(msg)

@@ -14,6 +14,9 @@ from data_analysis_tools.sc2.sc2_build_order.sc2_determine_build import (
     SC2DetermineBuild,
 )  # For determining SC2 build orders.
 from database_tools.sc2.sc2_replay_database import SC2ReplayDB
+import logging
+from config.sc2_logging_config import setup_logging
+setup_logging()
 
 class SC2Analyzer(Analyzer):
     """
@@ -73,13 +76,19 @@ class SC2Analyzer(Analyzer):
             player_two_race = self.data_retriever.get_player_race(game_id, player_two_id)
 
             # Error handling, catches if no build order matches and if there is an incorrect build order type
-            # Needs logging
             try:
-                # Placeholder for build order calculation.
                 player_one_build = build_order_calculator.determine_build(player_one_race, player_one_commands)
+            except ValueError:
+                msg = f"No matching build - player: {player_one_id} - game: {game_id}"
+                logging.info(msg)
+                continue
+
+            # Error handling, catches if no build order matches and if there is an incorrect build order type
+            try:
                 player_two_build = build_order_calculator.determine_build(player_two_race, player_two_commands)
-            except ValueError as error:
-                print(error)
+            except ValueError:
+                msg = f"No matching build - player: {player_two_id} - game: {game_id}"
+                logging.info(msg)
                 continue
 
             # Determine the winner based on game data.
@@ -98,9 +107,11 @@ class SC2Analyzer(Analyzer):
 
         
 
-        # Calculate and return win rates for the compiled matchups.
-        return winrate_calculator.calculate_matchup_winrates(match_ups_list)
 
+        # Calculate and return win rates for the compiled matchups.
+        result = winrate_calculator.calculate_matchup_winrates(match_ups_list)
+        self._log_build_results(result)
+        return result
     def winrate_race(self) -> dict:
         """
         Calculates win rates based on the races of the players in SC2 matches.
@@ -148,7 +159,19 @@ class SC2Analyzer(Analyzer):
             match_ups_list.append(match_up)
 
         # Calculate and return win rates for the compiled matchups.
-        return winrate_calculator.calculate_matchup_winrates(match_ups_list)
+        result = winrate_calculator.calculate_matchup_winrates(match_ups_list)
+        self._log_race_results(result)
+        return result
+
+    def _log_build_results(self, result):
+        msg = f"Winrate by build_order: {result}"
+        logging.info(msg)
+
+    def _log_race_results(self, result):
+        msg = f"Winrate by race: {result}"
+        logging.info(msg)
+
+
 
 
 
