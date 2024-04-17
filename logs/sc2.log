@@ -2,3 +2,79 @@
 2024-04-12 23:23:25,698 - sc2_build_order_creator.py:88 - ERROR - [Errno 2] No such file or directory: 'sc2_build/testme.docx'
 2024-04-14 20:34:51,937 - sc2_build_order_creator.py:94 - ERROR - 'testme.docx' needs to be converted to a csv file
 2024-04-14 20:35:09,205 - sc2_build_order_creator.py:94 - ERROR - 'testme.docx' needs to be converted to a csv file
+2024-04-16 21:25:54,713 - sc2_build_order_database.py:72 - WARNING - Build: Three CC Battle-Mech - Build not found.
+2024-04-16 21:25:54,713 - sc2_build_order_database.py:72 - WARNING - Build: 1/1/1 Bio - Build not found.
+2024-04-16 21:25:54,713 - sc2_build_order_database.py:72 - WARNING - Build: Threaper Bio - Build not found.
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'SupplyDepot') - Relative Error: 0.2 - Benchmark: [10] - User: [12, 200]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Barracks') - Relative Error: 0.1 - Benchmark: [20] - User: [22, 100, 110, 150, 150, 170, 250, 400, 410, 750, 950, 1070]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'CommandCenter') - Relative Error: 0.625 - Benchmark: [40, 70] - User: [50, 275]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Factory') - Relative Error: 0.7083333333333334 - Benchmark: [80, 110, 110] - User: [90, 300, inf]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Starport') - Relative Error: 0.1 - Benchmark: [100] - User: [110, 510]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Armory') - Relative Error: 1.0 - Benchmark: [150, 150] - User: [inf, inf]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:207 - INFO - Build: ('Three CC Battle-Mech', [((('UnitInitEvent', 'SupplyDepot'), 10), 1), ((('UnitInitEvent', 'Barracks'), 20), 1), ((('UnitInitEvent', 'CommandCenter'), 40), 1), ((('UnitInitEvent', 'CommandCenter'), 70), 1), ((('UnitInitEvent', 'Factory'), 80), 1), ((('UnitInitEvent', 'Starport'), 100), 1), ((('UnitInitEvent', 'Factory'), 110), 1), ((('UnitInitEvent', 'Factory'), 110), 1), ((('UnitInitEvent', 'Armory'), 150), 1), ((('UnitInitEvent', 'Armory'), 150), 1)]) - Confidence Score: 54.44444444444445
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'SupplyDepot') - Relative Error: 0.2 - Benchmark: [10] - User: [12, 200]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Barracks') - Relative Error: 0.02 - Benchmark: [20, 100, 110, 150, 150] - User: [22, 100, 110, 150, 150, 170, 250, 400, 410, 750, 950, 1070]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'CommandCenter') - Relative Error: 0.625 - Benchmark: [40, 130] - User: [50, 275]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Factory') - Relative Error: 0.2857142857142857 - Benchmark: [70] - User: [90, 300]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Starport') - Relative Error: 0.375 - Benchmark: [80] - User: [110, 510]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'EngineBay') - Relative Error: 0.5 - Benchmark: [170, 170] - User: [170, 1070]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:207 - INFO - Build: ('1/1/1 Bio', [((('UnitInitEvent', 'SupplyDepot'), 10), 1), ((('UnitInitEvent', 'Barracks'), 20), 1), ((('UnitInitEvent', 'CommandCenter'), 40), 1), ((('UnitInitEvent', 'Factory'), 70), 1), ((('UnitInitEvent', 'Starport'), 80), 1), ((('UnitInitEvent', 'Barracks'), 100), 1), ((('UnitInitEvent', 'Barracks'), 110), 1), ((('UnitInitEvent', 'CommandCenter'), 130), 1), ((('UnitInitEvent', 'Barracks'), 150), 1), ((('UnitInitEvent', 'Barracks'), 150), 1), ((('UnitInitEvent', 'EngineBay'), 170), 1), ((('UnitInitEvent', 'EngineBay'), 170), 1)]) - Confidence Score: 66.57142857142857
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'SupplyDepot') - Relative Error: 0.2 - Benchmark: [10] - User: [12, 200]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Barracks') - Relative Error: 0.55 - Benchmark: [20, 22] - User: [22, 100, 110, 150, 150, 170, 250, 400, 410, 750, 950, 1070]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Reaper') - Relative Error: 1.0 - Benchmark: [30, 32, 35] - User: [inf, inf, inf]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Factory') - Relative Error: 0.8 - Benchmark: [50] - User: [90, 300]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'CommandCenter') - Relative Error: 0.2857142857142857 - Benchmark: [70] - User: [50, 275]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Starport') - Relative Error: 0.1 - Benchmark: [100] - User: [110, 510]
+2024-04-16 21:25:54,723 - sc2_determine_build.py:207 - INFO - Build: ('Threaper Bio', [((('UnitInitEvent', 'SupplyDepot'), 10), 1), ((('UnitInitEvent', 'Barracks'), 20), 1), ((('UnitInitEvent', 'Barracks'), 22), 1), ((('UnitInitEvent', 'Reaper'), 30), 1), ((('UnitInitEvent', 'Reaper'), 32), 1), ((('UnitInitEvent', 'Reaper'), 35), 1), ((('UnitInitEvent', 'Factory'), 50), 1), ((('UnitInitEvent', 'CommandCenter'), 70), 1), ((('UnitInitEvent', 'Starport'), 100), 1)]) - Confidence Score: 51.07142857142857
+2024-04-16 21:25:54,725 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitBornEvent', 'SCV') - Relative Error: 0.4666666666666666 - Benchmark: [1, 5, 6] - User: [1, 7, inf]
+2024-04-16 21:25:54,725 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Barracks') - Relative Error: 0.082 - Benchmark: [10, 30, 35, 120, 150] - User: [12, 35, 35, 122, 146]
+2024-04-16 21:25:54,725 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Starport') - Relative Error: 0.25 - Benchmark: [60] - User: [75]
+2024-04-16 21:25:54,725 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'CommandCenter') - Relative Error: 0.1388888888888889 - Benchmark: [120, 360] - User: [100, 400]
+2024-04-16 21:25:54,739 - sc2_build_order_database.py:72 - WARNING - Build: name1 - Build not found.
+2024-04-16 21:25:54,759 - sc2_build_order_database.py:72 - WARNING - Build: test build - Build not found.
+2024-04-16 21:25:54,759 - sc2_build_order_data_retriever.py:99 - WARNING - There is no build order named: test build
+2024-04-16 21:25:54,759 - sc2_build_order_database.py:72 - WARNING - Build: test1 - Build not found.
+2024-04-16 21:25:54,767 - sc2_build_order_database.py:72 - WARNING - Build: test2 - Build not found.
+2024-04-16 21:25:54,768 - sc2_build_order_database.py:72 - WARNING - Build: test3 - Build not found.
+2024-04-16 21:25:54,785 - sc2_build_order_database.py:72 - WARNING - Build: build1 - Build not found.
+2024-04-16 21:25:54,786 - sc2_build_order_database.py:72 - WARNING - Build: build2 - Build not found.
+2024-04-16 21:25:54,804 - sc2_build_order_database.py:72 - WARNING - Build: new build - Build not found.
+2024-04-16 21:25:54,804 - sc2_build_order_database.py:72 - WARNING - Build: new build - Build not found.
+2024-04-16 21:28:21,081 - sc2_build_order_database.py:72 - WARNING - Build: Three CC Battle-Mech - Build not found.
+2024-04-16 21:28:21,082 - sc2_build_order_database.py:72 - WARNING - Build: 1/1/1 Bio - Build not found.
+2024-04-16 21:28:21,082 - sc2_build_order_database.py:72 - WARNING - Build: Threaper Bio - Build not found.
+2024-04-16 21:28:21,090 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'SupplyDepot') - Relative Error: 0.2 - Benchmark: [10] - User: [12, 200]
+2024-04-16 21:28:21,090 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Barracks') - Relative Error: 0.1 - Benchmark: [20] - User: [22, 100, 110, 150, 150, 170, 250, 400, 410, 750, 950, 1070]
+2024-04-16 21:28:21,099 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'CommandCenter') - Relative Error: 0.625 - Benchmark: [40, 70] - User: [50, 275]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Factory') - Relative Error: 0.7083333333333334 - Benchmark: [80, 110, 110] - User: [90, 300, inf]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Starport') - Relative Error: 0.1 - Benchmark: [100] - User: [110, 510]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Armory') - Relative Error: 1.0 - Benchmark: [150, 150] - User: [inf, inf]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:207 - INFO - Build: ('Three CC Battle-Mech', [((('UnitInitEvent', 'SupplyDepot'), 10), 1), ((('UnitInitEvent', 'Barracks'), 20), 1), ((('UnitInitEvent', 'CommandCenter'), 40), 1), ((('UnitInitEvent', 'CommandCenter'), 70), 1), ((('UnitInitEvent', 'Factory'), 80), 1), ((('UnitInitEvent', 'Starport'), 100), 1), ((('UnitInitEvent', 'Factory'), 110), 1), ((('UnitInitEvent', 'Factory'), 110), 1), ((('UnitInitEvent', 'Armory'), 150), 1), ((('UnitInitEvent', 'Armory'), 150), 1)]) - Confidence Score: 54.44444444444445
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'SupplyDepot') - Relative Error: 0.2 - Benchmark: [10] - User: [12, 200]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Barracks') - Relative Error: 0.02 - Benchmark: [20, 100, 110, 150, 150] - User: [22, 100, 110, 150, 150, 170, 250, 400, 410, 750, 950, 1070]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'CommandCenter') - Relative Error: 0.625 - Benchmark: [40, 130] - User: [50, 275]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Factory') - Relative Error: 0.2857142857142857 - Benchmark: [70] - User: [90, 300]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Starport') - Relative Error: 0.375 - Benchmark: [80] - User: [110, 510]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'EngineBay') - Relative Error: 0.5 - Benchmark: [170, 170] - User: [170, 1070]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:207 - INFO - Build: ('1/1/1 Bio', [((('UnitInitEvent', 'SupplyDepot'), 10), 1), ((('UnitInitEvent', 'Barracks'), 20), 1), ((('UnitInitEvent', 'CommandCenter'), 40), 1), ((('UnitInitEvent', 'Factory'), 70), 1), ((('UnitInitEvent', 'Starport'), 80), 1), ((('UnitInitEvent', 'Barracks'), 100), 1), ((('UnitInitEvent', 'Barracks'), 110), 1), ((('UnitInitEvent', 'CommandCenter'), 130), 1), ((('UnitInitEvent', 'Barracks'), 150), 1), ((('UnitInitEvent', 'Barracks'), 150), 1), ((('UnitInitEvent', 'EngineBay'), 170), 1), ((('UnitInitEvent', 'EngineBay'), 170), 1)]) - Confidence Score: 66.57142857142857
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'SupplyDepot') - Relative Error: 0.2 - Benchmark: [10] - User: [12, 200]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Barracks') - Relative Error: 0.55 - Benchmark: [20, 22] - User: [22, 100, 110, 150, 150, 170, 250, 400, 410, 750, 950, 1070]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Reaper') - Relative Error: 1.0 - Benchmark: [30, 32, 35] - User: [inf, inf, inf]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Factory') - Relative Error: 0.8 - Benchmark: [50] - User: [90, 300]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'CommandCenter') - Relative Error: 0.2857142857142857 - Benchmark: [70] - User: [50, 275]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Starport') - Relative Error: 0.1 - Benchmark: [100] - User: [110, 510]
+2024-04-16 21:28:21,100 - sc2_determine_build.py:207 - INFO - Build: ('Threaper Bio', [((('UnitInitEvent', 'SupplyDepot'), 10), 1), ((('UnitInitEvent', 'Barracks'), 20), 1), ((('UnitInitEvent', 'Barracks'), 22), 1), ((('UnitInitEvent', 'Reaper'), 30), 1), ((('UnitInitEvent', 'Reaper'), 32), 1), ((('UnitInitEvent', 'Reaper'), 35), 1), ((('UnitInitEvent', 'Factory'), 50), 1), ((('UnitInitEvent', 'CommandCenter'), 70), 1), ((('UnitInitEvent', 'Starport'), 100), 1)]) - Confidence Score: 51.07142857142857
+2024-04-16 21:28:21,101 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitBornEvent', 'SCV') - Relative Error: 0.4666666666666666 - Benchmark: [1, 5, 6] - User: [1, 7, inf]
+2024-04-16 21:28:21,102 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Barracks') - Relative Error: 0.082 - Benchmark: [10, 30, 35, 120, 150] - User: [12, 35, 35, 122, 146]
+2024-04-16 21:28:21,102 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'Starport') - Relative Error: 0.25 - Benchmark: [60] - User: [75]
+2024-04-16 21:28:21,102 - sc2_determine_build.py:212 - INFO - Unit Type: ('UnitInitEvent', 'CommandCenter') - Relative Error: 0.1388888888888889 - Benchmark: [120, 360] - User: [100, 400]
+2024-04-16 21:28:21,117 - sc2_build_order_database.py:72 - WARNING - Build: name1 - Build not found.
+2024-04-16 21:28:21,137 - sc2_build_order_database.py:72 - WARNING - Build: test build - Build not found.
+2024-04-16 21:28:21,137 - sc2_build_order_data_retriever.py:99 - WARNING - There is no build order named: test build
+2024-04-16 21:28:21,137 - sc2_build_order_database.py:72 - WARNING - Build: test1 - Build not found.
+2024-04-16 21:28:21,146 - sc2_build_order_database.py:72 - WARNING - Build: test2 - Build not found.
+2024-04-16 21:28:21,147 - sc2_build_order_database.py:72 - WARNING - Build: test3 - Build not found.
+2024-04-16 21:28:21,163 - sc2_build_order_database.py:72 - WARNING - Build: build1 - Build not found.
+2024-04-16 21:28:21,164 - sc2_build_order_database.py:72 - WARNING - Build: build2 - Build not found.
+2024-04-16 21:28:21,183 - sc2_build_order_database.py:72 - WARNING - Build: new build - Build not found.
+2024-04-16 21:28:21,183 - sc2_build_order_database.py:72 - WARNING - Build: new build - Build not found.

@@ -166,16 +166,19 @@ class SC2ReplayDB(GeneralDB):
         cls._player_id_count += 1
         return cls._player_id_count
 
+    @classmethod
     def _check_game_id(cls, game_id, plays_list):
         if len(plays_list) == 0:
             msg = f"Game ID: {game_id} - No game found" 
             logging.error(msg)
             raise ValueError(msg)
         
+    @classmethod
     def _log_player_id_not_found(cls, player_id, player_list):
         msg = f"Player ID: {player_id} - No player found" 
         logging.warning(msg)
 
+    @classmethod
     def check_game_id_player_id(cls, game_id, player_id, play):
         if play == None:
             msg = f"Game ID: {game_id} - Player ID: {player_id} - One or both are incorrect"
