@@ -1,6 +1,9 @@
 from math import inf
 from data_analysis_tools.general.determine_build import DetermineBuild
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
+import logging
+from config.sc2_logging_config import setup_logging
+setup_logging()
 
 
 class SC2DetermineBuild(DetermineBuild):
@@ -53,11 +56,15 @@ class SC2DetermineBuild(DetermineBuild):
                 benchmark_commands, user_commands 
             )
 
+            self._log_confidence_scores(benchmark_build, confidence_scores[benchmark_name])
+
         # find the build that is most similar to the user's build
         for score in confidence_scores:
             if confidence_scores[score] >= highest_accuracy:
                 highest_accuracy = confidence_scores[score]
                 closest_build_order = score
+        
+        self._check_build_found(closest_build_order)
         return closest_build_order
 
     def _compare_build_orders(
@@ -118,10 +125,8 @@ class SC2DetermineBuild(DetermineBuild):
                     benchmark_unit_dictionary, user_unit_dictionary, unit_type
                 )
             )
-        print(relative_error_list)
-
+            self._log_RE_unit_types(unit_type, benchmark_unit_dictionary, user_unit_dictionary)
         mean_relative_error = sum(relative_error_list) / len(relative_error_list)
-        print(mean_relative_error)
 
         percent_similarity = (1 - mean_relative_error) * 100
 
@@ -197,3 +202,15 @@ class SC2DetermineBuild(DetermineBuild):
             benchmark_unit_dictionary[unit_type]
         ):
             user_unit_dictionary[unit_type].append(inf)
+
+    def _log_confidence_scores(self, build, c_score):
+        logging.info(f"Build: {build} - Confidence Score: {c_score}")
+
+    def _log_RE_unit_types(self, unit_type, benchmark_unit_dictionary, user_unit_dictionary):
+        re = self._relative_error_of_unit_type(benchmark_unit_dictionary, user_unit_dictionary, unit_type)
+        msg = f"Unit Type: {unit_type} - Relative Error: {re} - Benchmark: {benchmark_unit_dictionary[unit_type]} - User: {user_unit_dictionary[unit_type]}"
+        logging.info(msg)
+
+    def _check_build_found(self, build_order):
+        if build_order == "Misc.":
+            raise ValueError("No matching build found")

@@ -10,6 +10,9 @@ from database_tools.sc2.sc2_database_access import (
     PlayerDataStorage,
     GameDataStorage,
 )
+import logging
+from config.sc2_logging_config import setup_logging
+setup_logging()
 
 class SC2Extractor(Extractor):
     """
@@ -43,10 +46,13 @@ class SC2Extractor(Extractor):
 
                 try:
                     replay = sc2reader.load_replay(file_path, load_map=True)
-                except Exception as e:
-                    print(f"Failed to load replay {file_path}: {e}")
+                except Exception:
+                    logging.warning(f"File: {file_path} - File failed to load")
 
                 replay_container[replay_counter] = replay
+
+            else:
+                logging.warning("File not found or File isn't of type .SC2Replay")
 
         return replay_container
 
@@ -109,6 +115,7 @@ class SC2Extractor(Extractor):
 
         for replay in replay_container.values():
             if not replay.winner or len(replay.players) != 2:
+                logging.warning(f"Player Count: {replay.players} - Replay may not have a winner")
                 continue  # We are only storing games where there is a winner and two players
 
             # Process data for both players
@@ -194,4 +201,3 @@ class SC2Extractor(Extractor):
 
     def _batch_insert(self, table_list: list[DataStorage]) -> None:
         super()._batch_insert(table_list)
-
