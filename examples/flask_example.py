@@ -13,6 +13,11 @@ def get_output():
     output = {"data": f"{46}%"}
     return jsonify(output)
 
+@app.route('/testing')
+def get_output():
+    # Your Python function
+    output = {"data": f"{46}%"}
+    return jsonify(output)
 
 def main():
     """
