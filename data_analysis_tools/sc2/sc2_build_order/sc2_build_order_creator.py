@@ -97,6 +97,7 @@ class SC2BuildOrderCreator(BuildOrderCreator):
             self._build_data.set_data(build_order)
             self._build_data.push()
 
+    # Error handling methods
     def _check_file_type(self, file_name):
         # Checks if the file name ends with ".csv" extension.
         if not file_name.endswith(".csv"):

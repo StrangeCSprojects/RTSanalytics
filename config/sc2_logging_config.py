@@ -5,7 +5,7 @@ LOGGING_CONFIG = {
     'disable_existing_loggers': False,
     'formatters': {
         'standard': {
-            'format': '%(asctime)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s',
+            'format': '%(asctime)s - %(name)s - %(filename)s:%(lineno)d - %(levelname)s - %(message)s',
             'datefmt': '%Y-%m-%d %I:%M %p'
         },
     },
@@ -13,13 +13,19 @@ LOGGING_CONFIG = {
         'console': {
             'class': 'logging.StreamHandler',
             'formatter': 'standard',
-            'level': 'DEBUG'
+            'level': 'WARNING'
         },
         'file': {
             'class': 'logging.FileHandler',
             'filename': 'logs/sc2.log',
             'formatter': 'standard',
             'level': 'DEBUG'
+        },
+        'comparing_builds': {
+            'class': 'logging.FileHandler',
+            'filename': 'logs/comparing_builds.log',
+            'formatter': 'standard',
+            'level': 'DEBUG'   
         }
     },
     'loggers': {
@@ -27,7 +33,13 @@ LOGGING_CONFIG = {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False
+        },
+        'comparing_builds': {  
+            'handlers': ['comparing_builds'],
+            'level': 'DEBUG',
+            'propagate': False
         }
+        
     }
 }
 
