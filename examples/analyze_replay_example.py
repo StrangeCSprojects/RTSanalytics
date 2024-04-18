@@ -9,11 +9,18 @@ from data_analysis_tools.sc2.sc2_analyzer import SC2Analyzer
 from config.sc2_logging_config import setup_logging
 
 def main():
+    """
+    This example shows how to:
+        - Setup logging capabilites
+        - Create build orders and add them to database
+        - Read in user replays to a database
+        - Determine winrates based on race and build
+    """
+    # Setup logging capabilites
     setup_logging()
-    # sc2_build_order_database
-    SC2BuildOrderDB.init("build_order")
 
-    # sc2_replay_database
+    # Initi
+    SC2BuildOrderDB.init("build_order")
     SC2ReplayDB.init("replay")
 
     # sc2_build_order_creator
