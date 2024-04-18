@@ -5,10 +5,7 @@ from data_analysis_tools.general.build_order.build_order_creator import (
 from database_tools.sc2.sc2_build_order_access import BuildOrderDataStorage
 import csv
 import logging
-from config.sc2_logging_config import setup_logging
 import os
-
-setup_logging()
 
 
 class SC2BuildOrderCreator(BuildOrderCreator):

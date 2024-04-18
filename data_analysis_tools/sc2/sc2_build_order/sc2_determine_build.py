@@ -3,9 +3,7 @@ from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataR
 import logging
 from config.sc2_logging_config import setup_logging
 
-# Setup logging capabilites
-setup_logging()
-compare_builds_logger = logging.getLogger("comparing_builds")
+
 
 
 class SC2DetermineBuild(DetermineBuild):
@@ -23,6 +21,9 @@ class SC2DetermineBuild(DetermineBuild):
         Parameters:
             data_retriever: retrieves build order data from the sc2_build_order_database
         """
+        
+        self.compare_builds_logger = logging.getLogger("sc2_comparing_builds")
+
         super().__init__(data_retriever)
 
     def determine_build(
@@ -73,7 +74,7 @@ class SC2DetermineBuild(DetermineBuild):
                 closest_build_order = score
 
         # Error handling
-        self._check_build_found(closest_build_order)
+        # self._check_build_found(closest_build_order)
         self._log_build_match(closest_build_order)
 
         return closest_build_order
@@ -230,7 +231,7 @@ class SC2DetermineBuild(DetermineBuild):
     # Error handling methods
     def _log_confidence_scores(self, build, c_score):
         # Logs the confidence score associated with a specific build.
-        compare_builds_logger.info(f"Build: {build[0]} - Confidence Score: {c_score}")
+        self.compare_builds_logger.info(f"Build: {build[0]} - Confidence Score: {c_score}\n")
 
     def _log_RE_unit_types(
         self, unit_type, benchmark_unit_dictionary, user_unit_dictionary
@@ -241,7 +242,7 @@ class SC2DetermineBuild(DetermineBuild):
         )
         # Logs the relative error along with the benchmark and user values for that unit type.
         msg = f"Unit Type: {unit_type} - Relative Error: {re} - Benchmark: {benchmark_unit_dictionary[unit_type]} - User: {user_unit_dictionary[unit_type]}"
-        compare_builds_logger.info(msg)
+        self.compare_builds_logger.info(msg)
 
     def _check_build_found(self, build_order):
         # Checks if the provided build order is labeled as "Misc.", indicating no matching build was found.
@@ -251,20 +252,21 @@ class SC2DetermineBuild(DetermineBuild):
 
     def _log_user_commands(self, commands):
         # Logs the list of commands provided by the user.
-        msg = f"User Commands: {commands}"
-        compare_builds_logger.info(msg)
+        msg = f"User Commands: {commands}\n"
+        self.compare_builds_logger.info(msg)
 
     def _log_benchmark_dictionary(self, benchmark_unit_dictionary):
         # Logs the entire benchmark unit dictionary to trace or debug information.
         msg = f"Bechmark Unit Dictionary: {benchmark_unit_dictionary}"
-        compare_builds_logger.info(msg)
+        self.compare_builds_logger.info(msg)
 
     def _log_user_dictionary(self, user_unit_dictionary):
         # Logs the entire user unit dictionary to trace or debug information.
         msg = f"User Unit Dictionary: {user_unit_dictionary}"
-        compare_builds_logger.info(msg)
+        self.compare_builds_logger.info(msg)
 
     def _log_build_match(self, match):
         # Logs a message indicating a successful build match.
-        msg = f"Matching Build: {match}"
-        compare_builds_logger.info(msg)
+        msg = f"Matching Build: {match}\n"
+        self.compare_builds_logger.info(msg)
+ 
