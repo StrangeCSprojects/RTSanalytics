@@ -3,8 +3,6 @@ import string
 from database_tools.general.data_retriever import DataRetriever
 from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
 import logging
-from config.sc2_logging_config import setup_logging
-setup_logging()
 
 
 class SC2BuildOrderDataRetriever(DataRetriever):
@@ -24,19 +22,12 @@ class SC2BuildOrderDataRetriever(DataRetriever):
             database
         )  # Calls the initializer of the superclass (DataRetriever)
 
-    # def get_build_by_name(self, build_name: str):
-    #     """
-    #     Retrieve a single build order by specifying its name
-    #     """
-    #     return self.database.get_build_by_name(build_name)
-    
     def get_build_by_name(self, build_name: str):
         """
         Retrieve a single build order by specifying its name
         """
         build = self.database.get_build_by_name(build_name)
         if not build:
-            self._log_build_not_found(build_name)
             return None
         race = build[1]
 
@@ -44,7 +35,10 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         temp_commands = loads(serialized_commands)
 
         # turning list of lists, into a list of tuples
-        result_commands = [((tuple(inner_list[0][0]), inner_list[0][1]), inner_list[1]) for inner_list in temp_commands]
+        result_commands = [
+            ((tuple(inner_list[0][0]), inner_list[0][1]), inner_list[1])
+            for inner_list in temp_commands
+        ]
 
         result = (race, result_commands)
 
@@ -57,8 +51,6 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         result = []
         all_builds = self.database.get_builds()
 
-        self._log_build_list_race_empty(race, all_builds)
-
         for build in all_builds:
             if build[1] != race:
                 continue
@@ -66,9 +58,14 @@ class SC2BuildOrderDataRetriever(DataRetriever):
             temp_result = loads(serialized_commands)
 
             # turning list of lists, into a list of tuples
-            result_commands = [((tuple(inner_list[0][0]), inner_list[0][1]), inner_list[1]) for inner_list in temp_result]
+            result_commands = [
+                ((tuple(inner_list[0][0]), inner_list[0][1]), inner_list[1])
+                for inner_list in temp_result
+            ]
             result.append((build[0], result_commands))
 
+        # Error handling
+        self._log_build_list_race_empty(race, result)
         return result
 
     def get_all_builds(self):
@@ -78,32 +75,19 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         # REMEMBER TO CALL THE LOADS FUNCTION ON THE COMMAND LIST
 
         build_list = self.database.get_builds()
+
+        # Error handling
         self._log_build_list_database_empty(build_list)
         return build_list
 
-    # def get_commands(self, build_order_name: str):
-    #     """
-    #     Retrieve data about a single command from the database.
-    #     """
-    #     play = self.get_play(game_id, player_id)
-    #     serialized_commands = play[2]
-    #     temp_result = loads(serialized_commands)
-
-    #     # turning list of lists, into a list of tuples
-    #     result = [(tuple(inner_list[0]), inner_list[1]) for inner_list in temp_result]
-
-    #     return result
-
-    def _log_build_not_found(self, build_name):
-        msg = f"There is no build order named: {build_name}"
-        logging.warning(msg)
-
     def _log_build_list_race_empty(self, race, build_list):
+        # Checks if the build list for a specified race is empty.
         if len(build_list) == 0:
             msg = f"Race: {race} - Has no associated builds"
             logging.warning(msg)
 
     def _log_build_list_database_empty(self, build_list):
+        # Checks if the build list from the database is empty.
         if len(build_list) == 0:
             msg = f"No builds in database"
             logging.warning(msg)
