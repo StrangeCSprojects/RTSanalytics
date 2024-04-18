@@ -68,5 +68,5 @@ class SC2BuildOrderDB(GeneralDB):
         
     @classmethod
     def _log_name_not_found(cls, build_name):
-        msg = f"Build: {build_name} - Build not found."
+        msg = f"Build: {build_name} - Build not found. - Ignore if adding build order to database"
         logging.warning(msg)
