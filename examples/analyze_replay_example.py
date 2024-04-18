@@ -16,12 +16,10 @@ def main():
     # sc2_replay_database
     SC2ReplayDB.init("replay")
 
-    SC2ReplayDB.get_play(1,10)
-
     # sc2_build_order_creator
-    # build_order_csv = "three_rax_bio.csv"
-    # build_order_creator = SC2BuildOrderCreator()
-    # build_order_creator.create_build("ThreeRaxBio", "Terran", build_order_csv)
+    build_order_creator = SC2BuildOrderCreator()
+    build_order_creator.create_build("ThreeRaxBio", "Terran", "three_rax_bio.csv")
+    build_order_creator.create_build("TwoBaseBlink", "Protoss", "two_base_blink.csv")
 
     # sc2_extractor
     sc2_extractor = SC2Extractor()
@@ -34,9 +32,9 @@ def main():
     build_order_data_retriever = SC2BuildOrderDataRetriever(SC2BuildOrderDB)
 
     # sc2_analyzer
-    # sc2_analyzer = SC2Analyzer(replay_data_retriever)
-    # sc2_analyzer.winrate_build(build_order_data_retriever)
-    # sc2_analyzer.winrate_race()
+    sc2_analyzer = SC2Analyzer(replay_data_retriever)
+    sc2_analyzer.winrate_build(build_order_data_retriever)
+    sc2_analyzer.winrate_race()
         
     
 if __name__ == "__main__":

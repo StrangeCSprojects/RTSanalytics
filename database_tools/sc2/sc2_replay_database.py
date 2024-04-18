@@ -102,6 +102,7 @@ class SC2ReplayDB(GeneralDB):
             if player:
                 return (player.player_id, player.name)
             else:
+                # Error handling
                 cls._log_player_id_not_found(id, player)
                 return None
 
@@ -122,6 +123,7 @@ class SC2ReplayDB(GeneralDB):
                 .filter_by(player_id=player_id)
                 .first()
             )
+            # Error handling
             cls.check_game_id_player_id(game_id, player_id, play)
             return (play.race, play.winner, play.commands)
 
