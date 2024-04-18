@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'globals.dart';
-import 'dart:html' as html;
+// import 'dart:html' as html;
+
+// void downloadFile(String url, String fileName) {
+//   // Create an anchor element
+//   final anchor = html.AnchorElement(href: url)
+//     ..setAttribute("download", fileName)
+//     ..click();
+// }
 
 const Color backgroundColor = Color.fromARGB(0, 255, 255, 255);
 
@@ -77,14 +84,15 @@ class RaceWinRate extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const [
-          Positioned(left: 0, top: 0, child: RaceRateFormat(title: 'Protoss', percentage: '46%')),
-          Positioned(left: 300, top: 0, child: RaceRateFormat(title: 'Terran', percentage: '46%')),
-          Positioned(left: 608, top: 0, child: RaceRateFormat(title: 'Zerg', percentage: '46%')),
+          RaceRateFormat(title: 'Protoss', percentage: '46%'),
+          RaceRateFormat(title: 'Terran', percentage: '46%'),
+          RaceRateFormat(title: 'Zerg', percentage: '46%'),
         ],
       ),
     );
   }
 }
+
 
 class RaceRateFormat extends StatelessWidget {
   final String title;
@@ -218,13 +226,6 @@ class BuildOrderSideSpacer extends StatelessWidget {
   }
 }
 
-void downloadFile(String url, String fileName) {
-  // Create an anchor element
-  final anchor = html.AnchorElement(href: url)
-    ..setAttribute("download", fileName)
-    ..click();
-}
-
 class BuildOrderWidget extends StatelessWidget {
   final String name;
   final String race;
@@ -273,7 +274,7 @@ class BuildOrderWidget extends StatelessWidget {
                         onPressed: kIsWeb ? null : () {
                           String downloadurl = './downloads/rtsanalytics.exe';
                           String fileName = 'downloadedFile.pdf';
-                          downloadFile(downloadurl, fileName);
+                          // downloadFile(downloadurl, fileName);
                         },
                         child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
                         style: ElevatedButton.styleFrom(
