@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _HomeState createState() => _HomeState();
 }
 
@@ -13,7 +16,7 @@ class _HomeState extends State<Home> {
     return Container(
       width: 1200,
       height: 800,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment(0.00, -1.00),
           end: Alignment(0, 1),
@@ -31,6 +34,7 @@ class _HomeState extends State<Home> {
               ),
               // Use Flexible widgets around your content if needed to fill available space
               Flexible(
+                flex: 0,
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -38,12 +42,11 @@ class _HomeState extends State<Home> {
                       showSignUp ? SignUpContent(onToggleView: _toggleView) : SigninContent(onToggleView: _toggleView),
                     ],
                   ),
-                ),
-                flex: 0, // Flex of 0 means the child is inflexible and won't be forced to expand
+                ), // Flex of 0 means the child is inflexible and won't be forced to expand
               ),
               // You can add a SizedBox with a specific height if you want to ensure minimum scrollable area
               // Especially useful if your content doesn't fill the screen
-              SizedBox(height: 20), // Adjust the height to meet your design needs
+              const SizedBox(height: 20), // Adjust the height to meet your design needs
             ],
           ),
         ),
@@ -61,18 +64,18 @@ class _HomeState extends State<Home> {
 class SigninContent extends StatelessWidget {
   final VoidCallback onToggleView;
 
-  const SigninContent({Key? key, required this.onToggleView}) : super(key: key);
+  const SigninContent({super.key, required this.onToggleView});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFF3D6A71),
+      color: const Color(0xFF3D6A71),
       width: 738,
       height: 368,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -96,7 +99,7 @@ class SigninContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: TextField(
@@ -108,17 +111,17 @@ class SigninContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF34585E),
+              backgroundColor: const Color(0xFF34585E),
             ),
-            child: Text('Login'),
+            child: const Text('Login'),
           ),
           TextButton(
             onPressed: onToggleView,
-            child: Text(
+            child: const Text(
               'Sign up',
               style: TextStyle(color: Colors.white),
             ),
@@ -137,7 +140,7 @@ class SignUpContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFF3D6A71),
+      color: const Color(0xFF3D6A71),
       width: 738,
       height: 450, // Increased height to fit confirm password field
       child: Column(
@@ -154,7 +157,7 @@ class SignUpContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: TextField(
@@ -166,7 +169,7 @@ class SignUpContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: TextField(
@@ -178,17 +181,17 @@ class SignUpContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF34585E),
+              backgroundColor: const Color(0xFF34585E),
             ),
-            child: Text('Sign up'),
+            child: const Text('Sign up'),
           ),
           TextButton(
             onPressed: onToggleView,
-            child: Text(
+            child: const Text(
               'Already have an account?',
               style: TextStyle(color: Colors.white),
             ),

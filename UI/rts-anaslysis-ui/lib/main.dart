@@ -1,15 +1,13 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'stats.dart';
 
 
 void main() {
-  runApp(const FigmaToCodeApp());
+  runApp(const MainContent());
 }
 
-class FigmaToCodeApp extends StatelessWidget {
-  const FigmaToCodeApp({super.key});
+class MainContent extends StatelessWidget {
+  const MainContent({super.key});
 
   @override
   Widget build(BuildContext context) {

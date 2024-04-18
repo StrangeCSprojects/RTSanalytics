@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'globals.dart';
+import 'dart:html' as html;
+
+void downloadFile(String url, String fileName) {
+  // Create an anchor element
+  final anchor = html.AnchorElement(href: url)
+    ..setAttribute("download", fileName)
+    ..click();
+}
 
 const Color backgroundColor = Color.fromARGB(0, 255, 255, 255);
 
@@ -75,14 +84,15 @@ class RaceWinRate extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const [
-          Positioned(left: 0, top: 0, child: RaceRateFormat(title: 'Protoss', percentage: '46%')),
-          Positioned(left: 300, top: 0, child: RaceRateFormat(title: 'Terran', percentage: '46%')),
-          Positioned(left: 608, top: 0, child: RaceRateFormat(title: 'Zerg', percentage: '46%')),
+          RaceRateFormat(title: 'Protoss', percentage: '46%'),
+          RaceRateFormat(title: 'Terran', percentage: '46%'),
+          RaceRateFormat(title: 'Zerg', percentage: '46%'),
         ],
       ),
     );
   }
 }
+
 
 class RaceRateFormat extends StatelessWidget {
   final String title;
@@ -144,22 +154,31 @@ class ContentTitle extends StatelessWidget {
                       width: 200, // Set the width of the button
                       height: 60, // Set the height of the button
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Handle button press here
-                        },
-                        child: Text('Import', style: TextStyle(color: Colors.white, fontSize: 30)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF34585E), // background color
+                        onPressed: kIsWeb ? () {
+                          // Handle button press here for web
+                        } : null,
+                        child: Tooltip(
+                          message: kIsWeb ? '' : 'currently not able to import user submitted replys',
+                          child: Text(kIsWeb ? 'Download' : 'Import', style: TextStyle(color: Colors.white, fontSize: 30)),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed))
+                                return kIsWeb ? Color(0xFF34585E) : Color.fromARGB(255, 68, 68, 68);
+                              return kIsWeb ? Color(0xFF34585E) : Color.fromARGB(255, 68, 68, 68);
+                            },
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ]
-        ),
+          ),
       ),
     );
-  }
+  } 
 }
 
 class BuildOrderContainer extends StatelessWidget {
@@ -185,6 +204,7 @@ class BuildOrderContainer extends StatelessWidget {
       BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
       BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
       BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
+      BuildOrderSideSpacer(),
     ],
       ),
     );
@@ -247,19 +267,22 @@ class BuildOrderWidget extends StatelessWidget {
                   Expanded(child: Text(winRate,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 30))),
                   Expanded( // Keep the Expanded widget
                   child: Center( // Center the button
-                    child: SizedBox( // Use SizedBox to set the width and height of the button
-                      width: 200, // Set the width of the button
-                      height: 60, // Set the height of the button
+                    child: SizedBox(
+                      width: 200,
+                      height: 60,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Handle button press here
+                        onPressed: kIsWeb ? null : () {
+                          String downloadurl = './downloads/rtsanalytics.exe';
+                          String fileName = 'downloadedFile.pdf';
+                          downloadFile(downloadurl, fileName);
                         },
                         child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF34585E), // background color
+                          backgroundColor: kIsWeb ? Colors.grey : Color(0xFF34585E), // background color
+                          surfaceTintColor: Colors.grey,
                         ),
                       ),
-                    ),
+                    )
                   ),
                 ),
                   BuildOrderSideSpacer(),

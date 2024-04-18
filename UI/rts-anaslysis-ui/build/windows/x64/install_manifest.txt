@@ -1,0 +1,12 @@
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/icudtl.dat
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/flutter_windows.dll
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.bin
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.bin.json
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.json
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/FontManifest.json
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/kernel_blob.bin
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/NOTICES
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/NOTICES.Z
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag
