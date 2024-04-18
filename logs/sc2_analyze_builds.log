@@ -1,0 +1,25 @@
+2024-04-18 10:43 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 10:59 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:01 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:02 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:04 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:05 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:08 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:12 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:13 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:14 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:17 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:18 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:18 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:18 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:19 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:19 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {}
+2024-04-18 11:23 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order:  {'TwoBaseBlink': {'Misc.': 0},'Misc.': {'TwoBaseBlink': 100}}
+2024-04-18 11:25 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {'TwoBaseBlink': {'Misc.': 0}, 'Misc.': {'TwoBaseBlink': 100}}
+2024-04-18 11:25 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {'TwoBaseBlink': {'Misc.': 0}, 'Misc.': {'TwoBaseBlink': 100}}
+2024-04-18 11:26 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {'TwoBaseBlink': {'ThreeRaxBio': 0}, 'ThreeRaxBio': {'TwoBaseBlink': 100}}
+2024-04-18 11:27 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {'TwoBaseBlink': {'ThreeRaxBio': 0}, 'ThreeRaxBio': {'TwoBaseBlink': 100}}
+2024-04-18 11:28 AM - analyze_builds - sc2_analyzer.py:165 - INFO - Winrate by build_order: {'TwoBaseBlink': {'ThreeRaxBio': 0}, 'ThreeRaxBio': {'TwoBaseBlink': 100}}
+2024-04-18 11:28 AM - analyze_builds - sc2_analyzer.py:169 - INFO - Winrate by race: {'Protoss': {'Terran': 0}, 'Terran': {'Protoss': 100}}
+2024-04-18 01:18 PM - analyze_builds - sc2_analyzer.py:186 - INFO - Winrate by build_order: {'TwoBaseBlink': {'ThreeRaxBio': 0}, 'ThreeRaxBio': {'TwoBaseBlink': 100}}
+2024-04-18 01:18 PM - analyze_builds - sc2_analyzer.py:193 - INFO - Winrate by race: {'Protoss': {'Terran': 0}, 'Terran': {'Protoss': 100}}
