@@ -23,3 +23,5 @@
 2024-04-18 11:28 AM - analyze_builds - sc2_analyzer.py:169 - INFO - Winrate by race: {'Protoss': {'Terran': 0}, 'Terran': {'Protoss': 100}}
 2024-04-18 01:18 PM - analyze_builds - sc2_analyzer.py:186 - INFO - Winrate by build_order: {'TwoBaseBlink': {'ThreeRaxBio': 0}, 'ThreeRaxBio': {'TwoBaseBlink': 100}}
 2024-04-18 01:18 PM - analyze_builds - sc2_analyzer.py:193 - INFO - Winrate by race: {'Protoss': {'Terran': 0}, 'Terran': {'Protoss': 100}}
+2024-04-18 02:03 PM - analyze_builds - sc2_analyzer.py:186 - INFO - Winrate by build_order: {'TwoBaseBlink': {'ThreeRaxBio': 0}, 'ThreeRaxBio': {'TwoBaseBlink': 100}}
+2024-04-18 02:03 PM - analyze_builds - sc2_analyzer.py:193 - INFO - Winrate by race: {'Protoss': {'Terran': 0}, 'Terran': {'Protoss': 100}}

@@ -6,3 +6,10 @@
 2024-04-18 01:18 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
 2024-04-18 01:18 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7570	Cstrange	Missing ability 12FE from Build
 2024-04-18 01:18 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9063	Cstrange	Missing ability 12FE from Build
+2024-04-18 02:03 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/e7d3b2f7143693d1214082db99ead8a80d91dd7126c5d0156d9c9b42e2151c92.s2ma
+2024-04-18 02:03 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - replay_extraction_tools/tests/test_replays\ThreeRaxBio_vs_TwoBaseBlink.SC2Replay
+2024-04-18 02:03 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.13.92028
+2024-04-18 02:03 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Duckier (Protoss)
+2024-04-18 02:03 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-18 02:03 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7570	Cstrange	Missing ability 12FE from Build
+2024-04-18 02:03 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9063	Cstrange	Missing ability 12FE from Build
