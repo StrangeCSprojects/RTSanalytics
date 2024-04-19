@@ -20,8 +20,7 @@ from database_tools.sc2.sc2_replay_database import SC2ReplayDB
 import logging
 from config.sc2_logging_config import setup_logging
 
-setup_logging()
-analyze_build_logger = logging.getLogger("analyze_builds")
+
 
 
 class SC2Analyzer(Analyzer):
@@ -39,6 +38,7 @@ class SC2Analyzer(Analyzer):
         super().__init__(
             data_retriever
         )  # Calls the constructor of the parent class, Analyzer.
+        self.analyze_build_logger = logging.getLogger("analyze_builds")
 
     def winrate_build(
         self, build_order_data_retriever: SC2BuildOrderDataRetriever
@@ -183,13 +183,13 @@ class SC2Analyzer(Analyzer):
     def _log_build_results(self, result):
         # Logs the win rate for each build order.
         msg = f"Winrate by build_order: {result}"
-        analyze_build_logger.info(
+        self.analyze_build_logger.info(
             msg
         )  # Use the logger to output the information at the info level.
 
     def _log_race_results(self, result):
         # Logs the win rate for each race.
         msg = f"Winrate by race: {result}"
-        analyze_build_logger.info(
+        self.analyze_build_logger.info(
             msg
         )  # Use the logger to output the information at the info level.
