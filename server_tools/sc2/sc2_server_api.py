@@ -10,8 +10,10 @@ from data_analysis_tools.sc2.sc2_build_order.sc2_build_order_overlay import (
     SC2BuildOrderOverlay,
 )
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # This enables CORS for all domains on all routes
 
 # Initialize your class attributes here if needed
 SC2ReplayDB.init("replay")
@@ -25,23 +27,29 @@ analyzer = SC2Analyzer(replay_data_retreiver)
 @app.route('/get_build_orders')
 def get_build_orders():
     # Implement the functionality to get build orders
-    # build_data = data_retriever.get_all_builds()
-    # build_list = []
-    # for build in build_data:
-    #     build_list.append(build[0])
+    build_data = data_retriever.get_all_builds()
+    build_list = []
+    for build in build_data:
+        
+        flutter_build = {"name": build[0], "race": build[1], "winrate": 55}
 
-    return jsonify(["1","2"])
+        build_list.append(flutter_build)
+
+    return jsonify(build_list)
 
 # @app.route('/display_overlay')
 # def display_overlay(self):
 # # Implement the functionality to display overlay
 #     pass
 
-# @app.route('/get_winrates_race')
-# def get_winrates_race(self):
-# # Implement the functionality to get winrates by race
-#     output = self.analyzer.winrate_race()
-#     return jsonify(output)
+@app.route('/get_winrates_race')
+def get_winrates_race():
+# Implement the functionality to get winrates by race
+    output = analyzer.winrate_race()
+    terran = output["Terran"]["Protoss"]
+    protoss = output["Protoss"]["Terran"]
+    zerg = 0
+    return jsonify({'terran':int(terran), 'protoss':int(protoss), 'zerg':int(zerg)})
 
 
 if __name__ == "__main__":
