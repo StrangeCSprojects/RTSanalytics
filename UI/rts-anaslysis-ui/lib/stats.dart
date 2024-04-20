@@ -241,11 +241,10 @@ class BuildOrderContainer extends StatelessWidget {
       color: Color(0xFF34585E),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
     ),
-    child: Row(
+    child: Column(
     children: [
 
         Text('$name $race $winrate', style: const TextStyle(color: Colors.white, fontSize: 30)),
-        
     ],
       ),
     );
@@ -266,15 +265,6 @@ class BuildOrderSideSpacer extends StatelessWidget {
     );
   }
 }
-
-void downloadFile(String url, String fileName) {
-  // Create an anchor element
-  final anchor = html.AnchorElement(href: url)
-    ..setAttribute("download", fileName)
-    ..click();
-}
-
-
 
 class BuildOrderWidget extends StatefulWidget {
   @override
@@ -317,8 +307,6 @@ class _BuildOrderWidgetState extends State<BuildOrderWidget> {
     );
   }
 
-
-
 }
 
 class BuildOrderList {
@@ -331,4 +319,47 @@ class BuildOrderList {
     required this.race,
     required this.winrate,
   });
+}
+
+void downloadFile(String url, String fileName) {
+  // Create an anchor element
+  final anchor = html.AnchorElement(href: url)
+    ..setAttribute("download", fileName)
+    ..click();
+}
+
+
+
+class DisplayButton extends StatelessWidget {
+  Future<void> displayOverlay() async {
+    try {
+      final response = await http.get(Uri.parse('http://127.0.0.1:5010/display_overlay'));
+      if (response.statusCode == 204) {
+        print('Function triggered successfully.');
+      } else {
+        print('Failed to trigger function. Status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error occurred while trying to trigger function: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Trigger Python Function'),
+        ),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              displayOverlay();
+            },
+            child: Text('Trigger Function'),
+          ),
+        ),
+      ),
+    );
+  }
 }

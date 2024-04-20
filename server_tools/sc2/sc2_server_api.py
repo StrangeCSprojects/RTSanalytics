@@ -22,7 +22,7 @@ replay_data_retreiver = SC2ReplayDataRetriever(SC2ReplayDB)
 data_retriever = SC2BuildOrderDataRetriever(SC2BuildOrderDB)
 analyzer = SC2Analyzer(replay_data_retreiver)
 
-# self.overlay = SC2BuildOrderOverlay()
+overlay = SC2BuildOrderOverlay(data_retriever)
 
 @app.route('/get_build_orders')
 def get_build_orders():
@@ -37,10 +37,10 @@ def get_build_orders():
 
     return jsonify(build_list)
 
-# @app.route('/display_overlay')
-# def display_overlay(self):
-# # Implement the functionality to display overlay
-#     pass
+@app.route('/display_overlay')
+def display_overlay():
+# Implement the functionality to display overlay
+    overlay.overlay_build("TwoBaseBlink")
 
 @app.route('/get_winrates_race')
 def get_winrates_race():
