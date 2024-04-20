@@ -3,3 +3,8 @@ venv
 *vs*
 __pycache__
 ui_run
+*.db
+.pytest_cache
+data
+main.py
+logs
