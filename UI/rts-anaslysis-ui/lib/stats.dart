@@ -12,6 +12,7 @@ void downloadFile(String url, String fileName) {
     ..setAttribute("download", fileName)
     ..click();
 }
+
 const Color backgroundColor = Color.fromARGB(0, 255, 255, 255);
 
 class Stats extends StatelessWidget {
@@ -189,7 +190,7 @@ class ContentTitle extends StatelessWidget {
                       height: 60, // Set the height of the button
                       child: ElevatedButton(
                         onPressed: kIsWeb ? () {
-                          // Handle button press here for web
+                          downloadFile('./downloads/rtsdownload.exe', 'rtsdownload.exe');
                         } : null,
                         child: Tooltip(
                           message: kIsWeb ? '' : 'currently not able to import user submitted replys',
