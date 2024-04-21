@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'globals.dart';
 // import 'dart:html' as html;
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 // void downloadFile(String url, String fileName) {
 //   // Create an anchor element
@@ -50,13 +52,14 @@ class ContentBox extends StatelessWidget {
         SizedBox(height: 36),
         ContentTitle(),
         SizedBox(height: 36),
-        BuildOrderContainer(),
+        BuildOrderContents(),
         SizedBox(height: 36),
       ],
     );
   }
 }
 
+// Race winrates
 class RaceRateContents extends StatelessWidget {
   const RaceRateContents({
     Key? key,
@@ -68,35 +71,15 @@ class RaceRateContents extends StatelessWidget {
       width: 871,
       height: 180,
       color:  Color.fromARGB(0, 75, 135, 145),
-      child: RaceWinRate(),
+      // child: RaceWinRate(),
+      child: WinRatesWidget(),
     );
   }
 }
-
-class RaceWinRate extends StatelessWidget {
-  const RaceWinRate({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 871,
-      height: 126.75,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
-          RaceRateFormat(title: 'Protoss', percentage: '46%'),
-          RaceRateFormat(title: 'Terran', percentage: '46%'),
-          RaceRateFormat(title: 'Zerg', percentage: '46%'),
-        ],
-      ),
-    );
-  }
-}
-
 
 class RaceRateFormat extends StatelessWidget {
   final String title;
-  final String percentage;
+  final double percentage;
 
   const RaceRateFormat({Key? key, required this.title, required this.percentage}) : super(key: key);
 
@@ -114,13 +97,65 @@ class RaceRateFormat extends StatelessWidget {
         children: [
           Text(title, style: const TextStyle(color: Colors.white, fontSize: 30)),
           const SizedBox(height: 15),
-          Text(percentage, style: const TextStyle(color: Colors.white, fontSize: 30)),
+          Text('${percentage.toStringAsFixed(0)}%', style: const TextStyle(color: Colors.white, fontSize: 30)),
         ],
       ),
     );
   }
 }
 
+class WinRatesWidget extends StatefulWidget {
+  @override
+  _WinRatesWidgetState createState() => _WinRatesWidgetState();
+}
+
+class _WinRatesWidgetState extends State<WinRatesWidget> {
+  double protoss = 0.0;
+  double terran = 0.0;
+  double zerg = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchPercentage();
+  }
+
+  Future<void> fetchPercentage() async {
+    try {
+      final response = await http.get(Uri.parse('http://127.0.0.1:5010/get_winrates_race'));
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+        setState(() {
+          protoss = jsonResponse['protoss'];
+          terran = jsonResponse['terran'];
+          zerg = jsonResponse['zerg'];
+        });
+      } else {
+        throw Exception('Failed to load percentage');
+      }
+    } catch (e) {
+      print('Error occurred: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 871,
+      height: 126.75,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          RaceRateFormat(title: 'Protoss', percentage: protoss),
+          RaceRateFormat(title: 'Terran', percentage: terran),
+          RaceRateFormat(title: 'Zerg', percentage: zerg),
+        ],
+      ),
+    );
+  }
+}
+
+// Builds list
 class ContentTitle extends StatelessWidget {
   final ContentTitles = ['Build Order', 'Race', 'Win rate'];
 
@@ -155,7 +190,7 @@ class ContentTitle extends StatelessWidget {
                       height: 60, // Set the height of the button
                       child: ElevatedButton(
                         onPressed: kIsWeb ? () {
-                          // Handle button press here for web
+                          // downloadFile('./downloads/rtsdownload.exe', 'rtsdownload.exe');
                         } : null,
                         child: Tooltip(
                           message: kIsWeb ? '' : 'currently not able to import user submitted replys',
@@ -181,33 +216,68 @@ class ContentTitle extends StatelessWidget {
   } 
 }
 
-class BuildOrderContainer extends StatelessWidget {
-  const BuildOrderContainer({Key? key}) : super(key: key);
+class BuildOrderContents extends StatelessWidget {
+  const BuildOrderContents({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-  return Container(
-    width: 868,
-    height: 347.88,
-    decoration: ShapeDecoration(
-      color: Color(0xFF34585E),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-    ),
-    child: ListView(
-    shrinkWrap: true,
-    children: const [
-      BuildOrderWidget(name: 'Build Name', race: 'Race', winRate: 'Win rate'),
-      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
-      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
-      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
-      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
-      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
-      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
-      BuildOrderWidget(name: 'organic', race: 'Terran', winRate: '98%', buildorder: "something terrrable has happened",),
-      BuildOrderSideSpacer(),
-    ],
-      ),
+    return Container(
+      width: 868,
+      height: 347.88,
+      color: Color.fromARGB(76, 2, 3, 3),
+      child: BuildOrderWidget(),
     );
+  }
+  
+}
+
+class BuildOrderContainer extends StatelessWidget {
+  final String name;
+  final String race;
+  final String winrate;
+
+
+  const BuildOrderContainer({Key? key, required this.name, required this.race, required this.winrate}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+  return Column(
+      children: [
+        Row(children: [Container(
+          width: 868,
+          height: 25,
+        )],),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [ 
+            BuildOrderSideSpacer(),
+            Container(
+              width: 838,
+              height: 48,
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              decoration: ShapeDecoration(
+                color: Color(0xFF34585E),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(width: 250,child: Text(name,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
+                  Container(width: 200, child: Text(race,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
+                  Container(width: 150, child: Text(winrate,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
+                  Container(width: 188, child: DisplayButton()),
+                ],
+              ),
+            ),
+            BuildOrderSideSpacer(),
+          ],
+        ),
+      ],
+    );
+  
+
   }
 }
 
@@ -226,73 +296,86 @@ class BuildOrderSideSpacer extends StatelessWidget {
   }
 }
 
-class BuildOrderWidget extends StatelessWidget {
+class BuildOrderWidget extends StatefulWidget {
+  @override
+  _BuildOrderWidgetState createState() =>  _BuildOrderWidgetState();
+}
+
+class _BuildOrderWidgetState extends State<BuildOrderWidget> {
+  List<BuildOrderList> buildOrders = [];
+
+  @override
+  void initState()  {
+    super.initState();
+    fetchBuilds();
+  }
+
+  Future<void> fetchBuilds() async {
+    try {
+      final response = await http.get(Uri.parse('http://127.0.0.1:5010/get_build_orders'));
+      if (response.statusCode == 200) {
+        var jsonResponse = jsonDecode(response.body);
+        List<BuildOrderList> tempBuilds = [];
+        for (var build in jsonResponse) {
+          tempBuilds.add(BuildOrderList(name: build['name'], race: build['race'], winrate: build['winrate'].toString()));
+        }
+        setState(() {
+          buildOrders = tempBuilds;
+        });
+      } else {
+        throw Exception('Failed to build information');
+      }
+    } catch (e) {
+      print('Error occurred: $e');
+    }
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: buildOrders.map((build) => BuildOrderContainer(name: build.name, race: build.race, winrate: build.winrate)).toList(),
+    );
+  }
+
+}
+
+class BuildOrderList {
   final String name;
   final String race;
-  final String winRate;
-  final String buildorder;  //placeholder for build order
+  final String winrate;
 
-  const BuildOrderWidget({
-    Key? key,
+  BuildOrderList({
     required this.name,
     required this.race,
-    required this.winRate,
-    this.buildorder = 'No Buildorder found',
-  }) : super(key: key);
+    required this.winrate,
+  });
+}
+
+class DisplayButton extends StatelessWidget {
+  Future<void> displayOverlay() async {
+    try {
+      final response = await http.get(Uri.parse('http://127.0.0.1:5010/display_overlay'));
+      if (response.statusCode == 204) {
+        print('Function triggered successfully.');
+      } else {
+        print('Failed to trigger function. Status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error occurred while trying to trigger function: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(children: [Container(
-          width: 868,
-          height: 25,
-        )],),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [ 
-            BuildOrderSideSpacer(),
-            Container(
-              width: 838,
-              height: 48,
-              decoration: ShapeDecoration(
-                color: Color(0xFF2B4547),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-              ),
-              child: Row(
-                children: [
-                  BuildOrderSideSpacer(),
-                  Expanded(child: Text(name,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 30))),
-                  Expanded(child: Text(race, textAlign: TextAlign.center,style: const TextStyle(color: Colors.white, fontSize: 30))),
-                  Expanded(child: Text(winRate,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 30))),
-                  Expanded( // Keep the Expanded widget
-                  child: Center( // Center the button
-                    child: SizedBox(
-                      width: 200,
-                      height: 60,
-                      child: ElevatedButton(
-                        onPressed: kIsWeb ? null : () {
-                          String downloadurl = './downloads/rtsanalytics.exe';
-                          String fileName = 'downloadedFile.pdf';
-                          // downloadFile(downloadurl, fileName);
-                        },
-                        child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: kIsWeb ? Colors.grey : Color(0xFF34585E), // background color
-                          surfaceTintColor: Colors.grey,
-                        ),
-                      ),
-                    )
-                  ),
-                ),
-                  BuildOrderSideSpacer(),
-                ],
-              ),
-            ),
-            BuildOrderSideSpacer(),
-          ],
-        ),
-      ],
-    ); 
+    return ElevatedButton(
+      onPressed: kIsWeb ? null : () {
+        displayOverlay();
+      },
+      child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: kIsWeb ? Colors.grey : Color(0xFF34585E), // background color
+        surfaceTintColor: Colors.grey,
+      ),
+    );
   }
 }
