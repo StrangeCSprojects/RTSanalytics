@@ -267,7 +267,7 @@ class BuildOrderContainer extends StatelessWidget {
                   Container(width: 250,child: Text(name,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
                   Container(width: 200, child: Text(race,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
                   Container(width: 150, child: Text(winrate,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
-                  Container(width: 188, child: DisplayButton()),
+                  Container(width: 188, child: DisplayButton(name)),
                 ],
               ),
             ),
@@ -352,9 +352,13 @@ class BuildOrderList {
 }
 
 class DisplayButton extends StatelessWidget {
+  final String name;
+
+  const DisplayButton(this.name);
+  
   Future<void> displayOverlay() async {
     try {
-      final response = await http.get(Uri.parse('http://127.0.0.1:5010/display_overlay'));
+      final response = await http.get(Uri.parse('http://127.0.0.1:5010/display_overlay?build_name=$name'));
       if (response.statusCode == 204) {
         print('Function triggered successfully.');
       } else {

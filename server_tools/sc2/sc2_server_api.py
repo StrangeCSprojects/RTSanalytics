@@ -9,7 +9,7 @@ from server_tools.interfaces.GetWinratesRace import GetWinratesRace
 from data_analysis_tools.sc2.sc2_build_order.sc2_build_order_overlay import (
     SC2BuildOrderOverlay,
 )
-from flask import Flask, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -40,7 +40,9 @@ def get_build_orders():
 @app.route('/display_overlay')
 def display_overlay():
 # Implement the functionality to display overlay
-    overlay.overlay_build("TwoBaseBlink")
+    build_name = request.args.get('build_name')
+    print(build_name)
+    overlay.overlay_build(f"{build_name}")
 
 @app.route('/get_winrates_race')
 def get_winrates_race():
@@ -49,8 +51,29 @@ def get_winrates_race():
     terran = output["Terran"]["Protoss"]
     protoss = output["Protoss"]["Terran"]
     zerg = 0
-    return jsonify({'terran':int(terran), 'protoss':int(protoss), 'zerg':int(zerg)})
+    return jsonify({'terran':float(terran), 'protoss':float(protoss), 'zerg':float(zerg)})
 
 
 if __name__ == "__main__":
     app.run(debug=True, port=5010)
+
+
+
+
+
+
+
+
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/get_data')
+def get_data():
+    # Retrieve the argument from query parameter
+    arg = request.args.get('arg', default='default_value', type=str)
+    # Do something with the arg and return a response
+    return jsonify({'response': f'You sent: {arg}'})
+
+if __name__ == '__main__':
+    app.run(debug=True)
