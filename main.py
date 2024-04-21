@@ -7,7 +7,9 @@
 from flask import Flask, jsonify
 
 app = Flask(__name__)
-@app.route('/getPythonFunctionOutput')
+
+
+@app.route("/getPythonFunctionOutput")
 def get_output():
     # Your Python function
     output = {"data": f"{46}%"}
@@ -19,6 +21,7 @@ def main():
     Main entry point
     """
     print("Implementing build order database.")
+
 
 # Interpret this module
 if __name__ == "__main__":

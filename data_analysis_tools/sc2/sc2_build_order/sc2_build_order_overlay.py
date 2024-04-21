@@ -70,12 +70,3 @@ class SC2BuildOrderOverlay(BuildOrderOverlay):
         minutes = seconds // 60  # Convert total seconds to minutes
         remaining_seconds = seconds % 60  # Calculate remaining seconds
         return f"{minutes}:{remaining_seconds:02}"  # Format and return as string
-
-
-# Initialize the database and retrieve data for a specific build
-SC2BuildOrderDB.init("builds_db")
-dr = SC2BuildOrderDataRetriever(SC2BuildOrderDB)
-
-# Create an overlay instance and display a build order
-test = SC2BuildOrderOverlay(dr)
-test.overlay_build("GreedyLurkers")  # Display the 'GreedyLurkers' build order

@@ -20,8 +20,7 @@ from database_tools.sc2.sc2_replay_database import SC2ReplayDB
 import logging
 from config.sc2_logging_config import setup_logging
 
-setup_logging()
-analyze_build_logger = logging.getLogger("analyze_builds")
+
 
 
 class SC2Analyzer(Analyzer):
@@ -39,10 +38,11 @@ class SC2Analyzer(Analyzer):
         super().__init__(
             data_retriever
         )  # Calls the constructor of the parent class, Analyzer.
+        self.analyze_build_logger = logging.getLogger("analyze_builds")
 
     def winrate_build(
-        self, build_order_data_retriever: SC2BuildOrderDataRetriever
-    ) -> dict:
+        self, build_order_data_retriever: SC2BuildOrderDataRetriever, build_one, build_two = "all"
+    ) -> float:
         """
         Calculates win rates for different build matchups.
 
@@ -123,13 +123,13 @@ class SC2Analyzer(Analyzer):
             match_ups_list.append(match_up)
 
         # Calculate and return win rates for the compiled matchups.
-        result = winrate_calculator.calculate_matchup_winrates(match_ups_list)
+        result = winrate_calculator.calculate_matchup_winrates(match_ups_list, build_one, build_two)
 
         # error handling
         self._log_build_results(result)
         return result
 
-    def winrate_race(self) -> dict:
+    def winrate_race(self, race_one, race_two = "all") -> float:
         """
         Calculates win rates based on the races of the players in SC2 matches.
 
@@ -174,7 +174,7 @@ class SC2Analyzer(Analyzer):
             match_ups_list.append(match_up)
 
         # Calculate and return win rates for the compiled matchups.
-        result = winrate_calculator.calculate_matchup_winrates(match_ups_list)
+        result = winrate_calculator.calculate_matchup_winrates(match_ups_list, race_one, race_two)
 
         # error handling
         self._log_race_results(result)
@@ -183,13 +183,13 @@ class SC2Analyzer(Analyzer):
     def _log_build_results(self, result):
         # Logs the win rate for each build order.
         msg = f"Winrate by build_order: {result}"
-        analyze_build_logger.info(
+        self.analyze_build_logger.info(
             msg
         )  # Use the logger to output the information at the info level.
 
     def _log_race_results(self, result):
         # Logs the win rate for each race.
         msg = f"Winrate by race: {result}"
-        analyze_build_logger.info(
+        self.analyze_build_logger.info(
             msg
         )  # Use the logger to output the information at the info level.
