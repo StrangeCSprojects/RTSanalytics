@@ -92,20 +92,3 @@ class WinrateRace(Winrate):
                 win_rates[race][opponent] = round(float(win_rate), 2)
 
         return win_rates[race_one][race_two]  # return win_rates to revert code
-
-
-matches = [
-    ("terran", "zerg", "terran"),
-    ("terran", "zerg", "terran"),
-    ("terran", "zerg", "terran"),
-    ("terran", "zerg", "terran"),
-    ("terran", "zerg", "terran"),
-    ("terran", "zerg", "terran"),
-    ("terran", "zerg", "terran"),
-    ("terran", "zerg", "terran"),
-    ("terran", "zerg", "zerg"),
-    ("terran", "protoss", "protoss"),
-]
-
-test = WinrateRace()
-print(test.calculate_matchup_winrates(matches, "terran"))

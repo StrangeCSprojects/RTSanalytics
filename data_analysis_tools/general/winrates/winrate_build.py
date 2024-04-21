@@ -36,6 +36,24 @@ class WinrateBuild(Winrate):
 
             matchups[winner][build1 if winner == build2 else build2]['wins'] += 1
         
+
+        if build_two == "all":
+            # Calculate win rates for each matchup
+            total_wins = 0
+            total_games = 0
+            win_rates = {}
+            for build, opponents in matchups.items():
+                if build == build_one:                  
+                    win_rates[build] = {}
+                    for opponent, record in opponents.items():
+                        win_rate = (record['wins'] / record['total']) * 100 if record['total'] > 0 else 0
+                        total_wins += record["wins"]
+                        total_games += record["total"]
+                        win_rates[build][opponent] = int(win_rate)
+            return round((total_wins / total_games) * 100, 2)
+                
+
+
         # Calculate win rates for each matchup
         win_rates = {}
         for build, opponents in matchups.items():
@@ -43,7 +61,8 @@ class WinrateBuild(Winrate):
             for opponent, record in opponents.items():
                 win_rate = (record['wins'] / record['total']) * 100 if record['total'] > 0 else 0
                 win_rates[build][opponent] = int(win_rate)
-        return win_rates
+
+        return win_rates[build_one][build_two] # return win_rates to revert code
 
 
         

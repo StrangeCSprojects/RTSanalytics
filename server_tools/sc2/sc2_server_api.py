@@ -30,8 +30,7 @@ def get_build_orders():
     build_data = data_retriever.get_all_builds()
     build_list = []
     for build in build_data:
-        
-        flutter_build = {"name": build[0], "race": build[1], "winrate": 55}
+        flutter_build = {"name": build[0], "race": build[1], "winrate": analyzer.winrate_build(data_retriever, build[0])}
 
         build_list.append(flutter_build)
 
@@ -47,33 +46,11 @@ def display_overlay():
 @app.route('/get_winrates_race')
 def get_winrates_race():
 # Implement the functionality to get winrates by race
-    output = analyzer.winrate_race()
-    terran = output["Terran"]["Protoss"]
-    protoss = output["Protoss"]["Terran"]
+    terran = analyzer.winrate_race("Terran")
+    protoss = analyzer.winrate_race("Protoss")
     zerg = 0
     return jsonify({'terran':float(terran), 'protoss':float(protoss), 'zerg':float(zerg)})
 
 
 if __name__ == "__main__":
     app.run(debug=True, port=5010)
-
-
-
-
-
-
-
-
-from flask import Flask, request, jsonify
-
-app = Flask(__name__)
-
-@app.route('/get_data')
-def get_data():
-    # Retrieve the argument from query parameter
-    arg = request.args.get('arg', default='default_value', type=str)
-    # Do something with the arg and return a response
-    return jsonify({'response': f'You sent: {arg}'})
-
-if __name__ == '__main__':
-    app.run(debug=True)
