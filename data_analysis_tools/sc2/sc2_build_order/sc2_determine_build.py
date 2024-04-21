@@ -1,6 +1,9 @@
-from math import inf
 from data_analysis_tools.general.determine_build import DetermineBuild
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
+import logging
+from config.sc2_logging_config import setup_logging
+
+
 
 
 class SC2DetermineBuild(DetermineBuild):
@@ -18,6 +21,9 @@ class SC2DetermineBuild(DetermineBuild):
         Parameters:
             data_retriever: retrieves build order data from the sc2_build_order_database
         """
+        
+        self.compare_builds_logger = logging.getLogger("sc2_comparing_builds")
+
         super().__init__(data_retriever)
 
     def determine_build(
@@ -35,12 +41,15 @@ class SC2DetermineBuild(DetermineBuild):
         Returns:
             str: The determined build strategy or misc if none can be determined.
         """
+        # Error handling
+        self._log_user_commands(user_commands)
+
         confidence_scores = (
             {}
         )  # dictionary containing each build order and the percent of similarity to the user's build
 
         # user build should at least reach 50% or defaults to misc. build
-        highest_accuracy = 50
+        highest_accuracy = 10
         closest_build_order = "Misc."
 
         # iterate through each build of the same race in the database
@@ -53,11 +62,21 @@ class SC2DetermineBuild(DetermineBuild):
                 benchmark_commands, user_commands
             )
 
+            # Error handling
+            self._log_confidence_scores(
+                benchmark_build, confidence_scores[benchmark_name]
+            )
+
         # find the build that is most similar to the user's build
         for score in confidence_scores:
             if confidence_scores[score] >= highest_accuracy:
                 highest_accuracy = confidence_scores[score]
                 closest_build_order = score
+
+        # Error handling
+        # self._check_build_found(closest_build_order)
+        self._log_build_match(closest_build_order)
+
         return closest_build_order
 
     def _compare_build_orders(
@@ -94,8 +113,8 @@ class SC2DetermineBuild(DetermineBuild):
 
         # sort the units by types
         for command in user_commands:
-            command_unit = command[0][0]  # (unit_type, unit_name)
-            command_time = command[0][1]  # time the unit was recorded
+            command_unit = command[0]  # (unit_type, unit_name)
+            command_time = command[1]  # time the unit was recorded
             self._load_unit_dictionary(user_unit_dictionary, command_unit, command_time)
 
         for unit_type in benchmark_unit_dictionary:
@@ -118,10 +137,17 @@ class SC2DetermineBuild(DetermineBuild):
                     benchmark_unit_dictionary, user_unit_dictionary, unit_type
                 )
             )
-        print(relative_error_list)
+
+            # Error handling
+            self._log_RE_unit_types(
+                unit_type, benchmark_unit_dictionary, user_unit_dictionary
+            )
+
+        # Error handling
+        self._log_benchmark_dictionary(benchmark_unit_dictionary)
+        self._log_user_dictionary(user_unit_dictionary)
 
         mean_relative_error = sum(relative_error_list) / len(relative_error_list)
-        print(mean_relative_error)
 
         percent_similarity = (1 - mean_relative_error) * 100
 
@@ -153,6 +179,7 @@ class SC2DetermineBuild(DetermineBuild):
             benchmark_unit_dictionary[unit_type],
             user_unit_dictionary[unit_type],
         ):
+            benchmark_unit = int(benchmark_unit)
             absolute_error = abs(benchmark_unit - user_unit)
             relative_error = absolute_error / benchmark_unit
 
@@ -164,7 +191,10 @@ class SC2DetermineBuild(DetermineBuild):
         return mean_relative_error
 
     def _load_unit_dictionary(
-        self, unit_dictionary: dict[tuple[str, str] : list[int]], unit_type: tuple[str, str], time:int
+        self,
+        unit_dictionary: dict[tuple[str, str] : list[int]],
+        unit_type: tuple[str, str],
+        time: int,
     ) -> None:
         """
         Helper method, loads the unit and its corresponding time into a dictionary.
@@ -196,4 +226,47 @@ class SC2DetermineBuild(DetermineBuild):
         while len(user_unit_dictionary[unit_type]) < len(
             benchmark_unit_dictionary[unit_type]
         ):
-            user_unit_dictionary[unit_type].append(inf)
+            user_unit_dictionary[unit_type].append(10000)
+
+    # Error handling methods
+    def _log_confidence_scores(self, build, c_score):
+        # Logs the confidence score associated with a specific build.
+        self.compare_builds_logger.info(f"Build: {build[0]} - Confidence Score: {c_score}\n")
+
+    def _log_RE_unit_types(
+        self, unit_type, benchmark_unit_dictionary, user_unit_dictionary
+    ):
+        # Calculates the relative error between benchmark and user unit types for a given unit type.
+        re = self._relative_error_of_unit_type(
+            benchmark_unit_dictionary, user_unit_dictionary, unit_type
+        )
+        # Logs the relative error along with the benchmark and user values for that unit type.
+        msg = f"Unit Type: {unit_type} - Relative Error: {re} - Benchmark: {benchmark_unit_dictionary[unit_type]} - User: {user_unit_dictionary[unit_type]}"
+        self.compare_builds_logger.info(msg)
+
+    def _check_build_found(self, build_order):
+        # Checks if the provided build order is labeled as "Misc.", indicating no matching build was found.
+        if build_order == "Misc.":
+            # Raises a ValueError if no matching build is found.
+            raise ValueError("No matching build found")
+
+    def _log_user_commands(self, commands):
+        # Logs the list of commands provided by the user.
+        msg = f"User Commands: {commands}\n"
+        self.compare_builds_logger.info(msg)
+
+    def _log_benchmark_dictionary(self, benchmark_unit_dictionary):
+        # Logs the entire benchmark unit dictionary to trace or debug information.
+        msg = f"Bechmark Unit Dictionary: {benchmark_unit_dictionary}"
+        self.compare_builds_logger.info(msg)
+
+    def _log_user_dictionary(self, user_unit_dictionary):
+        # Logs the entire user unit dictionary to trace or debug information.
+        msg = f"User Unit Dictionary: {user_unit_dictionary}"
+        self.compare_builds_logger.info(msg)
+
+    def _log_build_match(self, match):
+        # Logs a message indicating a successful build match.
+        msg = f"Matching Build: {match}\n"
+        self.compare_builds_logger.info(msg)
+ 

@@ -7,3 +7,4 @@ ui_run
 .pytest_cache
 data
 main.py
+logs

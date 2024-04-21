@@ -1,5 +1,4 @@
 # Import any needed modules
-from json import loads
 from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker
 from database_tools.general.general_database import GeneralDB
@@ -9,6 +8,7 @@ from database_tools.sc2.entities.sc2_replay_entities import (
     Play,
     Player,
 )
+import logging
 
 
 class SC2ReplayDB(GeneralDB):
@@ -102,12 +102,15 @@ class SC2ReplayDB(GeneralDB):
             if player:
                 return (player.player_id, player.name)
             else:
+                # Error handling
+                cls._log_player_id_not_found(id, player)
                 return None
 
     @classmethod
     def get_players_in_game(cls, game_id: int):
         with cls.Session() as session:
             plays = session.query(Play).filter_by(game_id=game_id).all()
+            cls._check_game_id(game_id, plays)
             players = tuple(cls.get_player_by_id(play.player_id) for play in plays)
             return players
 
@@ -120,6 +123,8 @@ class SC2ReplayDB(GeneralDB):
                 .filter_by(player_id=player_id)
                 .first()
             )
+            # Error handling
+            cls.check_game_id_player_id(game_id, player_id, play)
             return (play.race, play.winner, play.commands)
 
     @classmethod
@@ -160,3 +165,32 @@ class SC2ReplayDB(GeneralDB):
         """Increment and return player id"""
         cls._player_id_count += 1
         return cls._player_id_count
+
+    # Error handling
+    @classmethod
+    def _check_game_id(cls, game_id, plays_list):
+        """
+        Checks if there are any plays associated with the given game ID.
+        """
+        if len(plays_list) == 0:
+            msg = f"Game ID: {game_id} - No game found"
+            logging.error(msg)
+            raise ValueError(msg)
+
+    @classmethod
+    def _log_player_id_not_found(cls, player_id, player_list):
+        """
+        Logs a warning message if a player ID is not found in the provided player list.
+        """
+        msg = f"Player ID: {player_id} - No player found"
+        logging.warning(msg)
+
+    @classmethod
+    def check_game_id_player_id(cls, game_id, player_id, play):
+        """
+        Checks if either the game ID or the player ID is incorrect based on the provided play.
+        """
+        if play is None:
+            msg = f"Game ID: {game_id} - Player ID: {player_id} - One or both are incorrect"
+            logging.error(msg)
+            raise ValueError(msg)

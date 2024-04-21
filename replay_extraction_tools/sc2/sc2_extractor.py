@@ -1,7 +1,6 @@
 # Import any needed modules
 import os
 import sc2reader
-from sqlalchemy import true, false
 from replay_extraction_tools.General.extractor import Extractor
 from database_tools.sc2.sc2_replay_database import SC2ReplayDB
 from database_tools.general.general_database_access import DataStorage
@@ -10,6 +9,8 @@ from database_tools.sc2.sc2_database_access import (
     PlayerDataStorage,
     GameDataStorage,
 )
+import logging
+
 
 class SC2Extractor(Extractor):
     """
@@ -41,12 +42,17 @@ class SC2Extractor(Extractor):
                 # Filling replay dictionary
                 replay_counter += 1
 
+                # Check file loads properly
                 try:
                     replay = sc2reader.load_replay(file_path, load_map=True)
-                except Exception as e:
-                    print(f"Failed to load replay {file_path}: {e}")
+                except Exception:
+                    logging.warning(f"File: {file_path} - File failed to load")
 
                 replay_container[replay_counter] = replay
+
+            else:
+                # Check file opens properly
+                logging.warning("File not found or File isn't of type .SC2Replay")
 
         return replay_container
 
@@ -74,13 +80,9 @@ class SC2Extractor(Extractor):
 
                 # Determine which player executed the command and append to their list
                 if event.unit_controller.name == p1_name:
-                    p1_commands.append(
-                        ((command_type, command_name), command_time)
-                    )
+                    p1_commands.append(((command_type, command_name), command_time))
                 else:
-                    p2_commands.append(
-                        ((command_type, command_name), command_time)
-                    )
+                    p2_commands.append(((command_type, command_name), command_time))
 
             # Process upgrade commands
             elif (hasattr(event, "upgrade_type_name")) and (event.second > 0):
@@ -92,13 +94,9 @@ class SC2Extractor(Extractor):
 
                 # Determine which player executed the command and append to their list
                 if event.player.name == p1_name:
-                    p1_commands.append(
-                        ((command_type, command_name), command_time)
-                    )
+                    p1_commands.append(((command_type, command_name), command_time))
                 else:
-                    p2_commands.append(
-                        ((command_type, command_name), command_time)
-                    )
+                    p2_commands.append(((command_type, command_name), command_time))
         return p1_commands, p2_commands
 
     def filter_into_tables(self, replay_container: dict) -> None:
@@ -109,6 +107,9 @@ class SC2Extractor(Extractor):
 
         for replay in replay_container.values():
             if not replay.winner or len(replay.players) != 2:
+                logging.warning(
+                    f"Player Count: {replay.players} - Replay may not have a winner"
+                )
                 continue  # We are only storing games where there is a winner and two players
 
             # Process data for both players
@@ -118,7 +119,6 @@ class SC2Extractor(Extractor):
             # Player names
             player_one_name = player_one.name
             player_two_name = player_two.name
-
 
             # Get player and game IDs
             game_id = SC2ReplayDB._create_game_id()
@@ -142,7 +142,9 @@ class SC2Extractor(Extractor):
             player_two_race = player_two.play_race
 
             # Process commands and store them in lists
-            player_one_commands, player_two_commands = SC2Extractor._process_commands(replay, player_one, player_two)
+            player_one_commands, player_two_commands = SC2Extractor._process_commands(
+                replay, player_one, player_two
+            )
 
             # Game data
             game_map = replay.map_name
@@ -194,4 +196,3 @@ class SC2Extractor(Extractor):
 
     def _batch_insert(self, table_list: list[DataStorage]) -> None:
         super()._batch_insert(table_list)
-
