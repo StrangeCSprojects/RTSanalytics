@@ -242,21 +242,41 @@ class BuildOrderContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return Container(
-    // width: 868,
-    // height: 347.88,
-    height: 50,
-    decoration: ShapeDecoration(
-      color: Color(0xFF34585E),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-    ),
-    child: Column(
-    children: [
-
-        Text('$name $race $winrate', style: const TextStyle(color: Colors.white, fontSize: 30)),
-    ],
-      ),
+  return Column(
+      children: [
+        Row(children: [Container(
+          width: 868,
+          height: 25,
+        )],),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [ 
+            BuildOrderSideSpacer(),
+            Container(
+              width: 838,
+              height: 48,
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              decoration: ShapeDecoration(
+                color: Color(0xFF34585E),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(width: 250,child: Text(name,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
+                  Container(width: 200, child: Text(race,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
+                  Container(width: 150, child: Text(winrate,textAlign: TextAlign.left, style: const TextStyle(color: Colors.white, fontSize: 30))),
+                  Container(width: 188, child: DisplayButton()),
+                ],
+              ),
+            ),
+            BuildOrderSideSpacer(),
+          ],
+        ),
+      ],
     );
+  
+
   }
 }
 
@@ -274,76 +294,6 @@ class BuildOrderSideSpacer extends StatelessWidget {
     );
   }
 }
-
-// class BuildOrderWidget extends StatelessWidget {
-//   final String name;
-//   final String race;
-//   final String winRate;
-//   final String buildorder;  //placeholder for build order
-
-//   const BuildOrderWidget({
-//     Key? key,
-//     required this.name,
-//     required this.race,
-//     required this.winRate,
-//     this.buildorder = 'No Buildorder found',
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Row(children: [Container(
-//           width: 868,
-//           height: 25,
-//         )],),
-//         Row(
-//           mainAxisAlignment: MainAxisAlignment.end,
-//           children: [ 
-//             BuildOrderSideSpacer(),
-//             Container(
-//               width: 838,
-//               height: 48,
-//               decoration: ShapeDecoration(
-//                 color: Color(0xFF2B4547),
-//                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//               ),
-//               child: Row(
-//                 children: [
-//                   BuildOrderSideSpacer(),
-//                   Expanded(child: Text(name,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 30))),
-//                   Expanded(child: Text(race, textAlign: TextAlign.center,style: const TextStyle(color: Colors.white, fontSize: 30))),
-//                   Expanded(child: Text(winRate,textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 30))),
-//                   Expanded( // Keep the Expanded widget
-//                   child: Center( // Center the button
-//                     child: SizedBox(
-//                       width: 200,
-//                       height: 60,
-//                       child: ElevatedButton(
-//                         onPressed: kIsWeb ? null : () {
-//                           String downloadurl = './downloads/rtsanalytics.exe';
-//                           String fileName = 'downloadedFile.pdf';
-//                           downloadFile(downloadurl, fileName);
-//                         },
-//                         child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
-//                         style: ElevatedButton.styleFrom(
-//                           backgroundColor: kIsWeb ? Colors.grey : Color(0xFF34585E), // background color
-//                           surfaceTintColor: Colors.grey,
-//                         ),
-//                       ),
-//                     )
-//                   ),
-//                 ),
-//                   BuildOrderSideSpacer(),
-//                 ],
-//               ),
-//             ),
-//             BuildOrderSideSpacer(),
-//           ],
-//         ),
-//       ],
-//     ); 
-
 
 class BuildOrderWidget extends StatefulWidget {
   @override
@@ -416,19 +366,14 @@ class DisplayButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Trigger Python Function'),
-        ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              displayOverlay();
-            },
-            child: Text('Trigger Function'),
-          ),
-        ),
+    return ElevatedButton(
+      onPressed: kIsWeb ? null : () {
+        displayOverlay();
+      },
+      child: Text('Display', style: TextStyle(color: Colors.white, fontSize: 30)),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: kIsWeb ? Colors.grey : Color(0xFF34585E), // background color
+        surfaceTintColor: Colors.grey,
       ),
     );
   }
