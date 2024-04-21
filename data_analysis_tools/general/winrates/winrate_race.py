@@ -2,7 +2,9 @@ from data_analysis_tools.general.winrates.winrate import Winrate
 
 
 class WinrateRace(Winrate):
-    def calculate_matchup_winrates(self, matches: list[tuple]) -> dict:
+    def calculate_matchup_winrates(
+        self, matches: list[tuple], race_one, race_two="all"
+    ) -> dict:
         """
         Calculates and returns win rates for all combinations of race matchups based on the provided match outcomes.
 
@@ -58,6 +60,25 @@ class WinrateRace(Winrate):
             # Update win count for the winning race
             matchups[winner][race1 if winner == race2 else race2]["wins"] += 1
 
+        if race_two == "all":  # remove this code to revert
+            # Calculate win rates for each matchup
+            total_wins = 0
+            total_games = 0
+            win_rates = {}
+            for race, opponents in matchups.items():
+                if race == race_one:
+                    win_rates[race] = {}
+                    for opponent, record in opponents.items():
+                        win_rate = (
+                            (record["wins"] / record["total"]) * 100
+                            if record["total"] > 0
+                            else 0
+                        )
+                        total_wins += record["wins"]
+                        total_games += record["total"]
+                        win_rates[race][opponent] = int(win_rate)
+            return round((total_wins / total_games) * 100, 2)
+
         # Calculate win rates for each matchup
         win_rates = {}
         for race, opponents in matchups.items():
@@ -68,6 +89,23 @@ class WinrateRace(Winrate):
                     if record["total"] > 0
                     else 0
                 )
-                win_rates[race][opponent] = int(win_rate)
+                win_rates[race][opponent] = round(float(win_rate), 2)
 
-        return win_rates
+        return win_rates[race_one][race_two]  # return win_rates to revert code
+
+
+matches = [
+    ("terran", "zerg", "terran"),
+    ("terran", "zerg", "terran"),
+    ("terran", "zerg", "terran"),
+    ("terran", "zerg", "terran"),
+    ("terran", "zerg", "terran"),
+    ("terran", "zerg", "terran"),
+    ("terran", "zerg", "terran"),
+    ("terran", "zerg", "terran"),
+    ("terran", "zerg", "zerg"),
+    ("terran", "protoss", "protoss"),
+]
+
+test = WinrateRace()
+print(test.calculate_matchup_winrates(matches, "terran"))
