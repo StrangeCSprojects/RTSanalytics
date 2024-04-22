@@ -1,0 +1,28 @@
+^B:\RTSANALYTICS\UI\RTS-ANASLYSIS-UI\BUILD\WINDOWS\X64\CMAKEFILES\420625BA42AE9C427567114F93A74772\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=B:\flutter PROJECT_DIR=B:\RTSanalytics\UI\rts-anaslysis-ui FLUTTER_ROOT=B:\flutter FLUTTER_EPHEMERAL_DIR=B:\RTSanalytics\UI\rts-anaslysis-ui\windows\flutter\ephemeral PROJECT_DIR=B:\RTSanalytics\UI\rts-anaslysis-ui FLUTTER_TARGET=B:\RTSanalytics\UI\rts-anaslysis-ui\lib\main.dart DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==,RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9lNzZjOTU2NDk4ODQxZTFhYjQ1ODU3N2QzODkyMDAzZTU1M2U0ZjNjLw== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=B:\RTSanalytics\UI\rts-anaslysis-ui\.dart_tool\package_config.json B:/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^B:\RTSANALYTICS\UI\RTS-ANASLYSIS-UI\BUILD\WINDOWS\X64\CMAKEFILES\94B54FEF0789CCC006A8C8C2C078FC27\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^B:\RTSANALYTICS\UI\RTS-ANASLYSIS-UI\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SB:/RTSanalytics/UI/rts-anaslysis-ui/windows -BB:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64 --check-stamp-file B:/RTSanalytics/UI/rts-anaslysis-ui/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -50,6 +50,8 @@ class WinrateBuild(Winrate):
                         total_wins += record["wins"]
                         total_games += record["total"]
                         win_rates[build][opponent] = int(win_rate)
+            if total_games == 0:
+                return 0
             return round((total_wins / total_games) * 100, 2)
                 
 

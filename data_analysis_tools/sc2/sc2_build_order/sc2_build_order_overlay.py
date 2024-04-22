@@ -37,6 +37,7 @@ class SC2BuildOrderOverlay(BuildOrderOverlay):
         # Create and configure the main window of the overlay
         root = tk.Tk()
         root.title(build_name)  # Set the window title to the build name
+
         root.attributes("-topmost", True)  # Window remains on top
         root.attributes("-alpha", 0.7)  # Set window transparency to 70%
 
@@ -53,6 +54,9 @@ class SC2BuildOrderOverlay(BuildOrderOverlay):
             command_tuple = (unit_name, self._convert_seconds(unit_time))  # Format time
             label = tk.Label(frame, text=str(command_tuple), bg="white")  # Create label
             label.pack()
+
+
+
 
         # Initialize the event loop for the GUI
         root.mainloop()

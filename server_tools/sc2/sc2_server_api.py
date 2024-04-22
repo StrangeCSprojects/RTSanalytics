@@ -48,7 +48,7 @@ def get_winrates_race():
 # Implement the functionality to get winrates by race
     terran = analyzer.winrate_race("Terran")
     protoss = analyzer.winrate_race("Protoss")
-    zerg = 0
+    zerg = analyzer.winrate_race("Zerg")
     return jsonify({'terran':float(terran), 'protoss':float(protoss), 'zerg':float(zerg)})
 
 

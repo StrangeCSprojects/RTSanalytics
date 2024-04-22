@@ -79,7 +79,7 @@ class SC2Extractor(Extractor):
                 command_name = event.unit.name
 
                 # Determine which player executed the command and append to their list
-                if event.unit_controller.name == p1_name:
+                if event.unit_controller and event.unit_controller.name == p1_name:
                     p1_commands.append(((command_type, command_name), command_time))
                 else:
                     p2_commands.append(((command_type, command_name), command_time))
