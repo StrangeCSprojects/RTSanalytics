@@ -41,7 +41,7 @@ class SC2Analyzer(Analyzer):
         self.analyze_build_logger = logging.getLogger("analyze_builds")
 
     def winrate_build(
-        self, build_order_data_retriever: SC2BuildOrderDataRetriever, build_one, build_two = "all"
+        self, build_order_data_retriever: SC2BuildOrderDataRetriever, build_one: str, build_two: str = "all"
     ) -> float:
         """
         Calculates win rates for different build matchups.
@@ -129,7 +129,7 @@ class SC2Analyzer(Analyzer):
         self._log_build_results(result)
         return result
 
-    def winrate_race(self, race_one, race_two = "all") -> float:
+    def winrate_race(self, race_one:str, race_two:str = "all") -> float:
         """
         Calculates win rates based on the races of the players in SC2 matches.
 
@@ -180,14 +180,14 @@ class SC2Analyzer(Analyzer):
         self._log_race_results(result)
         return result
 
-    def _log_build_results(self, result):
+    def _log_build_results(self, result: int) -> None:
         # Logs the win rate for each build order.
         msg = f"Winrate by build_order: {result}"
         self.analyze_build_logger.info(
             msg
         )  # Use the logger to output the information at the info level.
 
-    def _log_race_results(self, result):
+    def _log_race_results(self, result: int) -> None:
         # Logs the win rate for each race.
         msg = f"Winrate by race: {result}"
         self.analyze_build_logger.info(

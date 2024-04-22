@@ -61,7 +61,7 @@ class SC2BuildOrderOverlay(BuildOrderOverlay):
         # Initialize the event loop for the GUI
         root.mainloop()
 
-    def _convert_seconds(self, seconds):
+    def _convert_seconds(self, seconds: int) -> None:
         """
         Converts seconds into a formatted string representing minutes and seconds.
 

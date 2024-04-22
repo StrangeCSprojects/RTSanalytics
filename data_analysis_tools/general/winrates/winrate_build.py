@@ -2,7 +2,8 @@ from data_analysis_tools.general.winrates.winrate import Winrate
 
 class WinrateBuild(Winrate):
 
-    def calculate_matchup_winrates(self, matches: list[tuple], build_one, build_two = "all") -> dict:
+    def calculate_matchup_winrates(self, matches: list[tuple], 
+                                   build_one: str, build_two:str = "all") -> dict:
         """
         Calculates the winrates for all combinations of build types versus each other build type.
 

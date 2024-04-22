@@ -95,7 +95,7 @@ class SC2BuildOrderCreator(BuildOrderCreator):
             self._build_data.push()
 
     # Error handling methods
-    def _check_file_type(self, file_name):
+    def _check_file_type(self, file_name: str) -> None:
         # Checks if the file name ends with ".csv" extension.
         if not file_name.endswith(".csv"):
             # Constructs a custom error message.
@@ -105,7 +105,7 @@ class SC2BuildOrderCreator(BuildOrderCreator):
             # Raises a ValueError exception with the custom message.
             raise ValueError(msg)
 
-    def _check_file_opens(self, file_path):
+    def _check_file_opens(self, file_path: str) -> None:
         # Attempts to open the specified file in read mode.
         try:
             file = open(file_path, "r")
@@ -116,7 +116,7 @@ class SC2BuildOrderCreator(BuildOrderCreator):
             msg = f"{error}"
             logging.error(msg)
 
-    def _check_command_length(self, build, command):
+    def _check_command_length(self, build: str, command: list[str,str,str,str]) -> None:
         # Checks if the length of the command is exactly 4.
         if len(command) != 4:
             # Constructs and logs a debug message if the command length is incorrect.
@@ -125,7 +125,7 @@ class SC2BuildOrderCreator(BuildOrderCreator):
             # Raises a ValueError if the command length is not 4.
             raise ValueError(msg)
 
-    def _check_headers(self, headers):
+    def _check_headers(self, headers: list[str,str,str,str]) -> None:
         # Defines a list of required headers.
         required_headers = [
             "Unit_Type",
@@ -144,8 +144,9 @@ class SC2BuildOrderCreator(BuildOrderCreator):
             raise ValueError(msg)
 
     def _check_command_time(
-        self, previous_command, previous_time, current_command, current_time, build_name
-    ):
+        self, previous_command: list[str,str,str,str], previous_time: list[str,str,str,str],
+        current_command: list[str,str,str,str], current_time: str, build_name: str
+    ) -> None:
         # Checks if the previous command time is greater than the current command time.
         if int(previous_time) > int(current_time):
             # Constructs and logs a debug message for the command time error.
@@ -154,7 +155,7 @@ class SC2BuildOrderCreator(BuildOrderCreator):
             # Raises a ValueError if the previous command time is after the current command time.
             raise ValueError(msg)
 
-    def _check_command_weight(self, name, command, weight):
+    def _check_command_weight(self, name:str, command: list[str,str,str,str], weight:str) -> None:
         # Checks if the command weight is between 0 and 1, inclusive.
         if (int(weight) < 0) or (int(weight) > 1):
             # Constructs and logs a debug message if the weight is out of the acceptable range.

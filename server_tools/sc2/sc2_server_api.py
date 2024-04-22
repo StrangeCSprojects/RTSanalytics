@@ -3,9 +3,9 @@ from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataR
 from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
 from database_tools.sc2.sc2_replay_data_retriever import SC2ReplayDataRetriever
 from database_tools.sc2.sc2_replay_database import SC2ReplayDB
-from server_tools.interfaces.GetBuildOrders import GetBuildOrders
-from server_tools.interfaces.DisplayOverlay import DisplayOverlay
-from server_tools.interfaces.GetWinratesRace import GetWinratesRace
+from server_tools.interfaces.get_build_orders import GetBuildOrders
+from server_tools.interfaces.display_overlay import DisplayOverlay
+from server_tools.interfaces.get_winrates_race import GetWinratesRace
 from data_analysis_tools.sc2.sc2_build_order.sc2_build_order_overlay import (
     SC2BuildOrderOverlay,
 )
