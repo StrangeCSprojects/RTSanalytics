@@ -4,8 +4,6 @@ import logging
 from config.sc2_logging_config import setup_logging
 
 
-
-
 class SC2DetermineBuild(DetermineBuild):
     """
     Extends DetermineBuild to implement a method for determining the build strategy for a
@@ -21,7 +19,7 @@ class SC2DetermineBuild(DetermineBuild):
         Parameters:
             data_retriever: retrieves build order data from the sc2_build_order_database
         """
-        
+
         self.compare_builds_logger = logging.getLogger("sc2_comparing_builds")
 
         super().__init__(data_retriever)
@@ -231,7 +229,9 @@ class SC2DetermineBuild(DetermineBuild):
     # Error handling methods
     def _log_confidence_scores(self, build, c_score):
         # Logs the confidence score associated with a specific build.
-        self.compare_builds_logger.info(f"Build: {build[0]} - Confidence Score: {c_score}\n")
+        self.compare_builds_logger.info(
+            f"Build: {build[0]} - Confidence Score: {c_score}\n"
+        )
 
     def _log_RE_unit_types(
         self, unit_type, benchmark_unit_dictionary, user_unit_dictionary
@@ -269,4 +269,3 @@ class SC2DetermineBuild(DetermineBuild):
         # Logs a message indicating a successful build match.
         msg = f"Matching Build: {match}\n"
         self.compare_builds_logger.info(msg)
- 

@@ -63,7 +63,6 @@ class SC2BuildOrderCreator(BuildOrderCreator):
 
             # Loop through the remaining rows in the CSV file.
             for command in csv_reader:
-
                 # Check that length of every command is 4
                 self._check_command_length(name, command)
 
