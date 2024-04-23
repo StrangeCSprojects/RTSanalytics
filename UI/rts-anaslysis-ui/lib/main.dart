@@ -8,28 +8,26 @@ void main() {
 }
 
 void startup() async {
-  // Command to execute
-  String command = 'py';
-  // Arguments to pass to the command
+  String workingDirectory = '.';
+  String pythonExecutable = '$workingDirectory\\env\\Scripts\\python.exe';
   List<String> arguments = ['-m', 'server_tools.sc2.sc2_server_api'];
 
+
   try {
-    // Running the process
-    ProcessResult results = await Process.run(
-      command, 
+    ProcessResult install = await Process.run(
+      'pip', 
+      ['install', '-r', 'requirements.txt'],
+      workingDirectory: '.',
+    );
+    ProcessResult run = await Process.run(
+      pythonExecutable, 
       arguments,
       workingDirectory: '.',
-      );
-
-    // Outputting the results
-    print('The process exited with code ${results.exitCode}');
-    print('Output:\n${results.stdout}');
-    print('Errors (if any):\n${results.stderr}');
+    );
   } catch (e) {
-    print('An error occurred: $e');
+    print('Error starting server: $e');
   }
 }
-
 
 class MainContent extends StatelessWidget {
   const MainContent({super.key});
