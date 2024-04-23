@@ -1,10 +1,35 @@
 import 'package:flutter/material.dart';
 import 'stats.dart';
-
+import 'dart:io'; 
 
 void main() {
+  startup();
   runApp(const MainContent());
 }
+
+void startup() async {
+  // Command to execute
+  String command = 'py';
+  // Arguments to pass to the command
+  List<String> arguments = ['-m', 'server_tools.sc2.sc2_server_api'];
+
+  try {
+    // Running the process
+    ProcessResult results = await Process.run(
+      command, 
+      arguments,
+      workingDirectory: '.',
+      );
+
+    // Outputting the results
+    print('The process exited with code ${results.exitCode}');
+    print('Output:\n${results.stdout}');
+    print('Errors (if any):\n${results.stderr}');
+  } catch (e) {
+    print('An error occurred: $e');
+  }
+}
+
 
 class MainContent extends StatelessWidget {
   const MainContent({super.key});
