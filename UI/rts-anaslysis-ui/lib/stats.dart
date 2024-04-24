@@ -125,6 +125,7 @@ class _WinRatesWidgetState extends State<WinRatesWidget> {
 
   Future<void> fetchPercentage() async {
     try {
+      sleep(Duration(seconds: 5));
       final response = await http.get(Uri.parse('http://127.0.0.1:5010/get_winrates_race'));
       if (response.statusCode == 200) {
         var jsonResponse = jsonDecode(response.body);
@@ -315,6 +316,7 @@ class _BuildOrderWidgetState extends State<BuildOrderWidget> {
 
   Future<void> fetchBuilds() async {
     try {
+      sleep(Duration(seconds: 5));
       final response = await http.get(Uri.parse('http://127.0.0.1:5010/get_build_orders'));
       if (response.statusCode == 200) {
         var jsonResponse = jsonDecode(response.body);

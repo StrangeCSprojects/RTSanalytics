@@ -9,19 +9,20 @@ void main() {
 
 void startup() async {
   String workingDirectory = '.';
-  String pythonExecutable = '$workingDirectory\\env\\Scripts\\python.exe';
-  List<String> arguments = ['-m', 'server_tools.sc2.sc2_server_api'];
+  String pythonExecutable = '$workingDirectory\\python\\python.exe';
+  List<String> runArg = ['-m', 'server_tools.sc2.sc2_server_api'];
+  List<String> installArg = ['-m', 'pip', 'install', '-r', 'requirements.txt'];
 
 
   try {
-    ProcessResult install = await Process.run(
-      'pip', 
-      ['install', '-r', 'requirements.txt'],
-      workingDirectory: '.',
-    );
+    // ProcessResult install = await Process.run(
+    //   pythonExecutable, 
+    //   installArg,
+    //   workingDirectory: '.',
+    // );
     ProcessResult run = await Process.run(
       pythonExecutable, 
-      arguments,
+      runArg,
       workingDirectory: '.',
     );
   } catch (e) {
