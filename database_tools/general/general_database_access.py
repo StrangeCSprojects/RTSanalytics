@@ -6,7 +6,7 @@ class DataStorage(ABC):
     An abstract class for a temporary data storage unit/container
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._data = []
 
     @abstractmethod

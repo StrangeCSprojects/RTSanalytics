@@ -1,0 +1,19 @@
+Unit_Type,Unit_Name,Time (seconds),Weight (default =1)
+UnitInitEvent,SpawningPool,35,1
+UnitInitEvent,Hatchery,55,1
+UnitBornEvent,Extractor,70,1
+UnitInitEvent,Hatchery,105,1
+UpgradeCompleteEvent,zerglingmovementspeed,140,1
+UnitInitEvent,EvolutionChamber,210,1
+UnitInitEvent,RoachWarren,210,1
+UnitInitEvent,SporeCrawler,225,1
+UnitInitEvent,SporeCrawler,225,1
+UpgradeCompleteEvent,GlialReconstitution,360,1
+UpgradeCompleteEvent,ZergMissileWeaponsLevel1,390,1
+UnitInitEvent,InfestationPit,450,1
+UnitInitEvent,HydraliskDen,450,1
+UnitInitEvent,EvolutionChamber,490,1
+UnitInitEvent,LurkerDen,510,1
+UpgradeCompleteEvent,ZergMissileWeaponsLevel2,510,1
+UpgradeCompleteEvent,ZergGroundArmorsLevel1,510,1
+UpgradeCompleteEvent,LurkerRange,540,1

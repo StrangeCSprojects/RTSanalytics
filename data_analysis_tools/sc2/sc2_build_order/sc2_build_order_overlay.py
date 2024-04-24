@@ -37,6 +37,7 @@ class SC2BuildOrderOverlay(BuildOrderOverlay):
         # Create and configure the main window of the overlay
         root = tk.Tk()
         root.title(build_name)  # Set the window title to the build name
+
         root.attributes("-topmost", True)  # Window remains on top
         root.attributes("-alpha", 0.7)  # Set window transparency to 70%
 
@@ -54,10 +55,13 @@ class SC2BuildOrderOverlay(BuildOrderOverlay):
             label = tk.Label(frame, text=str(command_tuple), bg="white")  # Create label
             label.pack()
 
+
+
+
         # Initialize the event loop for the GUI
         root.mainloop()
 
-    def _convert_seconds(self, seconds):
+    def _convert_seconds(self, seconds: int) -> None:
         """
         Converts seconds into a formatted string representing minutes and seconds.
 

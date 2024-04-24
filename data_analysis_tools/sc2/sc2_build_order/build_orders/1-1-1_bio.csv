@@ -1,0 +1,25 @@
+Unit_Type,Unit_Name,Time (seconds),Weight (default =1)
+UnitInitEvent,SupplyDepot,17,1
+UnitInitEvent,Barracks,40,1
+UnitInitEvent,Refinery,44,1
+UnitInitEvent,CommandCenter,104,1
+UnitInitEvent,SupplyDepot,112,1
+UnitInitEvent,Factory,131,1
+UnitInitEvent,Refinery,138,1
+UnitInitEvent,BarracksReactor,144,1
+UnitInitEvent,FactoryTechLab,174,1
+UnitInitEvent,Starport,178,1
+UnitBornEvent,Liberator,227,1
+UnitInitEvent,CommandCenter,264,1
+UnitInitEvent,StarportReactor,276,1
+UnitInitEvent,Barracks,303,1
+UnitInitEvent,Barracks,303,1
+UnitInitEvent,Refinery,306,1
+UnitInitEvent,Refinery,306,1
+UnitInitEvent,EngineeringBay,306,1
+UnitInitEvent,EngineeringBay,306,1
+UnitInitEvent,Barracks,331,1
+UnitInitEvent,Barracks,331,1
+UnitInitEvent,Armory,417,1
+UnitInitEvent,Barracks,438,1
+UnitInitEvent,Barracks,438,1

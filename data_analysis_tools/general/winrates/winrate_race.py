@@ -3,7 +3,7 @@ from data_analysis_tools.general.winrates.winrate import Winrate
 
 class WinrateRace(Winrate):
     def calculate_matchup_winrates(
-        self, matches: list[tuple], race_one, race_two="all"
+        self, matches: list[tuple], race_one:str, race_two:str="all"
     ) -> dict:
         """
         Calculates and returns win rates for all combinations of race matchups based on the provided match outcomes.

@@ -80,13 +80,13 @@ class SC2BuildOrderDataRetriever(DataRetriever):
         self._log_build_list_database_empty(build_list)
         return build_list
 
-    def _log_build_list_race_empty(self, race, build_list):
+    def _log_build_list_race_empty(self, race, build_list) -> None:
         # Checks if the build list for a specified race is empty.
         if len(build_list) == 0:
             msg = f"Race: {race} - Has no associated builds"
             logging.warning(msg)
 
-    def _log_build_list_database_empty(self, build_list):
+    def _log_build_list_database_empty(self, build_list) -> None:
         # Checks if the build list from the database is empty.
         if len(build_list) == 0:
             msg = f"No builds in database"

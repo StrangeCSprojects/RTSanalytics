@@ -1,3 +1,5 @@
+from database_tools.general.general_database import GeneralDB
+
 class DataRetriever:
     """
     Initializes a DataRetriever object to abstract the interaction with a database.
@@ -7,7 +9,7 @@ class DataRetriever:
     facilitating data retrieval without requiring direct database manipulation.
     """
 
-    def __init__(self, database) -> None:
+    def __init__(self, database :GeneralDB) -> None:
         """
         Constructor for the DataRetriever class.
 

@@ -227,15 +227,15 @@ class SC2DetermineBuild(DetermineBuild):
             user_unit_dictionary[unit_type].append(10000)
 
     # Error handling methods
-    def _log_confidence_scores(self, build, c_score):
+    def _log_confidence_scores(self, build:list[str,tuple], c_score:int) -> None:
         # Logs the confidence score associated with a specific build.
         self.compare_builds_logger.info(
             f"Build: {build[0]} - Confidence Score: {c_score}\n"
         )
 
     def _log_RE_unit_types(
-        self, unit_type, benchmark_unit_dictionary, user_unit_dictionary
-    ):
+        self, unit_type:tuple[str,str], benchmark_unit_dictionary:dict[tuple[str,str]:list[int]], user_unit_dictionary:dict[tuple[str,str]: list[int]]
+    ) -> None:
         # Calculates the relative error between benchmark and user unit types for a given unit type.
         re = self._relative_error_of_unit_type(
             benchmark_unit_dictionary, user_unit_dictionary, unit_type
@@ -244,28 +244,28 @@ class SC2DetermineBuild(DetermineBuild):
         msg = f"Unit Type: {unit_type} - Relative Error: {re} - Benchmark: {benchmark_unit_dictionary[unit_type]} - User: {user_unit_dictionary[unit_type]}"
         self.compare_builds_logger.info(msg)
 
-    def _check_build_found(self, build_order):
+    def _check_build_found(self, build_order:str) -> None:
         # Checks if the provided build order is labeled as "Misc.", indicating no matching build was found.
         if build_order == "Misc.":
             # Raises a ValueError if no matching build is found.
             raise ValueError("No matching build found")
 
-    def _log_user_commands(self, commands):
+    def _log_user_commands(self, commands: list[tuple[tuple[str, str], int]]) -> None:
         # Logs the list of commands provided by the user.
         msg = f"User Commands: {commands}\n"
         self.compare_builds_logger.info(msg)
 
-    def _log_benchmark_dictionary(self, benchmark_unit_dictionary):
+    def _log_benchmark_dictionary(self, benchmark_unit_dictionary: dict[tuple[str, str] : list[int]]) -> None:
         # Logs the entire benchmark unit dictionary to trace or debug information.
         msg = f"Bechmark Unit Dictionary: {benchmark_unit_dictionary}"
         self.compare_builds_logger.info(msg)
 
-    def _log_user_dictionary(self, user_unit_dictionary):
+    def _log_user_dictionary(self, user_unit_dictionary: dict[tuple[str, str] : list[int]]) -> None:
         # Logs the entire user unit dictionary to trace or debug information.
         msg = f"User Unit Dictionary: {user_unit_dictionary}"
         self.compare_builds_logger.info(msg)
 
-    def _log_build_match(self, match):
+    def _log_build_match(self, match:str) -> None:
         # Logs a message indicating a successful build match.
         msg = f"Matching Build: {match}\n"
         self.compare_builds_logger.info(msg)

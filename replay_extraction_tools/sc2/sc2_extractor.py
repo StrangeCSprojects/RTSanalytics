@@ -4,7 +4,7 @@ import sc2reader
 from replay_extraction_tools.General.extractor import Extractor
 from database_tools.sc2.sc2_replay_database import SC2ReplayDB
 from database_tools.general.general_database_access import DataStorage
-from database_tools.sc2.sc2_database_access import (
+from database_tools.sc2.sc2_replay_database_access import (
     PlayDataStorage,
     PlayerDataStorage,
     GameDataStorage,
@@ -79,7 +79,7 @@ class SC2Extractor(Extractor):
                 command_name = event.unit.name
 
                 # Determine which player executed the command and append to their list
-                if event.unit_controller.name == p1_name:
+                if event.unit_controller and event.unit_controller.name == p1_name:
                     p1_commands.append(((command_type, command_name), command_time))
                 else:
                     p2_commands.append(((command_type, command_name), command_time))
