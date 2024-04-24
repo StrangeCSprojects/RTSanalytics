@@ -33,7 +33,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 Source: "C:\Users\Hoyoungs PC\Documents\repos\RTSanalytics\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Hoyoungs PC\Documents\repos\RTSanalytics\flutter_windows.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Hoyoungs PC\Documents\repos\RTSanalytics\main.py"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Hoyoungs PC\Documents\repos\RTSanalytics\README.md"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Hoyoungs PC\Documents\repos\RTSanalytics\requirements.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\Hoyoungs PC\Documents\repos\RTSanalytics\config\*"; DestDir: "{app}\config"; Flags: ignoreversion recursesubdirs createallsubdirs
