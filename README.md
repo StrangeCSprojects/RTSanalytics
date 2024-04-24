@@ -19,7 +19,7 @@ Requires Windows Machine
 2. Install and setup flutter (If the application doesn't work it is probably because of this step.)
 3. Delete env folder
 4. Create virtual environment following above steps
-5. Run command from root directory RTSanalytics: 'py -m server_tools.server_api'
+5. Run command from root directory RTSanalytics: 'py -m server_tools.sc2.sc2_server_api'
 6. Open a new terminal and cd to RTSanalytics/UI/rts-anaslysis
 7. Run command 'flutter run'
 8. Select the windows setup
