@@ -5,7 +5,6 @@ from data_analysis_tools.general.build_order.build_order_overlay import (
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
 from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
 import tkinter as tk
-import pygetwindow as gw
 
 
 class SC2BuildOrderOverlay(BuildOrderOverlay):
