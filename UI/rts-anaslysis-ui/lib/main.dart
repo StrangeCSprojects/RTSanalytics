@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
 import 'stats.dart';
-
+import 'dart:io'; 
 
 void main() {
+  startup();
   runApp(const MainContent());
+}
+
+void startup() async {
+  String workingDirectory = '.';
+  String pythonExecutable = '$workingDirectory\\python\\python.exe';
+  List<String> runArg = ['-m', 'server_tools.sc2.sc2_server_api'];
+  List<String> installArg = ['-m', 'pip', 'install', '-r', 'requirements.txt'];
+
+
+  try {
+    // ProcessResult install = await Process.run(
+    //   pythonExecutable, 
+    //   installArg,
+    //   workingDirectory: '.',
+    // );
+    ProcessResult run = await Process.run(
+      pythonExecutable, 
+      runArg,
+      workingDirectory: '.',
+    );
+  } catch (e) {
+    print('Error starting server: $e');
+  }
 }
 
 class MainContent extends StatelessWidget {

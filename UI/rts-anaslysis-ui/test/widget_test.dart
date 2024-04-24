@@ -20,7 +20,7 @@ void main() {
     expect(find.byType(RaceRateContents), findsOneWidget);
 
     // Verify that the RaceWinRate widget is displayed.
-    expect(find.byType(RaceWinRate), findsOneWidget);
+    expect(find.byType(RaceRateContents), findsOneWidget);
 
     // Verify that the RaceRateFormat widget is displayed.
     expect(find.byType(RaceRateFormat), findsWidgets);

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'globals.dart';
+import 'dart:io';
 // import 'dart:html' as html;
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+//py -m server_tools.sc2.sc2_server_api
 
 // void downloadFile(String url, String fileName) {
 //   // Create an anchor element
@@ -122,6 +125,7 @@ class _WinRatesWidgetState extends State<WinRatesWidget> {
 
   Future<void> fetchPercentage() async {
     try {
+      sleep(Duration(seconds: 5));
       final response = await http.get(Uri.parse('http://127.0.0.1:5010/get_winrates_race'));
       if (response.statusCode == 200) {
         var jsonResponse = jsonDecode(response.body);
@@ -190,7 +194,7 @@ class ContentTitle extends StatelessWidget {
                       height: 60, // Set the height of the button
                       child: ElevatedButton(
                         onPressed: kIsWeb ? () {
-                          // downloadFile('./downloads/rtsdownload.exe', 'rtsdownload.exe');
+                          // downloadFile('https://rtsdownload.s3.amazonaws.com/RTSanalytics.exe', 'RTSanalytics.exe');
                         } : null,
                         child: Tooltip(
                           message: kIsWeb ? '' : 'currently not able to import user submitted replys',
@@ -312,6 +316,7 @@ class _BuildOrderWidgetState extends State<BuildOrderWidget> {
 
   Future<void> fetchBuilds() async {
     try {
+      sleep(Duration(seconds: 5));
       final response = await http.get(Uri.parse('http://127.0.0.1:5010/get_build_orders'));
       if (response.statusCode == 200) {
         var jsonResponse = jsonDecode(response.body);
