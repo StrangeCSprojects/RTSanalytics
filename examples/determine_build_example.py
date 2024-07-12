@@ -35,10 +35,10 @@ def main():
 
 
     # #sc2_determine_build
-    # sc2_determine_build = SC2DetermineBuild(build_order_data_retriever)
-    # commands = replay_data_retriever.get_commands(1,2)
-    # build = sc2_determine_build.determine_build("Terran", commands)
-    # print(build)
+    sc2_determine_build = SC2DetermineBuild(build_order_data_retriever)
+    commands = replay_data_retriever.get_commands(1,2)
+    build = sc2_determine_build.determine_build("Terran", commands)
+    print(build)
     
         
     

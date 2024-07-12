@@ -760,3 +760,538 @@
 2024-04-21 10:10 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - SouperKraze (Zerg), Player 2 - MyApoloChees (Zerg), Player 3 - Cstrange (Terran), Player 4 - dudemanbro (Terran), Player 5 - iamnoobnow (Terran), Player 6 - BlackSheep (Protoss)] - Replay may not have a winner
 2024-04-21 10:10 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Relinquish (Zerg), Player 2 - SCwizard (Zerg), Player 3 - Sax (Terran), Player 4 - Cstrange (Terran), Player 5 - SouperKraze (Zerg), Player 6 - StrangeNine (Protoss)] - Replay may not have a winner
 2024-04-21 10:10 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran), Player 2 - SouperKraze (Zerg), Player 3 - MyApoloChees (Zerg), Player 4 - SungJinWoo (Zerg), Player 5 - NewbieForeva (Zerg), Player 6 - Duy (Terran)] - Replay may not have a winner
+2024-04-28 02:09 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:09 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:10 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:10 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:10 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:10 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:10 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/68935c92125a3828034dd3f93212ef0adf8ec33b491b7bdd0ee158c3daccc8df.s2ma
+2024-04-28 02:10 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/68935c92125a3828034dd3f93212ef0adf8ec33b491b7bdd0ee158c3daccc8df.s2ma
+2024-04-28 02:10 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/68935c92125a3828034dd3f93212ef0adf8ec33b491b7bdd0ee158c3daccc8df.s2ma
+2024-04-28 02:10 PM - root - sc2_extractor.py:49 - WARNING - File: examples/sc2_build_replays\2000 Atmospheres LE.SC2Replay - File failed to load
+2024-04-28 02:10 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/2cb9fe568a2493fecac7ab6a9896d2166bcedd7bb97510dba9796dd75e95809d.s2ma
+2024-04-28 02:11 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/2ba4657510ef1f7a11acac73af326d4714e83e5e7261f9b1f1f1b9a7cbff2afa.s2ma
+2024-04-28 02:11 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/2ba4657510ef1f7a11acac73af326d4714e83e5e7261f9b1f1f1b9a7cbff2afa.s2ma
+2024-04-28 02:11 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/878d8608be666324cf0c4df785e4129f9110e3987b125f136b710aeec1549d37.s2ma
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Alaeni Enclave CE (2).SC2Replay
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.13.92028
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - AssForceFive (Protoss)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - tomto (Terran)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - BATS (Terran)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - Kushkillz (Zerg)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - SouperKraze (Zerg)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - Cstrange (Terran)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 7 - Bstrange (Terran)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 8 - MyApoloChees (Terran)
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 2576	BATS	Missing ability 12BE from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 3306	Cstrange	Missing ability 12BE from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 6159	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7559	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8231	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8575	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9944	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11446	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12210	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14114	tomto	Missing ability 1531 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14389	tomto	Missing ability 133E from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14588	tomto	Missing ability 133E from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 15237	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 19808	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 20406	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 20524	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 23660	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 23890	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 27465	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 27478	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/878d8608be666324cf0c4df785e4129f9110e3987b125f136b710aeec1549d37.s2ma
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Alaeni Enclave CE.SC2Replay
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.13.92028
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - SouperKraze (Zerg)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Protoss)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - Bstrange (Terran)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - MyApoloChees (Terran)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - ButtSneezer (Terran)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - Shabbarankz (Protoss)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 7 - Jaedolph (Terran)
+2024-04-28 02:11 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 8 - Saundo (Protoss)
+2024-04-28 02:11 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 13829	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:11 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:11 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:11 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:11 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:12 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Alcyone LE (6).SC2Replay
+2024-04-28 02:12 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.13.92028
+2024-04-28 02:12 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Protoss)
+2024-04-28 02:12 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - MyApoloChees (Terran)
+2024-04-28 02:12 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 3995	MyApoloChees	Missing ability 12BE from Build
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:12 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Altitude LE (2).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Samura (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9574	Cstrange	Missing ability 12BE from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9604	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 18995	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 24667	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 29165	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 31789	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 34274	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 36205	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 37607	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 40915	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 41998	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 44338	Samura	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Altitude LE (4).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - SouperKraze (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8253	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11035	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12477	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Altitude LE (5).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Redbullking (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 4574	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 5601	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11176	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 15585	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 16637	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 18458	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 18564	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 21319	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 23512	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 25027	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Altitude LE.SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - BattleBrian (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14004	Cstrange	Missing ability 133E from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/565dd964e22c89afbf90a5180f309f37bd7787a51b724417ccbc2ef217725818.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (2).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Gen (Zerg)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7803	Gen	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8736	Gen	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10078	Gen	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14192	Gen	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14658	Gen	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (3).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Leviathan (Protoss)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 4044	Cstrange	Missing ability 12FE from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (4).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - SouperKraze (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 6631	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11740	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (5).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Sgtcleche (Zerg)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7413	Sgtcleche	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7801	Sgtcleche	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10117	Sgtcleche	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12410	Sgtcleche	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (7).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Jimmy (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9572	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9841	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10028	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11314	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12775	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14203	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 17289	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 17456	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 18700	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 20659	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 23801	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 25458	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 26119	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 32210	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 36176	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 36776	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE.SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Surreal (Zerg)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7241	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8271	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10216	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10554	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11853	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12525	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14775	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 15460	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 16696	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/59516605e7d4cbbabc942ea19ae387a05b57ae985d5ac57690533fcc2bed01ce.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Augustine Fall LE.SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.12.91115
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - SouperKraze (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - MyApoloChees (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - dudemanbro (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - iamnoobnow (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - BlackSheep (Protoss)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 21416	iamnoobnow	Missing ability 12FE from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Babylon LE (2).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - SouperKraze (Zerg)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 6887	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10135	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10875	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12178	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14265	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 15725	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Babylon LE (5).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Aeon (Zerg)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10334	Aeon	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/0c820d76f13d85dbbe32caf428f5b586a07a6fd6c2fd43ef91db8005a78a16d5.s2ma
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Black Site 2E (2).SC2Replay
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.12.91115
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Relinquish (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - SCwizard (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - Sax (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - Cstrange (Terran)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - SouperKraze (Zerg)
+2024-04-28 02:13 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - StrangeNine (Protoss)
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 4819	SCwizard	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 5982	SCwizard	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8149	Cstrange	Missing ability 12BE from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8210	Cstrange	Missing ability 12BE from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 13761	SCwizard	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 16100	Relinquish	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 17102	SCwizard	Missing ability 5B20 from Build
+2024-04-28 02:13 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/0c820d76f13d85dbbe32caf428f5b586a07a6fd6c2fd43ef91db8005a78a16d5.s2ma
+2024-04-28 02:14 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Black Site 2E.SC2Replay
+2024-04-28 02:14 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.12.91115
+2024-04-28 02:14 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:14 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - SouperKraze (Zerg)
+2024-04-28 02:14 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - MyApoloChees (Zerg)
+2024-04-28 02:14 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - SungJinWoo (Zerg)
+2024-04-28 02:14 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - NewbieForeva (Zerg)
+2024-04-28 02:14 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - Duy (Terran)
+2024-04-28 02:14 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8962	Duy	Missing ability 12BE from Build
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran), Player 2 - Bstrange (Terran), Player 3 - SouperKraze (Zerg), Player 4 - Jermster (Zerg)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - AssForceFive (Protoss), Player 2 - tomto (Terran), Player 3 - BATS (Terran), Player 4 - Kushkillz (Zerg), Player 5 - SouperKraze (Zerg), Player 6 - Cstrange (Terran), Player 7 - Bstrange (Terran), Player 8 - MyApoloChees (Terran)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - SouperKraze (Zerg), Player 2 - Cstrange (Protoss), Player 3 - Bstrange (Terran), Player 4 - MyApoloChees (Terran), Player 5 - ButtSneezer (Terran), Player 6 - Shabbarankz (Protoss), Player 7 - Jaedolph (Terran), Player 8 - Saundo (Protoss)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Protoss)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Zerg)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - SouperKraze (Zerg), Player 2 - MyApoloChees (Zerg), Player 3 - Cstrange (Terran), Player 4 - dudemanbro (Terran), Player 5 - iamnoobnow (Terran), Player 6 - BlackSheep (Protoss)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Relinquish (Zerg), Player 2 - SCwizard (Zerg), Player 3 - Sax (Terran), Player 4 - Cstrange (Terran), Player 5 - SouperKraze (Zerg), Player 6 - StrangeNine (Protoss)] - Replay may not have a winner
+2024-04-28 02:14 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran), Player 2 - SouperKraze (Zerg), Player 3 - MyApoloChees (Zerg), Player 4 - SungJinWoo (Zerg), Player 5 - NewbieForeva (Zerg), Player 6 - Duy (Terran)] - Replay may not have a winner
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/8ca93fd5745f63ec9b06658749660b278721000408cc04a22a4ec90083e12857.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/68935c92125a3828034dd3f93212ef0adf8ec33b491b7bdd0ee158c3daccc8df.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/68935c92125a3828034dd3f93212ef0adf8ec33b491b7bdd0ee158c3daccc8df.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/68935c92125a3828034dd3f93212ef0adf8ec33b491b7bdd0ee158c3daccc8df.s2ma
+2024-04-28 02:51 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/2cb9fe568a2493fecac7ab6a9896d2166bcedd7bb97510dba9796dd75e95809d.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/2ba4657510ef1f7a11acac73af326d4714e83e5e7261f9b1f1f1b9a7cbff2afa.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/2ba4657510ef1f7a11acac73af326d4714e83e5e7261f9b1f1f1b9a7cbff2afa.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/878d8608be666324cf0c4df785e4129f9110e3987b125f136b710aeec1549d37.s2ma
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Alaeni Enclave CE (2).SC2Replay
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.13.92028
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - AssForceFive (Protoss)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - tomto (Terran)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - BATS (Terran)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - Kushkillz (Zerg)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - SouperKraze (Zerg)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - Cstrange (Terran)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 7 - Bstrange (Terran)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 8 - MyApoloChees (Terran)
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 2576	BATS	Missing ability 12BE from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 3306	Cstrange	Missing ability 12BE from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 6159	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7559	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8231	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8575	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9944	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11446	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12210	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14114	tomto	Missing ability 1531 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14389	tomto	Missing ability 133E from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14588	tomto	Missing ability 133E from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 15237	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 19808	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 20406	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 20524	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 23660	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 23890	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 27465	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 27478	Kushkillz	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/878d8608be666324cf0c4df785e4129f9110e3987b125f136b710aeec1549d37.s2ma
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Alaeni Enclave CE.SC2Replay
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.13.92028
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - SouperKraze (Zerg)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Protoss)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - Bstrange (Terran)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - MyApoloChees (Terran)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - ButtSneezer (Terran)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - Shabbarankz (Protoss)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 7 - Jaedolph (Terran)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 8 - Saundo (Protoss)
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 13829	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Alcyone LE (6).SC2Replay
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.13.92028
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Protoss)
+2024-04-28 02:52 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - MyApoloChees (Terran)
+2024-04-28 02:52 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 3995	MyApoloChees	Missing ability 12BE from Build
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:52 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/d030b2833e043230d86f96c879597757140f21888148851eb2cd164d8ecbd8f8.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Altitude LE (2).SC2Replay
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Samura (Zerg)
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9574	Cstrange	Missing ability 12BE from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9604	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 18995	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 24667	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 29165	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 31789	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 34274	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 36205	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 37607	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 40915	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 41998	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 44338	Samura	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Altitude LE (4).SC2Replay
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - SouperKraze (Zerg)
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8253	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11035	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12477	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Altitude LE (5).SC2Replay
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Redbullking (Zerg)
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 4574	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 5601	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11176	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 15585	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 16637	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 18458	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 18564	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 21319	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 23512	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 25027	Redbullking	Missing ability 5B20 from Build
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/25b18d285d2ae8ee6b504fa5d69a5d3f1d41dc3ed37501f5850edba2f9a4a160.s2ma
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Altitude LE.SC2Replay
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - BattleBrian (Terran)
+2024-04-28 02:53 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:53 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14004	Cstrange	Missing ability 133E from Build
+2024-04-28 02:53 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/565dd964e22c89afbf90a5180f309f37bd7787a51b724417ccbc2ef217725818.s2ma
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (2).SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Gen (Zerg)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7803	Gen	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8736	Gen	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10078	Gen	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14192	Gen	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14658	Gen	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (3).SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Leviathan (Protoss)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 4044	Cstrange	Missing ability 12FE from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (4).SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - SouperKraze (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 6631	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11740	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (5).SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Sgtcleche (Zerg)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7413	Sgtcleche	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7801	Sgtcleche	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10117	Sgtcleche	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12410	Sgtcleche	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE (7).SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Jimmy (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9572	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 9841	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10028	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11314	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12775	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14203	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 17289	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 17456	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 18700	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 20659	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 23801	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 25458	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 26119	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 32210	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 36176	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 36776	Jimmy	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/b8131c678fc649c87bfb7433ebf99cd7b0e845d5ab5f777682143ad70df1cdd7.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Ancient Cistern LE.SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Surreal (Zerg)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 7241	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8271	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10216	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10554	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 11853	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12525	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14775	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 15460	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 16696	Surreal	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/59516605e7d4cbbabc942ea19ae387a05b57ae985d5ac57690533fcc2bed01ce.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Augustine Fall LE.SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.12.91115
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - SouperKraze (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - MyApoloChees (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - dudemanbro (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - iamnoobnow (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - BlackSheep (Protoss)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 21416	iamnoobnow	Missing ability 12FE from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Babylon LE (2).SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - SouperKraze (Zerg)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 6887	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10135	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10875	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 12178	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 14265	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 15725	SouperKraze	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Babylon LE (5).SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.11.90870
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - Aeon (Zerg)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 10334	Aeon	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/fb7f53be9f41b129be2e33c3a56c5198820ffe3a10148b9656e1d6a9808fd530.s2ma
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/0c820d76f13d85dbbe32caf428f5b586a07a6fd6c2fd43ef91db8005a78a16d5.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Black Site 2E (2).SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.12.91115
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Relinquish (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - SCwizard (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - Sax (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - SouperKraze (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - StrangeNine (Protoss)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 4819	SCwizard	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 5982	SCwizard	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8149	Cstrange	Missing ability 12BE from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8210	Cstrange	Missing ability 12BE from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 13761	SCwizard	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 16100	Relinquish	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 17102	SCwizard	Missing ability 5B20 from Build
+2024-04-28 02:54 PM - sc2reader.factories.sc2factory.SC2Factory - sc2factory.py:209 - INFO - Fetching remote resource: https://us-s2-depot.classic.blizzard.com/0c820d76f13d85dbbe32caf428f5b586a07a6fd6c2fd43ef91db8005a78a16d5.s2ma
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:37 - ERROR - examples/sc2_build_replays\Black Site 2E.SC2Replay
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:38 - ERROR - Release String: 5.0.12.91115
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 1 - Cstrange (Terran)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 2 - SouperKraze (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 3 - MyApoloChees (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 4 - SungJinWoo (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 5 - NewbieForeva (Zerg)
+2024-04-28 02:54 PM - sc2reader.events.game.CommandEvent - context.py:45 - ERROR - 	Player 6 - Duy (Terran)
+2024-04-28 02:54 PM - sc2reader.engine.plugins.context.ContextLoader - context.py:47 - ERROR - 8962	Duy	Missing ability 12BE from Build
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran), Player 2 - Bstrange (Terran), Player 3 - SouperKraze (Zerg), Player 4 - Jermster (Zerg)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - AssForceFive (Protoss), Player 2 - tomto (Terran), Player 3 - BATS (Terran), Player 4 - Kushkillz (Zerg), Player 5 - SouperKraze (Zerg), Player 6 - Cstrange (Terran), Player 7 - Bstrange (Terran), Player 8 - MyApoloChees (Terran)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - SouperKraze (Zerg), Player 2 - Cstrange (Protoss), Player 3 - Bstrange (Terran), Player 4 - MyApoloChees (Terran), Player 5 - ButtSneezer (Terran), Player 6 - Shabbarankz (Protoss), Player 7 - Jaedolph (Terran), Player 8 - Saundo (Protoss)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Protoss)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Zerg)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - SouperKraze (Zerg), Player 2 - MyApoloChees (Zerg), Player 3 - Cstrange (Terran), Player 4 - dudemanbro (Terran), Player 5 - iamnoobnow (Terran), Player 6 - BlackSheep (Protoss)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Relinquish (Zerg), Player 2 - SCwizard (Zerg), Player 3 - Sax (Terran), Player 4 - Cstrange (Terran), Player 5 - SouperKraze (Zerg), Player 6 - StrangeNine (Protoss)] - Replay may not have a winner
+2024-04-28 02:54 PM - root - sc2_extractor.py:110 - WARNING - Player Count: [Player 1 - Cstrange (Terran), Player 2 - SouperKraze (Zerg), Player 3 - MyApoloChees (Zerg), Player 4 - SungJinWoo (Zerg), Player 5 - NewbieForeva (Zerg), Player 6 - Duy (Terran)] - Replay may not have a winner
