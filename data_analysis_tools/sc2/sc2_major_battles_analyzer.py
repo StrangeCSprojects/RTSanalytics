@@ -6,19 +6,33 @@ from database_tools.sc2.sc2_replay_data_retriever import (
     SC2ReplayDataRetriever,
 )  # Specific data retriever for SC2 replay data.
 from data_analysis_tools.general.reports.major_battle_report import MajorBattleReport
+import logging  # Standard Python module for logging
+from config.sc2_logging_config import (
+    setup_logging,
+)  # Function to set up logging for SC2 analysis
 
-from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
-from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
-from database_tools.sc2.sc2_replay_database import SC2ReplayDB
-import logging
-from config.sc2_logging_config import setup_logging
 
 class SC2MajorBattlesAnalyzer(Analyzer):
+    """
+    An analyzer class to handle the analysis of major battles in StarCraft 2 replays.
+    Inherits from the base Analyzer class.
+    """
+
     def __init__(self, data_retriever: DataRetriever) -> None:
-        super().__init__(data_retriever)
-        sc2_major_battle_report = MajorBattleReport()
+        """
+        Initializes the SC2MajorBattlesAnalyzer with a data retriever.
 
-    def major_battles_report(self):
-        pass
+        :param data_retriever: An instance of DataRetriever to fetch data for analysis.
+        """
+        super().__init__(data_retriever)  # Initialize the parent Analyzer class
+        self.sc2_major_battle_report = MajorBattleReport(
+            self.data_retriever
+        )  # Create a report for major battles
 
-    
+    def major_battle_timestamps(self) -> list:
+        """
+        Generate and return a report of major battles.
+
+        :return: Return the list of major battle timestamps
+        """
+        return self.sc2_major_battle_report.configure_report()
