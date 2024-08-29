@@ -18,10 +18,13 @@ class UnitDeathDataStorage(DataStorage):
     def push(self) -> None:
         """
         Pushes the current unit death data stored in this instance to the SC2MajorBattleDB.
+        Only works if there is data to push.
         """
-        SC2MajorBattleDB.add_unit_deaths(
-            self._data
-        )  # Add all stored unit deaths to the database.
+
+        if self._data:
+            SC2MajorBattleDB.add_unit_deaths(
+                self._data
+            )  # Add all stored unit deaths to the database.
 
     def set_data(self, new_record:tuple[int,int,int]) -> None:
         """
