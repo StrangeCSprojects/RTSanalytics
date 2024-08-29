@@ -35,10 +35,11 @@ class SC2MajorBattlesExtractor(Extractor):
                 # Check file loads properly
                 try:
                     replay = sc2reader.load_replay(file_path, load_map=True)
+                    replay_container[replay_counter] = replay
                 except Exception:
                     logging.warning(f"File: {file_path} - File failed to load")
 
-                replay_container[replay_counter] = replay
+
 
             else:
                 # Log warning if file is not found or isn't of type .SC2Replay
