@@ -13,7 +13,7 @@ from database_tools.sc2.entities.sc2_major_battle_entities import (
 import logging  # Import logging module for logging warnings and info
 
 
-class SC2BuildOrderDB(GeneralDB):
+class SC2MajorBattleDB(GeneralDB):
     """
     A class for interacting with the SC2 RTS build order database.
     This class is designed to manage the database operations related to StarCraft II unit deaths,
