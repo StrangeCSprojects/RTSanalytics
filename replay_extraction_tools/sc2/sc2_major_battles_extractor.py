@@ -2,6 +2,8 @@ import os
 import sc2reader
 from database_tools.general.general_database_access import DataStorage
 from replay_extraction_tools.General.extractor import Extractor
+from database_tools.sc2.sc2_major_battle_access import UnitDeathDataStorage
+from database_tools.sc2.sc2_major_battle_database import SC2MajorBattleDB
 import logging
 
 
@@ -110,7 +112,7 @@ class SC2MajorBattlesExtractor(Extractor):
         Returns:
         An integer representing the unique ID of a unit.
         """
-        return SC2MajorBattlesDB._create_unit_id()
+        return SC2MajorBattleDB._create_unit_id()
 
     def _get_death_timer(self, unit) -> int:
         """
