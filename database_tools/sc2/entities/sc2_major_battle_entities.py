@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import declarative_base
 
 # Creating a base class for declarative class definitions
@@ -11,11 +11,11 @@ class UnitDeath(Base):
     This table stores information about unit deaths in major battles.
     """
 
-    __tablename__ = "Major_Battles"  # Define the name of the table in the database
+    __tablename__ = "major_battles"  # Define the name of the table in the database
 
     # Define columns for the table
-    id = Column(int, primary_key=True)  # Integer column for the primary key 'id'
-    time = Column(int)  # Integer column for the time of unit death
+    id = Column(Integer, primary_key=True)  # Integer column for the primary key 'id'
+    time = Column(Integer)  # Integer column for the time of unit death
     resource = Column(
-        int
+        Integer
     )  # Integer column for the resource value associated with the unit death
