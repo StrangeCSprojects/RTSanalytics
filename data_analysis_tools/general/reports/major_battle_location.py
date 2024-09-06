@@ -18,10 +18,12 @@ class MajorBattleLocation(Report):
         self.end_unit_locations = self.data_retriever.get_all_locations_at_time(battle_end)
 
     def configure_report(self) -> list:
-        pass
+        start_loc = __find_battle_start_location__()
+        end_loc = __find_battle_end_location__()
+        return (start_loc, end_loc)
 
     def __find_battle_start_location__(self):
-        pass
+        dbscan = self.__dbscan__(battle_start)
 
     def __find_battle_end_location__(self):
         pass
