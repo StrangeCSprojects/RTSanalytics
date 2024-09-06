@@ -1,5 +1,5 @@
 import pytest
-from data_analysis_tools.general.reports.major_battle_report import (
+from data_analysis_tools.general.reports.major_battle_timestamps import (
     MajorBattleReport,
 )  # Import MajorBattleReport for generating reports on major battles.
 from database_tools.sc2.sc2_major_battle_retriever import (

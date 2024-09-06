@@ -9,19 +9,14 @@ from database_tools.general.general_database import (
 )  # General database interaction class.
 
 
-class MajorBattleReport(Report):
+class MajorBattleTimeStamps(Report):
     """
     A class to generate a report on major battles based on unit death data.
     Inherits from the Report class.
     """
 
     def __init__(self, data_retriever: DataRetriever) -> None:
-        """
-        Initialize the MajorBattleReport with a data retriever instance.
-
-        :param data_retriever: An instance of DataRetriever to retrieve unit death data.
-        """
-        self.data_retriever = data_retriever
+        super.__init__(data_retriever)
 
     def configure_report(self) -> list:
         """
