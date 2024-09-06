@@ -6,7 +6,7 @@ from database_tools.sc2.sc2_replay_data_retriever import (
     SC2ReplayDataRetriever,
 )  # Specific data retriever for SC2 replay data.
 from data_analysis_tools.general.reports.major_battle_timestamps import MajorBattleTimeStamps
-from data_analysis_tools.general.reports.major_battle_locations import MajorBattleLocations
+from data_analysis_tools.general.reports.major_battle_location import MajorBattleLocations
 import logging  # Standard Python module for logging
 from config.sc2_logging_config import (
     setup_logging,
