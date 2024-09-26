@@ -48,7 +48,7 @@ class MajorBattleLocation(Report):
             battle_end
         )
 
-    def configure_report(self) -> list:
+    def configure_report(self) -> tuple[int, int]:
         """
         Configure the report to determine the location of the major battle.
 
