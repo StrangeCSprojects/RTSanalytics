@@ -43,22 +43,19 @@ class SC2BuildOrderDB(GeneralDB):
         host = config['database']['host']
         port = config['database']['port']
         database = config['database']['database']
-        
-        # Print a message to console that credentials were found
-        print("Credentials found!")
 
         # Create an engine that stores data in the specified PostgreSQL database
         cls.engine = create_engine(f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}")
 
         # Create all tables in the database (if not already existing) based on metadata.
         Base.metadata.create_all(cls.engine)
+        
         # Create a configured "Session" class bound to the database engine
         cls.Session = sessionmaker(bind=cls.engine)
+
         # Initialize a counter for build order IDs
         cls._build_order_id_count = 0
 
-        # this is a test
-        print("database has been created!")
 
     @classmethod
     def add_build_orders(cls, build_order_list):
@@ -121,5 +118,3 @@ class SC2BuildOrderDB(GeneralDB):
         msg = f"Build: {build_name} - Build not found. - Ignore if adding build order to database"
         logging.warning(msg)
 
-
-SC2BuildOrderDB.init("test_pg_db")
