@@ -5,7 +5,25 @@
 4. install required libraries: 'pip install -r requirements.txt'
 
 # Additional setup steps
-- Need to add a 'data' folder under database_tools
+- Need to install PostgreSQL
+- Need to install psycopg2 module:
+    pip install psycopg2
+- Create a file named "config.ini" in "/database_tools/sc2/" directory
+    with the following format:
+
+START OF config.ini:
+[database]
+username = your_database_username
+password = your_database_password
+host = your_database_host
+port = 5432
+database = your_database_name
+END OF config.ini
+
+NOTE: Make sure your username/password combo is the same as the
+    credentials you use for your PostgreSQL database and that the
+    host is set to "localhost" when running locally and the port
+    is always 5432 by default.
 
 # How to run sc2_extractor.py
 py -m replay_extraction_tools.sc2.sc2_extractor
