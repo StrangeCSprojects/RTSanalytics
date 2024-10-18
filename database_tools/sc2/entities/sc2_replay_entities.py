@@ -16,7 +16,7 @@ class Player(Base):
     name = Column(String)
 
 class Play(Base):
-    __tablename__ = "play"
+    __tablename__ = "plays"
     game_id = Column(Integer, ForeignKey("games.game_id"), primary_key=True)
     player_id = Column(Integer, ForeignKey("players.player_id"), primary_key=True)
     race = Column(String)

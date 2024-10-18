@@ -28,6 +28,44 @@ class GeneralDB(ABC):
         pass
 
     @abstractmethod
+    def add_unit_deaths(cls, unit_death_list):
+        """Adds multiple unit deaths to the database from a list of unit deaths."""
+        pass
+
+    @abstractmethod
+    def get_unit_death_by_id(cls, unit_id):
+        """Retrieves a unit death by its ID. Returns the unit death details if found, otherwise logs a warning."""
+        pass
+
+    @abstractmethod
+    def get_unit_deaths(cls):
+        """Retrieves all unit deaths from the database and returns them as a tuple of tuples."""
+        pass
+
+    @abstractmethod
+    def add_build_orders(cls, build_order_list):
+        """
+        Adds multiple build orders to the database from a list of build orders.
+        Each build order in the list is checked for existence before addition to prevent duplicates.
+        """
+        pass
+
+    @abstractmethod
+    def get_build_by_name(cls, build_name):
+        """
+        Retrieves a build order by its name. Returns the build order details if found, otherwise logs a warning.
+        """
+        pass
+
+    @abstractmethod
+    def get_builds(cls):
+        """Retrieves all build orders from the database and returns them as a tuple of tuples."""
+        pass
+
+    @abstractmethod
+    
+
+    @abstractmethod
     def get_player_by_name(cls, name: str) -> dict:
         """Retrieves a player by name."""
         pass

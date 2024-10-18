@@ -11,9 +11,7 @@ class UnitDeath(Base):
     This table stores information about unit deaths in major battles.
     """
 
-    __tablename__ = "major_battles"  # Define the name of the table in the database
-
-    # Define columns for the table
+    __tablename__ = "unit_deaths"
     id = Column(Integer, primary_key=True)  # Integer column for the primary key 'id'
     time = Column(Integer)  # Integer column for the time of unit death
     resource = Column(
