@@ -1,6 +1,6 @@
 from data_analysis_tools.sc2.sc2_analyzer import SC2Analyzer
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
-from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
+from database_tools.sc2.sc2_RTSA_DB import SC2BuildOrderDB
 from database_tools.sc2.sc2_replay_data_retriever import SC2ReplayDataRetriever
 from database_tools.sc2.sc2_replay_database import SC2ReplayDB
 from server_tools.interfaces.get_build_orders import GetBuildOrders

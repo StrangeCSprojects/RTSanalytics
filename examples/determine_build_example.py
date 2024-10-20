@@ -1,5 +1,5 @@
 from data_analysis_tools.sc2.sc2_build_order.sc2_build_order_creator import SC2BuildOrderCreator
-from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
+from database_tools.sc2.sc2_RTSA_DB import SC2BuildOrderDB
 from data_analysis_tools.sc2.sc2_build_order.sc2_determine_build import SC2DetermineBuild
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
 from replay_extraction_tools.sc2.sc2_extractor import SC2Extractor

@@ -1,7 +1,7 @@
 from json import loads
 import string
 from database_tools.general.data_retriever import DataRetriever
-from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
+from database_tools.sc2.sc2_RTSA_DB import SC2BuildOrderDB
 import logging
 
 

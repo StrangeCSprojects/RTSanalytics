@@ -1,6 +1,6 @@
 from json import dumps
 from database_tools.general.general_database_access import DataStorage
-from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
+from database_tools.sc2.sc2_RTSA_DB import SC2BuildOrderDB
 
 # Implement and add the new database later
 

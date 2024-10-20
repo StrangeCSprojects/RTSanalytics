@@ -1,6 +1,6 @@
 import pytest
 from sqlalchemy.orm import declarative_base
-from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
+from database_tools.sc2.sc2_RTSA_DB import SC2BuildOrderDB
 from database_tools.sc2.entities.sc2_build_order_entities import BuildTemplate
 
 
