@@ -1,7 +1,5 @@
 from sqlalchemy import Column, String
-from sqlalchemy.orm import declarative_base
-
-Base = declarative_base()
+from database_tools.sc2.entities.base import Base
 
 class BuildTemplate(Base):
     __tablename__ = "build_template"

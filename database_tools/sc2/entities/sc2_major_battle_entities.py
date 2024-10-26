@@ -1,9 +1,5 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
-from sqlalchemy.orm import declarative_base
-
-# Creating a base class for declarative class definitions
-Base = declarative_base()
-
+from database_tools.sc2.entities.base import Base
 
 class UnitDeath(Base):
     """

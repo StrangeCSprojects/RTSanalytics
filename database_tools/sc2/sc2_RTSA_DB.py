@@ -1,7 +1,8 @@
 # Import any needed modules
 from sqlalchemy import create_engine
-from sqlalchemy.orm import ClassManager, sessionmaker, strategies, declarative_base
+from sqlalchemy.orm import ClassManager, sessionmaker, strategies
 from database_tools.general.general_database import GeneralDB
+from database_tools.sc2.entities.base import Base
 from database_tools.sc2.entities.sc2_replay_entities import Game, Player, Play
 from database_tools.sc2.entities.sc2_build_order_entities import BuildTemplate
 from database_tools.sc2.entities.sc2_major_battle_entities import UnitDeath
@@ -9,7 +10,6 @@ from os.path import dirname, abspath, join
 from configparser import ConfigParser
 import psycopg2
 import logging
-
 
 class SC2RTSADB(GeneralDB):
     """
@@ -49,10 +49,12 @@ class SC2RTSADB(GeneralDB):
         cls.Session = sessionmaker(bind=cls.engine)
 
         # Create all tables in the database (if not already existing) based on metadata.
-        declarative_base().metadata.create_all(cls.engine)
+        Base.metadata.create_all(cls.engine)
 
         # Initialize a counter for build order IDs
         cls._build_order_id_count = 0 # TODO: MAY NOT NEED TO DO THIS NOW THAT WE HAVE POSTGRES
+
+        print("Database initialized.")
 
     @classmethod
     def add_games(cls, game_list):
