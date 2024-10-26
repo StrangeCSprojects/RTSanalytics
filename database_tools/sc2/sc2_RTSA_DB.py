@@ -18,9 +18,6 @@ class SC2RTSADB(GeneralDB):
     build orders, game replays, and major battles.
     """
 
-    engine = None  # Static variable to hold the database engine once initialized.
-    Session = None  # Static variable to hold the sessionmaker once the database is initialized.
-
     @classmethod
     def init(cls):
         """
@@ -304,4 +301,3 @@ class SC2RTSADB(GeneralDB):
         """
         msg = f"Build: {build_name} - Build not found. - Ignore if adding build order to database"
         logging.warning(msg)
-
