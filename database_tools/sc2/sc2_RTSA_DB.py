@@ -130,7 +130,7 @@ class SC2RTSADB(GeneralDB):
     @classmethod
     def add_build_templates(cls, build_templates):
         """
-        Adds multiple build templates to the database from a list of build orders.
+        Adds multiple build templates to the database from a list of build order templates.
         Each template in the list is checked for existence before addition to prevent duplicates.
         """
         with cls.Session() as session:
