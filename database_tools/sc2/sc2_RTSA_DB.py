@@ -5,8 +5,8 @@ from database_tools.general.general_database import GeneralDB
 from database_tools.sc2.entities.sc2_replay_entities import Game, Player, Play
 from database_tools.sc2.entities.sc2_build_order_entities import BuildTemplate
 from database_tools.sc2.entities.sc2_major_battle_entities import UnitDeath
-import os
-import configparser
+from os.path import dirname, abspath, join
+from configparser import ConfigParser
 import psycopg2
 import logging
 
@@ -28,11 +28,11 @@ class SC2RTSADB(GeneralDB):
         """
         
         # First get the path to the config file dynamically
-        current_directory = os.path.dirname(os.path.abspath(__file__))
-        config_path = os.path.join(current_directory, 'config.ini')
+        current_directory = dirname(abspath(__file__))
+        config_path = join(current_directory, 'config.ini')
 
         # Load the config file
-        config = configparser.ConfigParser()
+        config = ConfigParser()
         config.read(config_path)
 
         # Retrieve credentials from the config file
