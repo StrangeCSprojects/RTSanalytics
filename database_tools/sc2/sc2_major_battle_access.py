@@ -4,8 +4,8 @@ from json import (
 from database_tools.general.general_database_access import (
     DataStorage,
 )  # Import base class for data storage operations.
-from database_tools.sc2.sc2_major_battle_database import (
-    SC2MajorBattleDB,
+from database_tools.sc2.sc2_RTSA_DB import (
+    SC2RTSADB
 )  # Import SC2 database class for managing major battle data.
 
 
@@ -22,7 +22,7 @@ class UnitDeathDataStorage(DataStorage):
         """
 
         if self._data:
-            SC2MajorBattleDB.add_unit_deaths(
+            SC2RTSADB.add_unit_deaths(
                 self._data
             )  # Add all stored unit deaths to the database.
 

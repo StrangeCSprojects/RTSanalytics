@@ -1,6 +1,6 @@
 from json import dumps
 from database_tools.general.general_database_access import DataStorage
-from database_tools.sc2.sc2_replay_database import SC2ReplayDB
+from database_tools.sc2.sc2_RTSA_DB import SC2RTSADB
 
 
 class PlayDataStorage(DataStorage):
@@ -9,7 +9,7 @@ class PlayDataStorage(DataStorage):
     """
 
     def push(self) -> None:
-        SC2ReplayDB.add_plays(self._data)
+        SC2RTSADB.add_plays(self._data)
 
     def set_data(self, new_record) -> None:
         game_id, player_id, race, is_winner, commands = new_record
@@ -23,7 +23,7 @@ class PlayerDataStorage(DataStorage):
     """
 
     def push(self) -> None:
-        SC2ReplayDB.add_players(self._data)
+        SC2RTSADB.add_players(self._data)
 
     def set_data(self, new_record) -> None:
         self._data.append(new_record)
@@ -42,7 +42,7 @@ class GameDataStorage(DataStorage):
     """
 
     def push(self) -> None:
-        SC2ReplayDB.add_games(self._data)
+        SC2RTSADB.add_games(self._data)
 
     def set_data(self, new_record) -> None:
         self._data.append(new_record)
