@@ -4,7 +4,7 @@ from data_analysis_tools.sc2.sc2_build_order.sc2_determine_build import (
 )
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
 from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
-from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder
+from database_tools.sc2.entities.sc2_build_order_entities import BuildTemplate
 from json import loads, dumps
 
 
@@ -16,7 +16,7 @@ def setup_database():
     data_retriever = SC2BuildOrderDataRetriever(SC2BuildOrderDB)
     yield data_retriever  # Yields the database instance
     with SC2BuildOrderDB.Session() as session:
-        session.query(PlayerBuildOrder).delete()
+        session.query(BuildTemplate).delete()
         session.commit()
     # Close the database connection after cleaning
     SC2BuildOrderDB.engine.dispose()

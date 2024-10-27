@@ -3,7 +3,7 @@ from data_analysis_tools.general.build_order.build_order_overlay import (
     BuildOrderOverlay,
 )
 from database_tools.sc2.sc2_build_order_data_retriever import SC2BuildOrderDataRetriever
-from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
+from database_tools.sc2.sc2_RTSA_DB import SC2BuildOrderDB
 import tkinter as tk
 
 

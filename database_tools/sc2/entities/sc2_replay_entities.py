@@ -1,8 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy.schema import PrimaryKeyConstraint
-
-Base = declarative_base()
+from database_tools.sc2.entities.base import Base
 
 class Game(Base):
     __tablename__ = "games"

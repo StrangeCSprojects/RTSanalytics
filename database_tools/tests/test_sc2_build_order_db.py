@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.orm import declarative_base
-from database_tools.sc2.sc2_build_order_database import SC2BuildOrderDB
-from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder
+from database_tools.sc2.sc2_RTSA_DB import SC2BuildOrderDB
+from database_tools.sc2.entities.sc2_build_order_entities import BuildTemplate
 
 
 Base = declarative_base()  # Define Base using declarative_base() from sqlalchemy.orm
@@ -15,7 +15,7 @@ def setup_database(scope="module"):
     yield  # Run the tests
     # Clean the data from relevant tables after all tests are finished
     with SC2BuildOrderDB.Session() as session:
-        session.query(PlayerBuildOrder).delete()
+        session.query(BuildTemplate).delete()
         session.commit()
     # Close the database connection after cleaning
     SC2BuildOrderDB.engine.dispose()
@@ -45,7 +45,7 @@ def test_add_build_order(setup_database):
     
     # Check that the duplicate builds weren't added
     with SC2BuildOrderDB.Session() as session:
-        num_builds_in_db = session.query(PlayerBuildOrder).count()
+        num_builds_in_db = session.query(BuildTemplate).count()
         assert num_builds_in_db == 2
 
 
