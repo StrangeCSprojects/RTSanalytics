@@ -3,6 +3,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import ClassManager, sessionmaker, strategies
 from database_tools.general.general_database import GeneralDB
 from database_tools.sc2.entities.sc2_build_order_entities import PlayerBuildOrder, Base
+import os
+import configparser
+import psycopg2
 import logging
 
 
@@ -20,16 +23,39 @@ class SC2BuildOrderDB(GeneralDB):
     def init(cls, db_name):
         """
         Initializes the database connection using the specified database name.
-        This method sets up the SQLite engine and sessionmaker for interacting with the database.
+        This method sets up the PostgreSQL engine and sessionmaker for interacting with the database.
+
+        NOTE: You must have a "config.ini" file in the current directory.
+            (see README.md for more information)
         """
-        # Create an engine that stores data in the specified SQLite database file.
-        cls.engine = create_engine(f"sqlite:///database_tools/data/{db_name}.db")
+        
+        # First get the path to the config file dynamically
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        config_path = os.path.join(current_directory, 'config.ini')
+
+        # Load the config file
+        config = configparser.ConfigParser()
+        config.read(config_path)
+
+        # Retrieve credentials from the config file
+        username = config['database']['username']
+        password = config['database']['password']
+        host = config['database']['host']
+        port = config['database']['port']
+        database = config['database']['database']
+
+        # Create an engine that stores data in the specified PostgreSQL database
+        cls.engine = create_engine(f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}")
+
         # Create all tables in the database (if not already existing) based on metadata.
         Base.metadata.create_all(cls.engine)
+        
         # Create a configured "Session" class bound to the database engine
         cls.Session = sessionmaker(bind=cls.engine)
+
         # Initialize a counter for build order IDs
         cls._build_order_id_count = 0
+
 
     @classmethod
     def add_build_orders(cls, build_order_list):
@@ -91,3 +117,4 @@ class SC2BuildOrderDB(GeneralDB):
         """
         msg = f"Build: {build_name} - Build not found. - Ignore if adding build order to database"
         logging.warning(msg)
+
