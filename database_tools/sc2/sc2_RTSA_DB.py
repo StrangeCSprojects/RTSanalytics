@@ -54,8 +54,6 @@ class SC2RTSADB(GeneralDB):
         # Initialize a counter for build order IDs
         cls._build_order_id_count = 0 # TODO: MAY NOT NEED TO DO THIS NOW THAT WE HAVE POSTGRES
 
-        print("Database initialized.")
-
     @classmethod
     def add_games(cls, game_list):
         with cls.Session() as session:
