@@ -9,3 +9,4 @@ psutil==5.9.8
 pyqt5==5.15.10
 scikit-learn==1.5.1
 matplotlib==3.9.2
+psycopg2=2.9.9

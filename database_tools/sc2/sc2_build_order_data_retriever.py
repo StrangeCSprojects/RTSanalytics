@@ -1,7 +1,7 @@
 from json import loads
 import string
 from database_tools.general.data_retriever import DataRetriever
-from database_tools.sc2.sc2_RTSA_DB import SC2BuildOrderDB
+from database_tools.sc2.sc2_RTSA_DB import SC2RTSADB
 import logging
 
 
@@ -12,7 +12,7 @@ class SC2BuildOrderDataRetriever(DataRetriever):
     class to suit the specific needs of accessing and analyzing StarCraft II build order data.
     """
 
-    def __init__(self, database: SC2BuildOrderDB) -> None:
+    def __init__(self, database: SC2RTSADB) -> None:
         """
         Initialize the SC2BuildOrderDataRetriever with a database connection or configuration.
 
